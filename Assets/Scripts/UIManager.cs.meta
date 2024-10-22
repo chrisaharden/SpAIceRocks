@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 9fe09410253af4f419f1b908087300c9
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - scoreText: {instanceID: 0}
+  - levelText: {instanceID: 0}
+  - gameOverPanel: {fileID: 3052297941649245345, guid: 97d28fa88fb9e6b4f96b48c71010c71d, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
