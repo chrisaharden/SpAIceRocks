@@ -15,13 +15,13 @@ public class Board : MonoBehaviour
 
     public GameObject[] tilePrefabs;
 
-    private AudioSource audioSource;
+    public AudioSource audioSource;
     private Tile selectedTile;
     private bool isSwapping;
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        //audioSource = GetComponent<AudioSource>();
         //GenerateBoard();
     }
 
@@ -90,7 +90,7 @@ public class Board : MonoBehaviour
     {
         isSwapping = true;
 
-        //audioSource.PlayOneShot(swapSound);
+        audioSource.PlayOneShot(swapSound);
 
         // Animate the tiles moving to each other's positions
         Vector2 aPos = a.transform.position;
@@ -181,7 +181,7 @@ public class Board : MonoBehaviour
 
     void RemoveMatches(HashSet<Tile> matchedTiles)
     {
-        //audioSource.PlayOneShot(matchSound);
+        audioSource.PlayOneShot(matchSound);
 
         foreach (Tile tile in matchedTiles)
         {
@@ -304,7 +304,7 @@ public class Board : MonoBehaviour
 
     void GameOver()
     {
-        //audioSource.PlayOneShot(gameOverSound);
+        audioSource.PlayOneShot(gameOverSound);
         UIManager.Instance.ShowGameOver();
     }
 }
