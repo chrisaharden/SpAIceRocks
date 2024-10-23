@@ -192,7 +192,7 @@ public class Board : MonoBehaviour
             Destroy(effect, 1f);
 
             // Trigger match animation before destroying tile
-            tile.GetComponent<Animator>().SetTrigger("Match");
+            //tile.GetComponent<Animator>().SetTrigger("Match");
             Destroy(tile.gameObject, 0.5f);
         }
 
