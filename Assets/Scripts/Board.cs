@@ -14,10 +14,16 @@ public class Board : MonoBehaviour
     public AudioClip gameOverSound;
 
     public GameObject[] tilePrefabs;
+    public GameObject[] gemPrefabs;
 
     public AudioSource audioSource;
     private Tile selectedTile;
     private bool isSwapping;
+    private GameObject[] currentPrefabs;
+    
+    // Different scales for tiles and gems
+    private readonly Vector3 tileScale = new Vector3(0.25f, 0.25f, 1f);
+    private readonly Vector3 gemScale = new Vector3(0.15f, 0.15f, 1f); // Smaller scale for gems
 
     void Start()
     {
@@ -25,18 +31,43 @@ public class Board : MonoBehaviour
         //GenerateBoard();
     }
 
+    private GameObject[] GetCurrentPrefabs()
+    {
+        // Cache the current prefabs to avoid null reference issues
+        if (GameManager.Instance != null)
+        {
+            currentPrefabs = GameManager.Instance.level % 2 == 1 ? tilePrefabs : gemPrefabs;
+        }
+        
+        // Fallback to tile prefabs if something goes wrong
+        if (currentPrefabs == null || currentPrefabs.Length == 0)
+        {
+            currentPrefabs = tilePrefabs;
+        }
+        
+        return currentPrefabs;
+    }
+
+    private Vector3 GetCurrentScale()
+    {
+        // Use different scale based on whether we're using gems or tiles
+        return (currentPrefabs == gemPrefabs) ? gemScale : tileScale;
+    }
+
     public void GenerateBoard()
     {
         tiles = new Tile[width, height];
+        currentPrefabs = GetCurrentPrefabs();
+        Vector3 currentScale = GetCurrentScale();
 
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
             {
                 Vector2 pos = new Vector2(x - width / 2f + 0.5f, y - height / 2f + 0.5f);
-                int randomIndex = Random.Range(0, tilePrefabs.Length);
-                GameObject tile = Instantiate(tilePrefabs[randomIndex], pos, Quaternion.identity);
-                tile.transform.localScale = new Vector3(0.25f, 0.25f, 1f); // Set tile scale to 25% width and height
+                int randomIndex = Random.Range(0, currentPrefabs.Length);
+                GameObject tile = Instantiate(currentPrefabs[randomIndex], pos, Quaternion.identity);
+                tile.transform.localScale = currentScale;
                 tile.name = $"Tile ({x},{y})";
 
                 Tile tileComponent = tile.GetComponent<Tile>();
@@ -217,6 +248,10 @@ public class Board : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
 
+        // Update current prefabs for any new level
+        currentPrefabs = GetCurrentPrefabs();
+        Vector3 currentScale = GetCurrentScale();
+
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
@@ -224,9 +259,9 @@ public class Board : MonoBehaviour
                 if (tiles[x, y] == null)
                 {
                     Vector2 pos = new Vector2(x - width / 2f + 0.5f, y - height / 2f + 0.5f);
-                    int randomIndex = Random.Range(0, tilePrefabs.Length);
-                    GameObject tile = Instantiate(tilePrefabs[randomIndex], pos, Quaternion.identity);
-                    tile.transform.localScale = new Vector3(0.25f, 0.25f, 1f); // Set tile scale to 25% width and height
+                    int randomIndex = Random.Range(0, currentPrefabs.Length);
+                    GameObject tile = Instantiate(currentPrefabs[randomIndex], pos, Quaternion.identity);
+                    tile.transform.localScale = currentScale;
                     tile.name = $"Tile ({x},{y})";
 
                     Tile tileComponent = tile.GetComponent<Tile>();
