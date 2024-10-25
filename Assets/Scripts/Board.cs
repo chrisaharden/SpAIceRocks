@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class Board : MonoBehaviour
 {
-    public int width = 8;
+    private int width = 4; // Start with 4 columns
     public int height = 8;
     public Tile[,] tiles;
 
     public GameObject matchEffectPrefab;
     public AudioClip swapSound;
-    public AudioClip matchSound;
+    public AudioClip matchSoundOdd;  // For odd levels
+    public AudioClip matchSoundEven; // For even levels
     public AudioClip gameOverSound;
 
     public GameObject[] tilePrefabs;
@@ -29,6 +30,37 @@ public class Board : MonoBehaviour
     {
         //audioSource = GetComponent<AudioSource>();
         //GenerateBoard();
+    }
+
+    public void UpdateBoardSize(int level)
+    {
+        // Calculate new width based on level (starting at 4, max 12)
+        int newWidth = Mathf.Min(4 + (level - 1), 12);
+        
+        // Only regenerate if width has changed
+        if (newWidth != width)
+        {
+            width = newWidth;
+            ClearBoard();
+            GenerateBoard();
+        }
+    }
+
+    private void ClearBoard()
+    {
+        if (tiles != null)
+        {
+            for (int x = 0; x < tiles.GetLength(0); x++)
+            {
+                for (int y = 0; y < tiles.GetLength(1); y++)
+                {
+                    if (tiles[x, y] != null)
+                    {
+                        Destroy(tiles[x, y].gameObject);
+                    }
+                }
+            }
+        }
     }
 
     private GameObject[] GetCurrentPrefabs()
@@ -52,6 +84,12 @@ public class Board : MonoBehaviour
     {
         // Use different scale based on whether we're using gems or tiles
         return (currentPrefabs == gemPrefabs) ? gemScale : tileScale;
+    }
+
+    private AudioClip GetCurrentMatchSound()
+    {
+        // Use different match sound based on level
+        return GameManager.Instance.level % 2 == 1 ? matchSoundOdd : matchSoundEven;
     }
 
     public void GenerateBoard()
@@ -227,7 +265,7 @@ public class Board : MonoBehaviour
 
     void RemoveMatches(HashSet<Tile> matchedTiles)
     {
-        audioSource.PlayOneShot(matchSound);
+        audioSource.PlayOneShot(GetCurrentMatchSound());
 
         foreach (Tile tile in matchedTiles)
         {
