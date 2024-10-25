@@ -26,3 +26,4 @@ MemoryCaptures/
 *.DS_Store
 ._*
 Thumbs.db
+/ProjectSettings/Packages/com.unity.muse.common
