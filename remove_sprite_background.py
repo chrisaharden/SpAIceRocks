@@ -1,9 +1,6 @@
-    from PIL import Image
 import os
-
-def is_white(pixel, threshold=230):
-    """Check if a pixel is white-ish based on RGB values"""
-    return all(value >= threshold for value in pixel[:3])
+from rembg import remove
+from PIL import Image
 
 # Set the directory containing the images
 image_dir = 'Assets/Sprites/'
@@ -26,27 +23,15 @@ for filename in os.listdir(image_dir):
             
         # Open the image file
         image_path = os.path.join(image_dir, filename)
-        image = Image.open(image_path).convert('RGBA')
         
-        # Get the pixel data
-        data = image.getdata()
+        # Read the input image
+        input_image = Image.open(image_path)
         
-        # Create a new list for the modified pixels
-        new_data = []
-        
-        # Process each pixel
-        for pixel in data:
-            # If the pixel is white-ish, make it transparent
-            if is_white(pixel):
-                new_data.append((255, 255, 255, 0))  # Transparent
-            else:
-                new_data.append(pixel)  # Keep original pixel
-        
-        # Update the image with the new pixel data
-        image.putdata(new_data)
+        # Remove the background
+        output_image = remove(input_image)
         
         # Save the processed image
-        image.save(output_path, 'PNG')
+        output_image.save(output_path, 'PNG')
         print(f"Processed {filename} -> {transparent_filename}")
 
 print('Image processing complete!')

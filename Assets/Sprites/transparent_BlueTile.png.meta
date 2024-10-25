@@ -1,19 +1,10 @@
 fileFormatVersion: 2
-guid: de78ddbeebace8345aaedec5e8b0e68c
+guid: 5106505dcec125041bff073334fb5d32
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2735937908338845452
-    second: transparent_gem_purple_midourney_0
-  - first:
-      213: -2850974110969914019
-    second: transparent_gem_purple_midourney_1
-  - first:
-      213: -4716082678814285268
-    second: transparent_gem_purple_midourney_2
-  - first:
-      213: 1784610279212313762
-    second: transparent_gem_purple_midourney_3
+      213: 3125206262094810723
+    second: transparent_BlueTile_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: transparent_gem_purple_midourney_0
+      name: transparent_BlueTile_0
       rect:
         serializedVersion: 2
-        x: 84
-        y: 211
-        width: 328
-        height: 417
+        x: 70
+        y: 78
+        width: 372
+        height: 354
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,74 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c07ef02380108f520800000000000000
-      internalID: 2735937908338845452
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: transparent_gem_purple_midourney_1
-      rect:
-        serializedVersion: 2
-        x: 484
-        y: 207
-        width: 230
-        height: 426
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d5d9dc3b62e4f68d0800000000000000
-      internalID: -2850974110969914019
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: transparent_gem_purple_midourney_2
-      rect:
-        serializedVersion: 2
-        x: 759
-        y: 210
-        width: 233
-        height: 416
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c22e6ed5acb1d8eb0800000000000000
-      internalID: -4716082678814285268
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: transparent_gem_purple_midourney_3
-      rect:
-        serializedVersion: 2
-        x: 1053
-        y: 221
-        width: 312
-        height: 413
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2ace5faf79534c810800000000000000
-      internalID: 1784610279212313762
+      spriteID: 36eccfd8986fe5b20800000000000000
+      internalID: 3125206262094810723
       vertices: []
       indices: 
       edges: []
@@ -209,11 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      transparent_gem_purple_midourney_0: 2735937908338845452
-      transparent_gem_purple_midourney_1: -2850974110969914019
-      transparent_gem_purple_midourney_2: -4716082678814285268
-      transparent_gem_purple_midourney_3: 1784610279212313762
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

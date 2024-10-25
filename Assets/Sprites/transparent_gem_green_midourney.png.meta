@@ -209,7 +209,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      transparent_gem_green_midourney_0: 8111577421435797329
+      transparent_gem_green_midourney_1: -207937591321212458
+      transparent_gem_green_midourney_2: 1190077384594010062
+      transparent_gem_green_midourney_3: -4552096466830143272
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

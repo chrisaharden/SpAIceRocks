@@ -233,12 +233,12 @@ public class Board : MonoBehaviour
         {
             tiles[tile.x, tile.y] = null;
 
-            // Instantiate match effect at tile position
-            GameObject effect = Instantiate(matchEffectPrefab, tile.transform.position, Quaternion.identity);
+            // Instantiate match effect at tile position, top of the z order
+            Vector3 effectPosition = new Vector3(tile.transform.position.x,tile.transform.position.y,-1);
+            GameObject effect = Instantiate(matchEffectPrefab, effectPosition, Quaternion.identity);
             Destroy(effect, 1f);
 
             // Trigger match animation before destroying tile
-            //tile.GetComponent<Animator>().SetTrigger("Match");
             Destroy(tile.gameObject, 0.5f);
         }
 
