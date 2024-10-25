@@ -123,18 +123,33 @@ public class Board : MonoBehaviour
 
         audioSource.PlayOneShot(swapSound);
 
-        // Animate the tiles moving to each other's positions
-        Vector2 aPos = a.transform.position;
-        Vector2 bPos = b.transform.position;
+        // Store original positions including z
+        Vector3 aPos = a.transform.position;
+        Vector3 bPos = b.transform.position;
+        
+        // Move tiles forward in z-space during animation
+        aPos.z = -1;
+        bPos.z = -1;
+        
         float duration = 0.2f;
 
         for (float t = 0; t <= 1; t += Time.deltaTime / duration)
         {
-            a.transform.position = Vector2.Lerp(aPos, bPos, t);
-            b.transform.position = Vector2.Lerp(bPos, aPos, t);
+            Vector3 newAPos = Vector3.Lerp(a.transform.position, bPos, t);
+            Vector3 newBPos = Vector3.Lerp(b.transform.position, aPos, t);
+            
+            // Maintain forward z-position during animation
+            newAPos.z = -1;
+            newBPos.z = -1;
+            
+            a.transform.position = newAPos;
+            b.transform.position = newBPos;
             yield return null;
         }
 
+        // Reset z positions after swap
+        aPos.z = 0;
+        bPos.z = 0;
         a.transform.position = bPos;
         b.transform.position = aPos;
 
