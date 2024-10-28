@@ -121,7 +121,7 @@ public class Board : MonoBehaviour
         movesRemaining = 20;
         tiles = new Tile[width, height];
         currentPrefabs = GetCurrentPrefabs();
-        Vector3 currentScale = GetCurrentScale();
+        //Vector3 currentScale = GetCurrentScale();
 
         CreateBackgroundGrid();
 
@@ -132,7 +132,7 @@ public class Board : MonoBehaviour
                 Vector2 pos = new Vector2(x - width / 2f + 0.5f, y - height / 2f + 0.5f);
                 int randomIndex = Random.Range(0, currentPrefabs.Length);
                 GameObject tile = Instantiate(currentPrefabs[randomIndex], pos, Quaternion.identity);
-                tile.transform.localScale = currentScale;
+                //tile.transform.localScale = currentScale;
                 tile.name = $"Tile ({x},{y})";
 
                 Tile tileComponent = tile.GetComponent<Tile>();
@@ -300,12 +300,14 @@ public class Board : MonoBehaviour
         {
             tiles[tile.x, tile.y] = null;
 
-            // Instantiate match effect at tile position, top of the z order
-            Vector3 effectPosition = new Vector3(tile.transform.position.x,tile.transform.position.y,-0.25f);
-            GameObject effect = Instantiate(matchEffectPrefab, effectPosition, Quaternion.identity);
-            Destroy(effect, 1f);
+            // Get the animator component and play the shrink animation
+            Animator animator = tile.GetComponent<Animator>();
+            if (animator != null)
+            {
+                animator.Play("ShrinkAnimation");
+            }
 
-            // Trigger match animation before destroying tile
+            // Destroy the tile after animation duration
             Destroy(tile.gameObject, 0.5f);
         }
 
@@ -332,7 +334,7 @@ public class Board : MonoBehaviour
 
         // Update current prefabs for any new level
         currentPrefabs = GetCurrentPrefabs();
-        Vector3 currentScale = GetCurrentScale();
+        //Vector3 currentScale = GetCurrentScale();
 
         for (int x = 0; x < width; x++)
         {
@@ -343,7 +345,7 @@ public class Board : MonoBehaviour
                     Vector2 pos = new Vector2(x - width / 2f + 0.5f, y - height / 2f + 0.5f);
                     int randomIndex = Random.Range(0, currentPrefabs.Length);
                     GameObject tile = Instantiate(currentPrefabs[randomIndex], pos, Quaternion.identity);
-                    tile.transform.localScale = currentScale;
+                    //tile.transform.localScale = currentScale;
                     tile.name = $"Tile ({x},{y})";
 
                     Tile tileComponent = tile.GetComponent<Tile>();
