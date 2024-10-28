@@ -16,6 +16,10 @@ public class GameManager : MonoBehaviour
     private AudioSource backgroundAudio;
     public AudioClip backgroundMusic;
 
+    [Header("Robot Collection")]
+    public int robotsCollected = 0;
+    public GameObject[] robotPrefabs; // Array of different robot prefabs to award
+
     void Awake()
     {
         Instance = this;
@@ -60,7 +64,6 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.UpdateCoinsEarned(coinsEarned);
 
         //check collected items for matches, then decrement if match.  When items left reaches zero, the level has been beaten
-        //TODO: update the logic to look for specific items, such as certain stones
         itemsLeftToCollect-=amount;
         if (itemsLeftToCollect <= 0) itemsLeftToCollect=0;
         UIManager.Instance.UpdateCollectionGoal(itemsLeftToCollect);
@@ -74,7 +77,19 @@ public class GameManager : MonoBehaviour
     {
         level++;
         itemsLeftToCollect = intialCollectionGoal;
-        UIManager.Instance.ShowBoardCleared();
+        
+        // Award a new robot
+        if (robotPrefabs != null && robotPrefabs.Length > 0)
+        {
+            int robotIndex = robotsCollected % robotPrefabs.Length;
+            robotsCollected++;
+            UIManager.Instance.ShowBoardCleared(robotPrefabs[robotIndex]);
+        }
+        else
+        {
+            UIManager.Instance.ShowBoardCleared(null);
+        }
+        
         board.UpdateBoardSize(level);
 
         //reset for the next try

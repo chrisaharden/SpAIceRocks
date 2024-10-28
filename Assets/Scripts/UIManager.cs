@@ -20,6 +20,10 @@ public class UIManager : MonoBehaviour
     public Button confirmExitButton;
     public Button cancelExitButton;
 
+    [Header("Robot Reward")]
+    public Image robotRewardImage;
+    public TMP_Text robotRewardText;
+
     void Awake()
     {
         Instance = this;
@@ -53,12 +57,30 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void ShowBoardCleared()
+    public void ShowBoardCleared(GameObject robotReward = null)
     {
         if (boardClearedPanel != null)
         {
             bool isActive = !boardClearedPanel.activeSelf;
             boardClearedPanel.SetActive(isActive);
+
+            // Show robot reward if provided
+            if (isActive && robotReward != null && robotRewardImage != null)
+            {
+                // Get the sprite from the robot prefab's SpriteRenderer
+                SpriteRenderer robotSprite = robotReward.GetComponent<SpriteRenderer>();
+                if (robotSprite != null)
+                {
+                    robotRewardImage.sprite = robotSprite.sprite;
+                    robotRewardImage.gameObject.SetActive(true);
+                }
+                
+                if (robotRewardText != null)
+                {
+                    robotRewardText.text = "New Robot Unlocked!";
+                    robotRewardText.gameObject.SetActive(true);
+                }
+            }
 
             // Bring the panel to the top of the z-order
             if (isActive)
@@ -119,6 +141,13 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
+        // Hide all panels on launch
+        if (timesUpPanel != null) timesUpPanel.SetActive(false);
+        if (boardClearedPanel != null) boardClearedPanel.SetActive(false);
+        if (creditsPanel != null) creditsPanel.SetActive(false);
+        if (exitConfirmPanel != null) exitConfirmPanel.SetActive(false);
+
+        // Set up button listeners
         creditsButton.onClick.AddListener(ToggleCreditsPanel);
         if (timesUpButton != null)
         {

@@ -83,19 +83,55 @@ public class Board : MonoBehaviour
 
         CreateBackgroundGrid();
 
+        // If we have collected robots, choose a random position to place one
+        bool shouldPlaceRobot = GameManager.Instance.robotsCollected > 0 && GameManager.Instance.robotPrefabs != null && GameManager.Instance.robotPrefabs.Length > 0;
+        Vector2Int robotPosition = new Vector2Int(-1, -1);
+        
+        if (shouldPlaceRobot)
+        {
+            robotPosition.x = Random.Range(0, width);
+            robotPosition.y = Random.Range(0, height);
+        }
+
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
             {
                 Vector2 pos = new Vector2(x - width / 2f + 0.5f, y - height / 2f + 0.5f);
-                int randomIndex = Random.Range(0, tilePrefabs.Length);
-                GameObject tile = Instantiate(tilePrefabs[randomIndex], pos, Quaternion.identity);
+                GameObject tilePrefab;
+                Tile.TileType tileType;
+                
+                // If this is the robot position and we should place a robot
+                if (shouldPlaceRobot && x == robotPosition.x && y == robotPosition.y)
+                {
+                    // Get the most recently collected robot
+                    int lastRobotIndex = (GameManager.Instance.robotsCollected - 1) % GameManager.Instance.robotPrefabs.Length;
+                    tilePrefab = GameManager.Instance.robotPrefabs[lastRobotIndex];
+                    tileType = Tile.TileType.Robot;
+                }
+                else
+                {
+                    // Place a regular tile
+                    int randomIndex = Random.Range(0, tilePrefabs.Length);
+                    tilePrefab = tilePrefabs[randomIndex];
+                    // Ensure we're using the correct tile type based on the prefab index
+                    // The enum order should match: Type_00, Type_1, Type_02,...
+                    tileType = (Tile.TileType)randomIndex;
+                    
+                    // Make sure we don't accidentally set it as Robot type
+                    if ((int)tileType >= (int)Tile.TileType.Robot)
+                    {
+                        tileType = Tile.TileType.Type_00; // Default to Yellow if we somehow get an invalid index
+                    }
+                }
+
+                GameObject tile = Instantiate(tilePrefab, pos, Quaternion.identity);
                 tile.name = $"Tile ({x},{y})";
 
                 Tile tileComponent = tile.GetComponent<Tile>();
                 tileComponent.x = x;
                 tileComponent.y = y;
-                tileComponent.type = (Tile.TileType)randomIndex;
+                tileComponent.type = tileType;
 
                 tiles[x, y] = tileComponent;
             }
@@ -216,16 +252,62 @@ public class Board : MonoBehaviour
     {
         HashSet<Tile> matchedTiles = new HashSet<Tile>();
 
+        // First check for robot tiles and their adjacent matches
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
             {
                 Tile tile = tiles[x, y];
+                if (tile != null && tile.type == Tile.TileType.Robot)
+                {
+                    bool hasAdjacentMatch = false;
+                    // Add adjacent tiles (up, down, left, right)
+                    if (x > 0 && tiles[x - 1, y] != null && tiles[x - 1, y].type != Tile.TileType.Robot) 
+                    {
+                        matchedTiles.Add(tiles[x - 1, y]);
+                        hasAdjacentMatch = true;
+                    }
+                    if (x < width - 1 && tiles[x + 1, y] != null && tiles[x + 1, y].type != Tile.TileType.Robot) 
+                    {
+                        matchedTiles.Add(tiles[x + 1, y]);
+                        hasAdjacentMatch = true;
+                    }
+                    if (y > 0 && tiles[x, y - 1] != null && tiles[x, y - 1].type != Tile.TileType.Robot) 
+                    {
+                        matchedTiles.Add(tiles[x, y - 1]);
+                        hasAdjacentMatch = true;
+                    }
+                    if (y < height - 1 && tiles[x, y + 1] != null && tiles[x, y + 1].type != Tile.TileType.Robot) 
+                    {
+                        matchedTiles.Add(tiles[x, y + 1]);
+                        hasAdjacentMatch = true;
+                    }
+                    
+                    // If the robot matched with any adjacent tiles, add it to be removed
+                    if (hasAdjacentMatch)
+                    {
+                        matchedTiles.Add(tile);
+                    }
+                }
+            }
+        }
+
+        // Then check for regular matches
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                Tile tile = tiles[x, y];
+                
+                // Skip robot tiles and null tiles for regular matching
+                if (tile == null || tile.type == Tile.TileType.Robot)
+                    continue;
 
                 // Check horizontal matches
                 if (x <= width - 3)
                 {
-                    if (tile.type == tiles[x + 1, y].type && tile.type == tiles[x + 2, y].type)
+                    if (tiles[x + 1, y] != null && tiles[x + 2, y] != null &&
+                        tile.type == tiles[x + 1, y].type && tile.type == tiles[x + 2, y].type)
                     {
                         matchedTiles.Add(tile);
                         matchedTiles.Add(tiles[x + 1, y]);
@@ -236,7 +318,8 @@ public class Board : MonoBehaviour
                 // Check vertical matches
                 if (y <= height - 3)
                 {
-                    if (tile.type == tiles[x, y + 1].type && tile.type == tiles[x, y + 2].type)
+                    if (tiles[x, y + 1] != null && tiles[x, y + 2] != null &&
+                        tile.type == tiles[x, y + 1].type && tile.type == tiles[x, y + 2].type)
                     {
                         matchedTiles.Add(tile);
                         matchedTiles.Add(tiles[x, y + 1]);
@@ -255,6 +338,9 @@ public class Board : MonoBehaviour
 
         foreach (Tile tile in matchedTiles)
         {
+            if (tile == null)
+                continue;
+                
             tiles[tile.x, tile.y] = null;
 
             // Get the animator component and play the shrink animation
@@ -303,7 +389,14 @@ public class Board : MonoBehaviour
                     Tile tileComponent = tile.GetComponent<Tile>();
                     tileComponent.x = x;
                     tileComponent.y = y;
-                    tileComponent.type = (Tile.TileType)randomIndex;
+                    
+                    // Ensure we don't create Robot type tiles during refill
+                    Tile.TileType newType = (Tile.TileType)randomIndex;
+                    if ((int)newType >= (int)Tile.TileType.Robot)
+                    {
+                        newType = Tile.TileType.Type_00;
+                    }
+                    tileComponent.type = newType;
 
                     tiles[x, y] = tileComponent;
                 }
@@ -335,37 +428,44 @@ public class Board : MonoBehaviour
             for (int y = 0; y < height; y++)
             {
                 Tile tile = tiles[x, y];
+                if (tile == null) continue;
 
                 // Check horizontal swaps
                 if (x < width - 1)
                 {
                     Tile rightTile = tiles[x + 1, y];
-                    tiles[x, y] = rightTile;
-                    tiles[x + 1, y] = tile;
-                    if (FindMatches().Count > 0)
+                    if (rightTile != null)
                     {
+                        tiles[x, y] = rightTile;
+                        tiles[x + 1, y] = tile;
+                        if (FindMatches().Count > 0)
+                        {
+                            tiles[x, y] = tile;
+                            tiles[x + 1, y] = rightTile;
+                            return true;
+                        }
                         tiles[x, y] = tile;
                         tiles[x + 1, y] = rightTile;
-                        return true;
                     }
-                    tiles[x, y] = tile;
-                    tiles[x + 1, y] = rightTile;
                 }
 
                 // Check vertical swaps
                 if (y < height - 1)
                 {
                     Tile aboveTile = tiles[x, y + 1];
-                    tiles[x, y] = aboveTile;
-                    tiles[x, y + 1] = tile;
-                    if (FindMatches().Count > 0)
+                    if (aboveTile != null)
                     {
+                        tiles[x, y] = aboveTile;
+                        tiles[x, y + 1] = tile;
+                        if (FindMatches().Count > 0)
+                        {
+                            tiles[x, y] = tile;
+                            tiles[x, y + 1] = aboveTile;
+                            return true;
+                        }
                         tiles[x, y] = tile;
                         tiles[x, y + 1] = aboveTile;
-                        return true;
                     }
-                    tiles[x, y] = tile;
-                    tiles[x, y + 1] = aboveTile;
                 }
             }
         }
