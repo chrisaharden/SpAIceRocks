@@ -5,10 +5,11 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public static Board board;
-    public int score;
+    public int itemsLeftToCollect;
+    public int coinsEarned;
+    public int intialCollectionGoal = 200;
+    int collectionGoal;
     public int level;
-    int scoreGoal;
-    public int scoreGoalIncrement;
     private Camera mainCamera;
     
     [Header("Audio")]
@@ -34,11 +35,14 @@ public class GameManager : MonoBehaviour
     void NewGame()
     {
         level = 1;
-        score = 0;
-        scoreGoal = scoreGoalIncrement;
+        itemsLeftToCollect = intialCollectionGoal;
         board.GenerateBoard();
-        SetRandomBackgroundColor();
         UpdateBackgroundMusic();
+        
+        // Initialize all UI text fields
+        UIManager.Instance.UpdateCollectionGoal(itemsLeftToCollect);
+        UIManager.Instance.UpdateCoinsEarned(coinsEarned);
+        UIManager.Instance.UpdateMoves(board.movesRemaining);
     }
 
     void UpdateBackgroundMusic()
@@ -51,42 +55,50 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void AddScore(int amount)
+    public void AddItemsCollected(int amount)
     {
-        score += amount;
-        UIManager.Instance.UpdateScore(score);
+        
 
-        if (score >= scoreGoal)
+        //collect coins for all items collected
+        coinsEarned += amount;
+        UIManager.Instance.UpdateCoinsEarned(coinsEarned);
+
+        //check collected items for matches, then decrement if match.  When items left reaches zero, the level has been beaten
+        //TODO: update the logic to look for specific items, such as certain stones
+        itemsLeftToCollect-=amount;
+        if (itemsLeftToCollect <= 0) itemsLeftToCollect=0;
+        UIManager.Instance.UpdateCollectionGoal(itemsLeftToCollect);
+        if (itemsLeftToCollect == 0)
         {
-            LevelUp();
+            LevelWon();
         }
     }
 
-    void LevelUp()
+    void LevelWon()
     {
         level++;
-        scoreGoal += scoreGoalIncrement;
-        UIManager.Instance.UpdateLevel(level);
-        SetRandomBackgroundColor();
+        itemsLeftToCollect = intialCollectionGoal;
+        UIManager.Instance.ShowBoardCleared();
         board.UpdateBoardSize(level);
         UpdateBackgroundMusic();
-    }
 
-    void SetRandomBackgroundColor()
-    {
-        if (mainCamera != null)
-        {
-            Color randomColor = new Color(
-                Random.Range(0.1f, 0.3f),
-                Random.Range(0.1f, 0.3f),
-                Random.Range(0.1f, 0.3f)
-            );
-            mainCamera.backgroundColor = randomColor;
-        }
+        //reset for the next try
+        itemsLeftToCollect = intialCollectionGoal;
+        board.movesRemaining = 20;
+        UIManager.Instance.UpdateCollectionGoal(itemsLeftToCollect);
+        UIManager.Instance.UpdateMoves(board.movesRemaining);        
     }
 
     public void GameOver()
     {
-        UIManager.Instance.ShowGameOver();
+        UIManager.Instance.ShowtimesUp();
+        
+        //reset for the next try
+        itemsLeftToCollect = intialCollectionGoal;
+        board.movesRemaining = 20;    
+        board.ClearBoard();
+        board.GenerateBoard();
+        UIManager.Instance.UpdateCollectionGoal(itemsLeftToCollect);
+        UIManager.Instance.UpdateMoves(board.movesRemaining);   
     }
 }

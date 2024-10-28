@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class Board : MonoBehaviour
 {
-    private int width = 8; // Start with 4 columns
+    private int width = 8;
     public int height = 4;
     public Tile[,] tiles;
-
+    public int movesRemaining = 20;
+    
     public GameObject matchEffectPrefab;
-    public GameObject gridBlockBackground; // Reference to the background prefab
+    public GameObject gridBlockBackground;
     public AudioClip swapSound;
-    public AudioClip matchSoundOdd;  // For odd levels
-    public AudioClip matchSoundEven; // For even levels
+    public AudioClip matchSoundOdd;
+    public AudioClip matchSoundEven;
     public AudioClip gameOverSound;
 
     public GameObject[] tilePrefabs;
@@ -23,9 +24,8 @@ public class Board : MonoBehaviour
     private bool isSwapping;
     private GameObject[] currentPrefabs;
     
-    // Different scales for tiles and gems
     private readonly Vector3 tileScale = new Vector3(0.25f, 0.25f, 1f);
-    private readonly Vector3 gemScale = new Vector3(0.15f, 0.15f, 1f); // Smaller scale for gems
+    private readonly Vector3 gemScale = new Vector3(0.15f, 0.15f, 1f);
 
     void Start()
     {
@@ -47,7 +47,7 @@ public class Board : MonoBehaviour
         }
     }
 
-    private void ClearBoard()
+    public void ClearBoard()
     {
         if (tiles != null)
         {
@@ -82,14 +82,7 @@ public class Board : MonoBehaviour
                 Vector2 pos = new Vector2(x - width / 2f + 0.5f, y - height / 2f + 0.5f);
                 GameObject background = Instantiate(gridBlockBackground, pos, Quaternion.identity, transform);
                 background.name = $"GridBackground ({x},{y})";
-                background.transform.position = new Vector3(pos.x, pos.y, 0.05f); // Place behind tiles
-                
-                // Scale to match cell size (using same base as tiles)
-                //float cellSize = 0.25f; // Matches tileScale
-                //background.transform.localScale = new Vector3(cellSize, cellSize, 1f);
-
-                // Set layer to BackgroundBlocks
-                //background.layer = LayerMask.NameToLayer("BackgroundBlocks");
+                background.transform.position = new Vector3(pos.x, pos.y, 0.05f);
             }
         }
     }
@@ -125,11 +118,11 @@ public class Board : MonoBehaviour
 
     public void GenerateBoard()
     {
+        movesRemaining = 20;
         tiles = new Tile[width, height];
         currentPrefabs = GetCurrentPrefabs();
         Vector3 currentScale = GetCurrentScale();
 
-        // Create background grid first
         CreateBackgroundGrid();
 
         for (int x = 0; x < width; x++)
@@ -141,9 +134,6 @@ public class Board : MonoBehaviour
                 GameObject tile = Instantiate(currentPrefabs[randomIndex], pos, Quaternion.identity);
                 tile.transform.localScale = currentScale;
                 tile.name = $"Tile ({x},{y})";
-
-                // Set layer to ForegroundBlocks
-                //tile.layer = LayerMask.NameToLayer("ForegroundBlocks");
 
                 Tile tileComponent = tile.GetComponent<Tile>();
                 tileComponent.x = x;
@@ -157,7 +147,7 @@ public class Board : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !isSwapping)
+        if (Input.GetMouseButtonDown(0) && !isSwapping && movesRemaining > 0)
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Tile tile = GetTileAtPosition(mousePos);
@@ -172,6 +162,8 @@ public class Board : MonoBehaviour
                 {
                     StartCoroutine(SwapTilesCoroutine(selectedTile, tile));
                     selectedTile = null;
+                    movesRemaining--;
+                    UIManager.Instance.UpdateMoves(movesRemaining);
                 }
             }
         }
@@ -254,7 +246,7 @@ public class Board : MonoBehaviour
         }
         else
         {
-            if (!HasPossibleMoves())
+            if (!HasPossibleMoves() || movesRemaining <= 0)
             {
                 GameOver();
             }
@@ -309,7 +301,7 @@ public class Board : MonoBehaviour
             tiles[tile.x, tile.y] = null;
 
             // Instantiate match effect at tile position, top of the z order
-            Vector3 effectPosition = new Vector3(tile.transform.position.x,tile.transform.position.y,-1);
+            Vector3 effectPosition = new Vector3(tile.transform.position.x,tile.transform.position.y,-0.25f);
             GameObject effect = Instantiate(matchEffectPrefab, effectPosition, Quaternion.identity);
             Destroy(effect, 1f);
 
@@ -317,7 +309,7 @@ public class Board : MonoBehaviour
             Destroy(tile.gameObject, 0.5f);
         }
 
-        GameManager.Instance.AddScore(matchedTiles.Count);
+        GameManager.Instance.AddItemsCollected(matchedTiles.Count);
     }
 
     IEnumerator RefillBoardCoroutine()
@@ -353,9 +345,6 @@ public class Board : MonoBehaviour
                     GameObject tile = Instantiate(currentPrefabs[randomIndex], pos, Quaternion.identity);
                     tile.transform.localScale = currentScale;
                     tile.name = $"Tile ({x},{y})";
-
-                    // Set layer to ForegroundBlocks
-                    //tile.layer = LayerMask.NameToLayer("ForegroundBlocks");
 
                     Tile tileComponent = tile.GetComponent<Tile>();
                     tileComponent.x = x;
@@ -433,6 +422,6 @@ public class Board : MonoBehaviour
     void GameOver()
     {
         audioSource.PlayOneShot(gameOverSound);
-        UIManager.Instance.ShowGameOver();
+        GameManager.Instance.GameOver();
     }
 }

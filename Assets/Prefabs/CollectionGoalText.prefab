@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2264636900770049730}
   - component: {fileID: 6638600982340888748}
   m_Layer: 0
-  m_Name: LevelText
+  m_Name: CollectionGoalText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

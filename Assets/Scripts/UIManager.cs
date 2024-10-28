@@ -6,30 +6,70 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
 
-    public TMP_Text scoreText;
-    public TMP_Text levelText;
-    public GameObject gameOverPanel;
+    public TMP_Text coinsEarnedText;
+    public TMP_Text collectionGoalText;
+    public TMP_Text movesRemainingText;
+    public GameObject timesUpPanel;
+    public GameObject boardClearedPanel;
     public GameObject creditsPanel;
     public Button creditsButton;
+    public Button timesUpButton;
+    public Button boardClearedButton;
 
     void Awake()
     {
         Instance = this;
     }
 
-    public void UpdateScore(int score)
+    public void UpdateCoinsEarned(int coins)
     {
-        scoreText.text = $"Score: {score}";
+        coinsEarnedText.text = $"{coins}";
     }
 
-    public void UpdateLevel(int level)
+    public void UpdateMoves(int moves)
     {
-        levelText.text = $"Level: {level}";
+        movesRemainingText.text = $"{moves}";
     }
 
-    public void ShowGameOver()
+    public void UpdateCollectionGoal(int goal)
     {
-        gameOverPanel.SetActive(true);
+        collectionGoalText.text = $"{goal} Minerals";
+    }
+
+    public void ShowtimesUp()
+    {
+        timesUpPanel.SetActive(true);
+    }
+
+    public void CloseTimesUpPanel()
+    {
+        if (timesUpPanel != null)
+        {
+            timesUpPanel.SetActive(false);
+        }
+    }
+
+    public void ShowBoardCleared()
+    {
+        if (boardClearedPanel != null)
+        {
+            bool isActive = !boardClearedPanel.activeSelf;
+            boardClearedPanel.SetActive(isActive);
+
+            // Bring the panel to the top of the z-order
+            if (isActive)
+            {
+                boardClearedPanel.transform.SetAsLastSibling();
+            }
+        }
+    }
+
+    public void CloseBoardClearedPanel()
+    {
+        if (boardClearedPanel != null)
+        {
+            boardClearedPanel.SetActive(false);
+        }
     }
 
     public void ToggleCreditsPanel()
@@ -49,7 +89,14 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
-       creditsButton.onClick.AddListener(ToggleCreditsPanel);
-       creditsButton.onClick.Invoke();
+        creditsButton.onClick.AddListener(ToggleCreditsPanel);
+        if (timesUpButton != null)
+        {
+            timesUpButton.onClick.AddListener(CloseTimesUpPanel);
+        }
+        if (boardClearedButton != null)
+        {
+            boardClearedButton.onClick.AddListener(CloseBoardClearedPanel);
+        }
     }
 }
