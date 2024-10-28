@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Board : MonoBehaviour
 {
-    private int width = 4; // Start with 4 columns
-    public int height = 8;
+    private int width = 8; // Start with 4 columns
+    public int height = 4;
     public Tile[,] tiles;
 
     public GameObject matchEffectPrefab;
+    public GameObject gridBlockBackground; // Reference to the background prefab
     public AudioClip swapSound;
     public AudioClip matchSoundOdd;  // For odd levels
     public AudioClip matchSoundEven; // For even levels
@@ -61,6 +62,36 @@ public class Board : MonoBehaviour
                 }
             }
         }
+
+        // Clear background grid
+        foreach (Transform child in transform)
+        {
+            if (child.gameObject.name.StartsWith("GridBackground"))
+            {
+                Destroy(child.gameObject);
+            }
+        }
+    }
+
+    private void CreateBackgroundGrid()
+    {
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                Vector2 pos = new Vector2(x - width / 2f + 0.5f, y - height / 2f + 0.5f);
+                GameObject background = Instantiate(gridBlockBackground, pos, Quaternion.identity, transform);
+                background.name = $"GridBackground ({x},{y})";
+                background.transform.position = new Vector3(pos.x, pos.y, 0.05f); // Place behind tiles
+                
+                // Scale to match cell size (using same base as tiles)
+                //float cellSize = 0.25f; // Matches tileScale
+                //background.transform.localScale = new Vector3(cellSize, cellSize, 1f);
+
+                // Set layer to BackgroundBlocks
+                //background.layer = LayerMask.NameToLayer("BackgroundBlocks");
+            }
+        }
     }
 
     private GameObject[] GetCurrentPrefabs()
@@ -98,6 +129,9 @@ public class Board : MonoBehaviour
         currentPrefabs = GetCurrentPrefabs();
         Vector3 currentScale = GetCurrentScale();
 
+        // Create background grid first
+        CreateBackgroundGrid();
+
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
@@ -107,6 +141,9 @@ public class Board : MonoBehaviour
                 GameObject tile = Instantiate(currentPrefabs[randomIndex], pos, Quaternion.identity);
                 tile.transform.localScale = currentScale;
                 tile.name = $"Tile ({x},{y})";
+
+                // Set layer to ForegroundBlocks
+                //tile.layer = LayerMask.NameToLayer("ForegroundBlocks");
 
                 Tile tileComponent = tile.GetComponent<Tile>();
                 tileComponent.x = x;
@@ -316,6 +353,9 @@ public class Board : MonoBehaviour
                     GameObject tile = Instantiate(currentPrefabs[randomIndex], pos, Quaternion.identity);
                     tile.transform.localScale = currentScale;
                     tile.name = $"Tile ({x},{y})";
+
+                    // Set layer to ForegroundBlocks
+                    //tile.layer = LayerMask.NameToLayer("ForegroundBlocks");
 
                     Tile tileComponent = tile.GetComponent<Tile>();
                     tileComponent.x = x;
