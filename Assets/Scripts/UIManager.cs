@@ -12,9 +12,13 @@ public class UIManager : MonoBehaviour
     public GameObject timesUpPanel;
     public GameObject boardClearedPanel;
     public GameObject creditsPanel;
+    public GameObject exitConfirmPanel;
     public Button creditsButton;
     public Button timesUpButton;
     public Button boardClearedButton;
+    public Button exitButton;
+    public Button confirmExitButton;
+    public Button cancelExitButton;
 
     void Awake()
     {
@@ -87,6 +91,32 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void ShowExitConfirmation()
+    {
+        if (exitConfirmPanel != null)
+        {
+            exitConfirmPanel.SetActive(true);
+            exitConfirmPanel.transform.SetAsLastSibling();
+        }
+    }
+
+    public void CloseExitConfirmation()
+    {
+        if (exitConfirmPanel != null)
+        {
+            exitConfirmPanel.SetActive(false);
+        }
+    }
+
+    public void ExitGame()
+    {
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #else
+            Application.Quit();
+        #endif
+    }
+
     void Start()
     {
         creditsButton.onClick.AddListener(ToggleCreditsPanel);
@@ -97,6 +127,18 @@ public class UIManager : MonoBehaviour
         if (boardClearedButton != null)
         {
             boardClearedButton.onClick.AddListener(CloseBoardClearedPanel);
+        }
+        if (exitButton != null)
+        {
+            exitButton.onClick.AddListener(ShowExitConfirmation);
+        }
+        if (confirmExitButton != null)
+        {
+            confirmExitButton.onClick.AddListener(ExitGame);
+        }
+        if (cancelExitButton != null)
+        {
+            cancelExitButton.onClick.AddListener(CloseExitConfirmation);
         }
     }
 }
