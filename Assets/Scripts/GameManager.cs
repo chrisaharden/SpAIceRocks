@@ -14,8 +14,7 @@ public class GameManager : MonoBehaviour
     
     [Header("Audio")]
     private AudioSource backgroundAudio;
-    public AudioClip evenLevelMusic;
-    public AudioClip oddLevelMusic;
+    public AudioClip backgroundMusic;
 
     void Awake()
     {
@@ -37,7 +36,7 @@ public class GameManager : MonoBehaviour
         level = 1;
         itemsLeftToCollect = intialCollectionGoal;
         board.GenerateBoard();
-        UpdateBackgroundMusic();
+        PlayBackgroundMusic();
         
         // Initialize all UI text fields
         UIManager.Instance.UpdateCollectionGoal(itemsLeftToCollect);
@@ -45,20 +44,17 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.UpdateMoves(board.movesRemaining);
     }
 
-    void UpdateBackgroundMusic()
+    void PlayBackgroundMusic()
     {
-        AudioClip newTrack = (level % 2 == 0) ? evenLevelMusic : oddLevelMusic;
-        if (backgroundAudio.clip != newTrack)
+        if (backgroundAudio.clip != backgroundMusic)
         {
-            backgroundAudio.clip = newTrack;
+            backgroundAudio.clip = backgroundMusic;
             backgroundAudio.Play();
         }
     }
 
     public void AddItemsCollected(int amount)
     {
-        
-
         //collect coins for all items collected
         coinsEarned += amount;
         UIManager.Instance.UpdateCoinsEarned(coinsEarned);
@@ -80,7 +76,6 @@ public class GameManager : MonoBehaviour
         itemsLeftToCollect = intialCollectionGoal;
         UIManager.Instance.ShowBoardCleared();
         board.UpdateBoardSize(level);
-        UpdateBackgroundMusic();
 
         //reset for the next try
         itemsLeftToCollect = intialCollectionGoal;

@@ -5,28 +5,22 @@ using UnityEngine;
 public class Board : MonoBehaviour
 {
     private int width = 8;
-    public int height = 4;
+    public int height = 6;
     public Tile[,] tiles;
     public int movesRemaining = 20;
     
     public GameObject matchEffectPrefab;
     public GameObject gridBlockBackground;
     public AudioClip swapSound;
-    public AudioClip matchSoundOdd;
-    public AudioClip matchSoundEven;
+    public AudioClip matchSound;
     public AudioClip gameOverSound;
 
     public GameObject[] tilePrefabs;
-    public GameObject[] gemPrefabs;
 
     public AudioSource audioSource;
     private Tile selectedTile;
     private bool isSwapping;
-    private GameObject[] currentPrefabs;
     
-    private readonly Vector3 tileScale = new Vector3(0.25f, 0.25f, 1f);
-    private readonly Vector3 gemScale = new Vector3(0.15f, 0.15f, 1f);
-
     void Start()
     {
         //audioSource = GetComponent<AudioSource>();
@@ -35,16 +29,11 @@ public class Board : MonoBehaviour
 
     public void UpdateBoardSize(int level)
     {
-        // Calculate new width based on level (starting at 4, max 12)
-        int newWidth = Mathf.Min(4 + (level - 1), 12);
-        
-        // Only regenerate if width has changed
-        if (newWidth != width)
-        {
-            width = newWidth;
-            ClearBoard();
-            GenerateBoard();
-        }
+        // Calculate new width based on level (starting at min, max is the second param)
+        int newWidth = Mathf.Min(8 + (level - 1), 12);
+        width = newWidth;
+        ClearBoard();
+        GenerateBoard();
     }
 
     public void ClearBoard()
@@ -87,41 +76,10 @@ public class Board : MonoBehaviour
         }
     }
 
-    private GameObject[] GetCurrentPrefabs()
-    {
-        // Cache the current prefabs to avoid null reference issues
-        if (GameManager.Instance != null)
-        {
-            currentPrefabs = GameManager.Instance.level % 2 == 1 ? tilePrefabs : gemPrefabs;
-        }
-        
-        // Fallback to tile prefabs if something goes wrong
-        if (currentPrefabs == null || currentPrefabs.Length == 0)
-        {
-            currentPrefabs = tilePrefabs;
-        }
-        
-        return currentPrefabs;
-    }
-
-    private Vector3 GetCurrentScale()
-    {
-        // Use different scale based on whether we're using gems or tiles
-        return (currentPrefabs == gemPrefabs) ? gemScale : tileScale;
-    }
-
-    private AudioClip GetCurrentMatchSound()
-    {
-        // Use different match sound based on level
-        return GameManager.Instance.level % 2 == 1 ? matchSoundOdd : matchSoundEven;
-    }
-
     public void GenerateBoard()
     {
         movesRemaining = 20;
         tiles = new Tile[width, height];
-        currentPrefabs = GetCurrentPrefabs();
-        //Vector3 currentScale = GetCurrentScale();
 
         CreateBackgroundGrid();
 
@@ -130,9 +88,8 @@ public class Board : MonoBehaviour
             for (int y = 0; y < height; y++)
             {
                 Vector2 pos = new Vector2(x - width / 2f + 0.5f, y - height / 2f + 0.5f);
-                int randomIndex = Random.Range(0, currentPrefabs.Length);
-                GameObject tile = Instantiate(currentPrefabs[randomIndex], pos, Quaternion.identity);
-                //tile.transform.localScale = currentScale;
+                int randomIndex = Random.Range(0, tilePrefabs.Length);
+                GameObject tile = Instantiate(tilePrefabs[randomIndex], pos, Quaternion.identity);
                 tile.name = $"Tile ({x},{y})";
 
                 Tile tileComponent = tile.GetComponent<Tile>();
@@ -294,7 +251,7 @@ public class Board : MonoBehaviour
 
     void RemoveMatches(HashSet<Tile> matchedTiles)
     {
-        audioSource.PlayOneShot(GetCurrentMatchSound());
+        audioSource.PlayOneShot(matchSound);
 
         foreach (Tile tile in matchedTiles)
         {
@@ -332,10 +289,6 @@ public class Board : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
 
-        // Update current prefabs for any new level
-        currentPrefabs = GetCurrentPrefabs();
-        //Vector3 currentScale = GetCurrentScale();
-
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
@@ -343,9 +296,8 @@ public class Board : MonoBehaviour
                 if (tiles[x, y] == null)
                 {
                     Vector2 pos = new Vector2(x - width / 2f + 0.5f, y - height / 2f + 0.5f);
-                    int randomIndex = Random.Range(0, currentPrefabs.Length);
-                    GameObject tile = Instantiate(currentPrefabs[randomIndex], pos, Quaternion.identity);
-                    //tile.transform.localScale = currentScale;
+                    int randomIndex = Random.Range(0, tilePrefabs.Length);
+                    GameObject tile = Instantiate(tilePrefabs[randomIndex], pos, Quaternion.identity);
                     tile.name = $"Tile ({x},{y})";
 
                     Tile tileComponent = tile.GetComponent<Tile>();
