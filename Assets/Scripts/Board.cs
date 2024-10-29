@@ -378,64 +378,56 @@ public class Board : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
 
+        // First pass: Shift existing tiles down and create new ones at the top
         for (int x = 0; x < width; x++)
         {
+            int emptySpaces = 0;
+            // Count empty spaces from bottom to top
             for (int y = 0; y < height; y++)
             {
                 if (tiles[x, y] == null)
                 {
-                    ShiftTilesDown(x, y);
-                    break;
+                    emptySpaces++;
                 }
+                else if (emptySpaces > 0)
+                {
+                    // Move this tile down by the number of empty spaces
+                    tiles[x, y - emptySpaces] = tiles[x, y];
+                    tiles[x, y] = null;
+                    Vector2 newPos = new Vector2(x - width / 2f + 0.5f, (y - emptySpaces) - height / 2f + 0.5f);
+                    tiles[x, y - emptySpaces].transform.position = newPos;
+                    tiles[x, y - emptySpaces].y = y - emptySpaces;
+                }
+            }
+
+            // Fill empty spaces at the top
+            for (int i = 0; i < emptySpaces; i++)
+            {
+                int y = height - 1 - i;
+                Vector2 pos = new Vector2(x - width / 2f + 0.5f, y - height / 2f + 0.5f);
+                int randomIndex = Random.Range(0, tilePrefabs.Length);
+                GameObject tile = Instantiate(tilePrefabs[randomIndex], pos, Quaternion.identity);
+                tile.name = $"Tile ({x},{y})";
+
+                Tile tileComponent = tile.GetComponent<Tile>();
+                tileComponent.x = x;
+                tileComponent.y = y;
+                
+                // Ensure we don't create Robot type tiles during refill
+                Tile.TileType newType = (Tile.TileType)randomIndex;
+                if ((int)newType >= (int)Tile.TileType.Robot)
+                {
+                    newType = Tile.TileType.Type_00;
+                }
+                tileComponent.type = newType;
+
+                tiles[x, y] = tileComponent;
             }
         }
 
         yield return new WaitForSeconds(0.5f);
 
-        for (int x = 0; x < width; x++)
-        {
-            for (int y = 0; y < height; y++)
-            {
-                if (tiles[x, y] == null)
-                {
-                    Vector2 pos = new Vector2(x - width / 2f + 0.5f, y - height / 2f + 0.5f);
-                    int randomIndex = Random.Range(0, tilePrefabs.Length);
-                    GameObject tile = Instantiate(tilePrefabs[randomIndex], pos, Quaternion.identity);
-                    tile.name = $"Tile ({x},{y})";
-
-                    Tile tileComponent = tile.GetComponent<Tile>();
-                    tileComponent.x = x;
-                    tileComponent.y = y;
-                    
-                    // Ensure we don't create Robot type tiles during refill
-                    Tile.TileType newType = (Tile.TileType)randomIndex;
-                    if ((int)newType >= (int)Tile.TileType.Robot)
-                    {
-                        newType = Tile.TileType.Type_00;
-                    }
-                    tileComponent.type = newType;
-
-                    tiles[x, y] = tileComponent;
-                }
-            }
-        }
-
         CheckForMatches();
-    }
-
-    void ShiftTilesDown(int x, int startY)
-    {
-        for (int y = startY; y < height - 1; y++)
-        {
-            tiles[x, y] = tiles[x, y + 1];
-
-            if (tiles[x, y] != null)
-            {
-                Vector2 pos = new Vector2(x - width / 2f + 0.5f, y - height / 2f + 0.5f);
-                tiles[x, y].transform.position = pos;
-                tiles[x, y].y = y;
-            }
-        }
     }
 
     bool HasPossibleMoves()
