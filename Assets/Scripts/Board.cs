@@ -154,7 +154,7 @@ public class Board : MonoBehaviour
                 else if (selectedTile != tile)
                 {
                     StartCoroutine(SwapTilesCoroutine(selectedTile, tile));
-                    selectedTile = null;
+                    //selectedTile = null;
                     movesRemaining--;
                     UIManager.Instance.UpdateMoves(movesRemaining);
                 }
@@ -230,7 +230,19 @@ public class Board : MonoBehaviour
 
     void CheckForMatches()
     {
-        HashSet<Tile> matchedTiles = FindMatches();
+        HashSet<Tile> matchedTiles = new HashSet<Tile>();
+
+        // Check for robot matches only if a robot tile was involved in the swap
+        if (selectedTile != null && (selectedTile.type == Tile.TileType.Robot || 
+            (tiles[selectedTile.x, selectedTile.y] != null && tiles[selectedTile.x, selectedTile.y].type == Tile.TileType.Robot)))
+        {
+            matchedTiles.UnionWith(FindRobotMatches());
+        }
+        else
+        {
+            matchedTiles.UnionWith(FindMatches());
+        }
+        selectedTile = null;
 
         if (matchedTiles.Count > 0)
         {
@@ -248,11 +260,10 @@ public class Board : MonoBehaviour
         }
     }
 
-    HashSet<Tile> FindMatches()
+    HashSet<Tile> FindRobotMatches()
     {
         HashSet<Tile> matchedTiles = new HashSet<Tile>();
 
-        // First check for robot tiles and their adjacent matches
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
@@ -292,7 +303,13 @@ public class Board : MonoBehaviour
             }
         }
 
-        // Then check for regular matches
+        return matchedTiles;
+    }
+
+    HashSet<Tile> FindMatches()
+    {
+        HashSet<Tile> matchedTiles = new HashSet<Tile>();
+
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
