@@ -153,13 +153,28 @@ public class Board : MonoBehaviour
                 }
                 else if (selectedTile != tile)
                 {
-                    StartCoroutine(SwapTilesCoroutine(selectedTile, tile));
-                    //selectedTile = null;
-                    movesRemaining--;
-                    UIManager.Instance.UpdateMoves(movesRemaining);
+                    // Only allow swapping if tiles are adjacent
+                    if (AreAdjacent(selectedTile, tile))
+                    {
+                        StartCoroutine(SwapTilesCoroutine(selectedTile, tile));
+                        movesRemaining--;
+                        UIManager.Instance.UpdateMoves(movesRemaining);
+                    }
+                    else
+                    {
+                        // If not adjacent, treat the new tile as the selected tile
+                        selectedTile = tile;
+                    }
                 }
             }
         }
+    }
+
+    // Check if two tiles are adjacent (horizontally or vertically)
+    private bool AreAdjacent(Tile a, Tile b)
+    {
+        return (Mathf.Abs(a.x - b.x) == 1 && a.y == b.y) || // Horizontally adjacent
+               (Mathf.Abs(a.y - b.y) == 1 && a.x == b.x);   // Vertically adjacent
     }
 
     Tile GetTileAtPosition(Vector2 pos)
