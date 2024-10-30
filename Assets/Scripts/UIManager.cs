@@ -36,6 +36,16 @@ public class UIManager : MonoBehaviour
     public void UpdateCoinsEarned(int coins)
     {
         coinsEarnedText.text = $"{coins}";
+        UpdateBuyRocketButtonState(coins);
+    }
+
+    private void UpdateBuyRocketButtonState(int coins)
+    {
+        if (buyRocketButton != null)
+        {
+            int rocketCost = GameManager.Instance.rocketCost;
+            buyRocketButton.interactable = coins >= rocketCost;
+        }
     }
 
     public void UpdateMoves(int moves)
@@ -168,6 +178,9 @@ public class UIManager : MonoBehaviour
         if (creditsPanel != null) creditsPanel.SetActive(false);
         if (exitConfirmPanel != null) exitConfirmPanel.SetActive(false);
         if (buyRocketPanel != null) buyRocketPanel.SetActive(false);
+
+        // Set the state of the buy button
+        UpdateBuyRocketButtonState(GameManager.Instance.coinsEarned);
 
         // Set up button listeners
         creditsButton.onClick.AddListener(ToggleCreditsPanel);
