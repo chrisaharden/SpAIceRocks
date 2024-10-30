@@ -4467,7 +4467,9 @@ MonoBehaviour:
   coinsEarned: 0
   intialCollectionGoal: 200
   level: 0
-  backgroundMusic: {fileID: 8300000, guid: 7c6c7d2f3e8b1f74fb8ea423df20c766, type: 3}
+  backgroundMusics:
+  - {fileID: 8300000, guid: 7c6c7d2f3e8b1f74fb8ea423df20c766, type: 3}
+  - {fileID: 8300000, guid: e7a03c88d46020a4c98f45e985a61896, type: 3}
   robotsCollected: 0
   robotPrefabs:
   - {fileID: 7498715437833581285, guid: 37d9df6f290644a4f9797119271873a7, type: 3}

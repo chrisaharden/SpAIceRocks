@@ -14,7 +14,8 @@ public class GameManager : MonoBehaviour
     
     [Header("Audio")]
     private AudioSource backgroundAudio;
-    public AudioClip backgroundMusic;
+    public AudioClip[] backgroundMusics; // Array of background music tracks
+    private int currentMusicIndex = 0;
 
     [Header("Robot Collection")]
     public int robotsCollected = 0;
@@ -101,16 +102,27 @@ public class GameManager : MonoBehaviour
                 characterRenderer.sprite = characterSprites[currentCharacterIndex];
             }
 
+            // Update music track
+            if (backgroundMusics != null && backgroundMusics.Length > 0)
+            {
+                currentMusicIndex = (currentMusicIndex + 1) % backgroundMusics.Length;
+                PlayBackgroundMusic();
+            }
+
             UIManager.Instance.HideBuyRocketPanel();
         }
     }
 
     void PlayBackgroundMusic()
     {
-        if (backgroundAudio.clip != backgroundMusic)
+        if (backgroundMusics != null && backgroundMusics.Length > 0)
         {
-            backgroundAudio.clip = backgroundMusic;
-            backgroundAudio.Play();
+            AudioClip nextTrack = backgroundMusics[currentMusicIndex];
+            if (backgroundAudio.clip != nextTrack)
+            {
+                backgroundAudio.clip = nextTrack;
+                backgroundAudio.Play();
+            }
         }
     }
 
