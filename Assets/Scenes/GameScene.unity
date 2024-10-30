@@ -284,7 +284,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &67418620
 RectTransform:
   m_ObjectHideFlags: 0
@@ -361,8 +361,9 @@ MonoBehaviour:
   matchEffectPrefab: {fileID: 7099909693802826610, guid: c68b83555e7062642af9c5ca37270fa5, type: 3}
   gridBlockBackground: {fileID: 8325794399025711601, guid: f142b4a0c6cd4cc43b8416fa6f5afb97, type: 3}
   swapSound: {fileID: 8300000, guid: 0196f4997a127f1459b1f5893b967767, type: 3}
-  matchSound: {fileID: 8300000, guid: cc21ec4c9f47f2247908cea611052489, type: 3}
+  matchSound: {fileID: 8300000, guid: f201f53b2801396488c735937b102c62, type: 3}
   gameOverSound: {fileID: 8300000, guid: a2c4712db2857fd4aa5207b1fbfc7530, type: 3}
+  robotRemovalSound: {fileID: 8300000, guid: 2eeba612352b854489d69e9cc76f594e, type: 3}
   tilePrefabs:
   - {fileID: 498564000230080232, guid: dd5fb7ca604f48f4886325c90fc3bc8c, type: 3}
   - {fileID: 6794407423660696799, guid: 0c73e1192d814b04dad5bb3f870210c7, type: 3}
@@ -734,7 +735,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.78431374}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.9019608}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1042,7 +1043,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.012
+  m_Volume: 0.126
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1141,7 +1142,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &437778892
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1543,7 +1544,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &541790499
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3420,7 +3421,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.78431374}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.9019608}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3507,7 +3508,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.78431374}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.9019608}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3758,7 +3759,7 @@ MonoBehaviour:
   backgroundMusic: {fileID: 8300000, guid: eaeafb284d54c4f46aa74c94f823ea69, type: 3}
   robotsCollected: 0
   robotPrefabs:
-  - {fileID: 121466675647148649, guid: 8552f9a9306b8224fa35013c9d8f9d9a, type: 3}
+  - {fileID: 7498715437833581285, guid: 37d9df6f290644a4f9797119271873a7, type: 3}
 --- !u!4 &1707487131
 Transform:
   m_ObjectHideFlags: 0
@@ -4028,7 +4029,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6638600982340888748, guid: 469945c2d745c444588c1168e1fb94ab, type: 3}
       propertyPath: m_text
-      value: 'Congratulations! '
+      value: New Asset Unlocked!
       objectReference: {fileID: 0}
     - target: {fileID: 6638600982340888748, guid: 469945c2d745c444588c1168e1fb94ab, type: 3}
       propertyPath: m_fontSize
@@ -4197,21 +4198,24 @@ PrefabInstance:
       value: 'This GenAI game was built with:
 
         Game logic generated  with
-        Cline (VSCode plugin) + Claude AI
+        Cline (VSCode plugin) + Claude AI and Muse
 
-        Tiles and match graphics from
-        Muse AI
+        Graphics from Midjourney
+        processed with Rembg
 
-        Music from Udio
+        Special effects from Muse AI
 
-        Sound effects from https://freesound.org/
+        Music
+        from Udio
+
+        Sound effects from https://www.optimizerai.xyz/ and https://freesound.org/
         (non-AI)
 
 '
       objectReference: {fileID: 0}
     - target: {fileID: 6638600982340888748, guid: 469945c2d745c444588c1168e1fb94ab, type: 3}
       propertyPath: m_fontSize
-      value: 0.5
+      value: 0.34
       objectReference: {fileID: 0}
     - target: {fileID: 6638600982340888748, guid: 469945c2d745c444588c1168e1fb94ab, type: 3}
       propertyPath: m_margin.w
@@ -4235,7 +4239,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6638600982340888748, guid: 469945c2d745c444588c1168e1fb94ab, type: 3}
       propertyPath: m_fontSizeBase
-      value: 0.5
+      value: 0.34
       objectReference: {fileID: 0}
     - target: {fileID: 6638600982340888748, guid: 469945c2d745c444588c1168e1fb94ab, type: 3}
       propertyPath: m_sharedMaterial

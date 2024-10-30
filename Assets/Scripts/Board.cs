@@ -14,6 +14,7 @@ public class Board : MonoBehaviour
     public AudioClip swapSound;
     public AudioClip matchSound;
     public AudioClip gameOverSound;
+    public AudioClip robotRemovalSound; // New audio clip for robot removal
 
     public GameObject[] tilePrefabs;
 
@@ -366,7 +367,26 @@ public class Board : MonoBehaviour
 
     void RemoveMatches(HashSet<Tile> matchedTiles)
     {
-        audioSource.PlayOneShot(matchSound);
+        bool containsRobot = false;
+        foreach (Tile tile in matchedTiles)
+        {
+            if (tile != null && tile.type == Tile.TileType.Robot)
+            {
+                containsRobot = true;
+                break;
+            }
+        }
+
+        // Play appropriate sound effect
+        if (containsRobot && robotRemovalSound != null)
+        {
+            audioSource.PlayOneShot(robotRemovalSound);
+            audioSource.PlayOneShot(matchSound);
+        }
+        else
+        {
+            audioSource.PlayOneShot(matchSound);
+        }
 
         foreach (Tile tile in matchedTiles)
         {

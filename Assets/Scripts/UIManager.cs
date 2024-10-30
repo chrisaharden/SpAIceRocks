@@ -77,7 +77,7 @@ public class UIManager : MonoBehaviour
                 
                 if (robotRewardText != null)
                 {
-                    robotRewardText.text = "New Robot Unlocked!";
+                    robotRewardText.text = "Cherry Bomb R17";
                     robotRewardText.gameObject.SetActive(true);
                 }
             }
