@@ -20,6 +20,15 @@ public class GameManager : MonoBehaviour
     public int robotsCollected = 0;
     public GameObject[] robotPrefabs; // Array of different robot prefabs to award
 
+    [Header("Backgrounds and Characters")]
+    public Sprite[] planetaryBackgrounds;
+    public Sprite[] characterSprites;
+    private int currentBackgroundIndex = 0;
+    private int currentCharacterIndex = 0;
+    public SpriteRenderer backgroundRenderer;
+    public SpriteRenderer characterRenderer;
+    public int rocketCost = 100;
+
     void Awake()
     {
         Instance = this;
@@ -46,6 +55,54 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.UpdateCollectionGoal(itemsLeftToCollect);
         UIManager.Instance.UpdateCoinsEarned(coinsEarned);
         UIManager.Instance.UpdateMoves(board.movesRemaining);
+
+        // Set initial background and character
+        if (backgroundRenderer != null && planetaryBackgrounds.Length > 0)
+        {
+            backgroundRenderer.sprite = planetaryBackgrounds[currentBackgroundIndex];
+        }
+        if (characterRenderer != null && characterSprites.Length > 0)
+        {
+            characterRenderer.sprite = characterSprites[currentCharacterIndex];
+        }
+    }
+
+    public void TryPurchaseRocket()
+    {
+        if (coinsEarned >= rocketCost)
+        {
+            UIManager.Instance.ShowBuyRocketPanel();
+        }
+        else
+        {
+            // Could show "not enough coins" message here
+            Debug.Log("Not enough coins to purchase rocket");
+        }
+    }
+
+    public void ConfirmRocketPurchase()
+    {
+        if (coinsEarned >= rocketCost)
+        {
+            coinsEarned -= rocketCost;
+            UIManager.Instance.UpdateCoinsEarned(coinsEarned);
+            
+            // Update background
+            currentBackgroundIndex = (currentBackgroundIndex + 1) % planetaryBackgrounds.Length;
+            if (backgroundRenderer != null)
+            {
+                backgroundRenderer.sprite = planetaryBackgrounds[currentBackgroundIndex];
+            }
+
+            // Update character
+            currentCharacterIndex = (currentCharacterIndex + 1) % characterSprites.Length;
+            if (characterRenderer != null)
+            {
+                characterRenderer.sprite = characterSprites[currentCharacterIndex];
+            }
+
+            UIManager.Instance.HideBuyRocketPanel();
+        }
     }
 
     void PlayBackgroundMusic()

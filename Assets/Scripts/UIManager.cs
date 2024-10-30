@@ -13,12 +13,16 @@ public class UIManager : MonoBehaviour
     public GameObject boardClearedPanel;
     public GameObject creditsPanel;
     public GameObject exitConfirmPanel;
+    public GameObject buyRocketPanel;
     public Button creditsButton;
     public Button timesUpButton;
     public Button boardClearedButton;
     public Button exitButton;
     public Button confirmExitButton;
     public Button cancelExitButton;
+    public Button buyRocketButton;
+    public Button confirmBuyRocketButton;
+    public Button cancelBuyRocketButton;
 
     [Header("Robot Reward")]
     public Image robotRewardImage;
@@ -54,6 +58,23 @@ public class UIManager : MonoBehaviour
         if (timesUpPanel != null)
         {
             timesUpPanel.SetActive(false);
+        }
+    }
+
+    public void ShowBuyRocketPanel()
+    {
+        if (buyRocketPanel != null)
+        {
+            buyRocketPanel.SetActive(true);
+            buyRocketPanel.transform.SetAsLastSibling();
+        }
+    }
+
+    public void HideBuyRocketPanel()
+    {
+        if (buyRocketPanel != null)
+        {
+            buyRocketPanel.SetActive(false);
         }
     }
 
@@ -146,6 +167,7 @@ public class UIManager : MonoBehaviour
         if (boardClearedPanel != null) boardClearedPanel.SetActive(false);
         if (creditsPanel != null) creditsPanel.SetActive(false);
         if (exitConfirmPanel != null) exitConfirmPanel.SetActive(false);
+        if (buyRocketPanel != null) buyRocketPanel.SetActive(false);
 
         // Set up button listeners
         creditsButton.onClick.AddListener(ToggleCreditsPanel);
@@ -168,6 +190,18 @@ public class UIManager : MonoBehaviour
         if (cancelExitButton != null)
         {
             cancelExitButton.onClick.AddListener(CloseExitConfirmation);
+        }
+        if (buyRocketButton != null)
+        {
+            buyRocketButton.onClick.AddListener(() => GameManager.Instance.TryPurchaseRocket());
+        }
+        if (confirmBuyRocketButton != null)
+        {
+            confirmBuyRocketButton.onClick.AddListener(() => GameManager.Instance.ConfirmRocketPurchase());
+        }
+        if (cancelBuyRocketButton != null)
+        {
+            cancelBuyRocketButton.onClick.AddListener(HideBuyRocketPanel);
         }
     }
 }
