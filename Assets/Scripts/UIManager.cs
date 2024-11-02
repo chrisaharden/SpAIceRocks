@@ -6,27 +6,56 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
 
+    [Header("Main Screen")]
     public TMP_Text coinsEarnedText;
     public TMP_Text collectionGoalText;
     public TMP_Text movesRemainingText;
-    public GameObject timesUpPanel;
-    public GameObject boardClearedPanel;
-    public GameObject creditsPanel;
-    public GameObject exitConfirmPanel;
-    public GameObject buyRocketPanel;
-    public Button creditsButton;
-    public Button timesUpButton;
-    public Button boardClearedButton;
     public Button exitButton;
-    public Button confirmExitButton;
-    public Button cancelExitButton;
-    public Button buyRocketButton;
+    public Button buyItemsButton;
+    public Button rocketButton;
+    public Button creditsButton;
+
+
+    [Header("Times Up Panel")]
+    public GameObject timesUpPanel;
+    public Button timesUpButton;
+
+
+    [Header("Board Cleared Panel")]
+    public GameObject boardClearedPanel;
+    public Button boardClearedButton;
+
+
+    [Header("Credits Panel")]
+    public GameObject creditsPanel;
+
+
+    [Header("Rocket Panel")]
+    public GameObject buyRocketPanel;
     public Button confirmBuyRocketButton;
     public Button cancelBuyRocketButton;
+
+
+    [Header("Items Panel")]
+    public GameObject buyItemsPanel;
+    public Button buyItem05Button;    // Type_05
+    public Button buyItem06Button;    // Type_06
+    public Button buyItem07Button;    // Type_07
+    public Button buyItem08Button;    // Type_08
+    public Button buyItem09Button;    // Type_09
+    public Button cancelBuyItemButton;
+
 
     [Header("Robot Reward")]
     public Image robotRewardImage;
     public TMP_Text robotRewardText;
+
+
+    [Header("Exit Panel")]
+    public GameObject exitConfirmPanel;
+    public Button confirmExitButton;
+    public Button cancelExitButton;
+   
 
     void Awake()
     {
@@ -41,10 +70,10 @@ public class UIManager : MonoBehaviour
 
     private void UpdateBuyRocketButtonState(int coins)
     {
-        if (buyRocketButton != null)
+        if (rocketButton != null)
         {
             int rocketCost = GameManager.Instance.rocketCost;
-            buyRocketButton.interactable = coins >= rocketCost;
+            rocketButton.interactable = coins >= rocketCost;
         }
     }
 
@@ -85,6 +114,63 @@ public class UIManager : MonoBehaviour
         if (buyRocketPanel != null)
         {
             buyRocketPanel.SetActive(false);
+        }
+    }
+
+    private void UpdateBuyItemButton(Button button, TileConfig config, int coins)
+    {
+        if (button != null)
+        {
+            button.interactable = config.isLocked && coins >= config.purchasePrice;
+            TMP_Text buttonText = button.GetComponentInChildren<TMP_Text>();
+            if (buttonText != null)
+            {
+                buttonText.text = config.isLocked ? $"{config.purchasePrice} Coins" : "Unlocked";
+            }
+        }
+    }
+
+    public void ShowBuyItemsPanel()
+    {
+        if (buyItemsPanel != null)
+        {
+            buyItemsPanel.SetActive(true);
+            buyItemsPanel.transform.SetAsLastSibling();
+
+            // Update button states based on tile configurations
+            TileConfig[] configs = GameManager.board.tileConfigs;
+            int coins = GameManager.Instance.coinsEarned;
+            
+            UpdateBuyItemButton(buyItem05Button, configs[5], coins);
+            UpdateBuyItemButton(buyItem06Button, configs[6], coins);
+            UpdateBuyItemButton(buyItem07Button, configs[7], coins);
+            UpdateBuyItemButton(buyItem08Button, configs[8], coins);
+            UpdateBuyItemButton(buyItem09Button, configs[9], coins);
+        }
+    }
+
+    public void HideBuyItemsPanel()
+    {
+        if (buyItemsPanel != null)
+        {
+            buyItemsPanel.SetActive(false);
+        }
+    }
+
+    public void PurchaseTile(int tileIndex)
+    {
+        TileConfig config = GameManager.board.tileConfigs[tileIndex];
+        if (config.isLocked && GameManager.Instance.coinsEarned >= config.purchasePrice)
+        {
+            // Deduct coins
+            GameManager.Instance.coinsEarned -= config.purchasePrice;
+            UpdateCoinsEarned(GameManager.Instance.coinsEarned);
+
+            // Unlock the tile type
+            GameManager.board.UnlockTileType(tileIndex);
+
+            // Hide the panel
+            HideBuyItemsPanel();
         }
     }
 
@@ -178,6 +264,14 @@ public class UIManager : MonoBehaviour
         if (creditsPanel != null) creditsPanel.SetActive(false);
         if (exitConfirmPanel != null) exitConfirmPanel.SetActive(false);
         if (buyRocketPanel != null) buyRocketPanel.SetActive(false);
+        if (buyItemsPanel != null) buyItemsPanel.SetActive(false);
+
+        // Disable buy item buttons by default
+        if (buyItem05Button != null) buyItem05Button.interactable = false;
+        if (buyItem06Button != null) buyItem06Button.interactable = false;
+        if (buyItem07Button != null) buyItem07Button.interactable = false;
+        if (buyItem08Button != null) buyItem08Button.interactable = false;
+        if (buyItem09Button != null) buyItem09Button.interactable = false;
 
         // Set the state of the buy button
         UpdateBuyRocketButtonState(GameManager.Instance.coinsEarned);
@@ -204,9 +298,9 @@ public class UIManager : MonoBehaviour
         {
             cancelExitButton.onClick.AddListener(CloseExitConfirmation);
         }
-        if (buyRocketButton != null)
+        if (rocketButton != null)
         {
-            buyRocketButton.onClick.AddListener(() => GameManager.Instance.TryPurchaseRocket());
+            rocketButton.onClick.AddListener(ShowBuyRocketPanel);
         }
         if (confirmBuyRocketButton != null)
         {
@@ -216,5 +310,25 @@ public class UIManager : MonoBehaviour
         {
             cancelBuyRocketButton.onClick.AddListener(HideBuyRocketPanel);
         }
+        if (buyItemsButton != null)
+        {
+            buyItemsButton.onClick.AddListener(ShowBuyItemsPanel);
+        }
+        if (cancelBuyItemButton != null)
+        {
+            cancelBuyItemButton.onClick.AddListener(HideBuyItemsPanel);
+        }
+
+        // Set up buy item button listeners
+        if (buyItem05Button != null)
+            buyItem05Button.onClick.AddListener(() => PurchaseTile(5));
+        if (buyItem06Button != null)
+            buyItem06Button.onClick.AddListener(() => PurchaseTile(6));
+        if (buyItem07Button != null)
+            buyItem07Button.onClick.AddListener(() => PurchaseTile(7));
+        if (buyItem08Button != null)
+            buyItem08Button.onClick.AddListener(() => PurchaseTile(8));
+        if (buyItem09Button != null)
+            buyItem09Button.onClick.AddListener(() => PurchaseTile(9));
     }
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -7,7 +8,7 @@ public class GameManager : MonoBehaviour
     public static Board board;
     public int itemsLeftToCollect;
     public int coinsEarned;
-    public int intialCollectionGoal = 200;
+    public int intialCollectionGoal = 50;
     int collectionGoal;
     public int level;
     private Camera mainCamera;
@@ -28,7 +29,7 @@ public class GameManager : MonoBehaviour
     private int currentCharacterIndex = 0;
     public SpriteRenderer backgroundRenderer;
     public SpriteRenderer characterRenderer;
-    public int rocketCost = 100;
+    public int rocketCost = 10000;
 
     void Awake()
     {
@@ -49,6 +50,7 @@ public class GameManager : MonoBehaviour
     {
         level = 1;
         itemsLeftToCollect = intialCollectionGoal;
+        coinsEarned = 0;
         board.GenerateBoard();
         PlayBackgroundMusic();
         
@@ -76,7 +78,6 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            // Could show "not enough coins" message here
             Debug.Log("Not enough coins to purchase rocket");
         }
     }
@@ -126,20 +127,24 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void AddItemsCollected(int amount)
+    public void AddItemsCollected(HashSet<Tile> matchedTiles)
     {
         //collect coins for all items collected
-        coinsEarned += amount;
+        int totalCoins = 0;
+        foreach(Tile tile in matchedTiles)
+        {
+            totalCoins += tile.coinValue;
+        }
+        coinsEarned += totalCoins;
         UIManager.Instance.UpdateCoinsEarned(coinsEarned);
 
-        //check collected items for matches, then decrement if match.  When items left reaches zero, the level has been beaten
-        itemsLeftToCollect-=amount;
-        if (itemsLeftToCollect <= 0) itemsLeftToCollect=0;
-        UIManager.Instance.UpdateCollectionGoal(itemsLeftToCollect);
-        if (itemsLeftToCollect == 0)
+        itemsLeftToCollect -= matchedTiles.Count;
+        if (itemsLeftToCollect <= 0) 
         {
+            itemsLeftToCollect = 0;
             LevelWon();
         }
+        UIManager.Instance.UpdateCollectionGoal(itemsLeftToCollect);
     }
 
     void LevelWon()

@@ -5,6 +5,9 @@ public class Tile : MonoBehaviour
     public int x;
     public int y;
     public TileType type;
+    public bool isLocked = false;
+    public int coinValue = 0;
+    public int purchasePrice = 0;
 
     public enum TileType
     {
@@ -19,5 +22,22 @@ public class Tile : MonoBehaviour
         Type_08,
         Type_09,
         Robot
+    }
+
+    public bool CanPurchase()
+    {
+        return purchasePrice > 0 && GameManager.Instance.coinsEarned >= purchasePrice;
+    }
+
+    public bool TryPurchase()
+    {
+        if (CanPurchase())
+        {
+            GameManager.Instance.coinsEarned -= purchasePrice;
+            UIManager.Instance.UpdateCoinsEarned(GameManager.Instance.coinsEarned);
+            isLocked = false;
+            return true;
+        }
+        return false;
     }
 }

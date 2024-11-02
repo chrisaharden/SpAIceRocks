@@ -107,6 +107,9 @@ MonoBehaviour:
   x: 0
   y: 0
   type: 0
+  isLocked: 0
+  coinValue: 0
+  purchasePrice: 0
 --- !u!95 &1449138293697209012
 Animator:
   serializedVersion: 7

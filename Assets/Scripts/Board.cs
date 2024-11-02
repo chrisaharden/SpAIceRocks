@@ -2,6 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class TileConfig
+{
+    public Tile.TileType tileType;
+    public bool isLocked;
+    public int coinValue;
+    public int purchasePrice;
+}
+
 public class Board : MonoBehaviour
 {
     private int width = 8;
@@ -9,18 +18,43 @@ public class Board : MonoBehaviour
     public Tile[,] tiles;
     public int movesRemaining = 20;
     
-    public GameObject matchEffectPrefab;
-    public GameObject gridBlockBackground;
+    [Header("Tile Configuration")]
+    [Tooltip("Configure each tile type's properties. This array should match the tilePrefabs array order.")]
+    public TileConfig[] tileConfigs;
+    public GameObject[] tilePrefabs;
+
+    public GameObject tileBackground;
+
     public AudioClip swapSound;
     public AudioClip matchSound;
     public AudioClip gameOverSound;
-    public AudioClip robotRemovalSound; // New audio clip for robot removal
-
-    public GameObject[] tilePrefabs;
+    public AudioClip robotRemovalSound;
 
     public AudioSource audioSource;
     private Tile selectedTile;
     private bool isSwapping;
+
+    public void UnlockTileType(int tileIndex)
+    {
+        if (tileIndex >= 0 && tileIndex < tileConfigs.Length)
+        {
+            TileConfig config = tileConfigs[tileIndex];
+            config.isLocked = false;
+            tileConfigs[tileIndex] = config;
+
+            // Update any existing tiles of this type on the board
+            for (int x = 0; x < width; x++)
+            {
+                for (int y = 0; y < height; y++)
+                {
+                    if (tiles[x, y] != null && (int)tiles[x, y].type == tileIndex)
+                    {
+                        tiles[x, y].isLocked = false;
+                    }
+                }
+            }
+        }
+    }
     
     void Start()
     {
@@ -70,7 +104,7 @@ public class Board : MonoBehaviour
             for (int y = 0; y < height; y++)
             {
                 Vector2 pos = new Vector2(x - width / 2f + 0.5f, y - height / 2f + 0.5f);
-                GameObject background = Instantiate(gridBlockBackground, pos, Quaternion.identity, transform);
+                GameObject background = Instantiate(tileBackground, pos, Quaternion.identity, transform);
                 background.name = $"GridBackground ({x},{y})";
                 background.transform.position = new Vector3(pos.x, pos.y, 0.05f);
             }
@@ -79,6 +113,33 @@ public class Board : MonoBehaviour
 
     public void GenerateBoard()
     {
+        // Validate tile configurations
+        if (tileConfigs == null || tileConfigs.Length == 0)
+        {
+            Debug.LogError("Tile configurations are not set up!");
+            return;
+        }
+
+        // Create a list of unlocked tile configurations
+        List<TileConfig> unlockedConfigs = new List<TileConfig>();
+        List<GameObject> unlockedPrefabs = new List<GameObject>();
+        
+        for (int i = 0; i < tileConfigs.Length; i++)
+        {
+            if (!tileConfigs[i].isLocked)
+            {
+                unlockedConfigs.Add(tileConfigs[i]);
+                unlockedPrefabs.Add(tilePrefabs[i]);
+            }
+        }
+
+        // Ensure we have at least one unlocked tile type
+        if (unlockedConfigs.Count == 0)
+        {
+            Debug.LogError("No unlocked tile configurations available!");
+            return;
+        }
+
         movesRemaining = 20;
         tiles = new Tile[width, height];
 
@@ -100,7 +161,7 @@ public class Board : MonoBehaviour
             {
                 Vector2 pos = new Vector2(x - width / 2f + 0.5f, y - height / 2f + 0.5f);
                 GameObject tilePrefab;
-                Tile.TileType tileType;
+                TileConfig config;
                 
                 // If this is the robot position and we should place a robot
                 if (shouldPlaceRobot && x == robotPosition.x && y == robotPosition.y)
@@ -108,22 +169,14 @@ public class Board : MonoBehaviour
                     // Get the most recently collected robot
                     int lastRobotIndex = (GameManager.Instance.robotsCollected - 1) % GameManager.Instance.robotPrefabs.Length;
                     tilePrefab = GameManager.Instance.robotPrefabs[lastRobotIndex];
-                    tileType = Tile.TileType.Robot;
+                    config = new TileConfig { tileType = Tile.TileType.Robot, isLocked = false, coinValue = 0, purchasePrice = 0 };
                 }
                 else
                 {
-                    // Place a regular tile
-                    int randomIndex = Random.Range(0, tilePrefabs.Length);
-                    tilePrefab = tilePrefabs[randomIndex];
-                    // Ensure we're using the correct tile type based on the prefab index
-                    // The enum order should match: Type_00, Type_1, Type_02,...
-                    tileType = (Tile.TileType)randomIndex;
-                    
-                    // Make sure we don't accidentally set it as Robot type
-                    if ((int)tileType >= (int)Tile.TileType.Robot)
-                    {
-                        tileType = Tile.TileType.Type_00; // Default to Yellow if we somehow get an invalid index
-                    }
+                    // Place a regular unlocked tile
+                    int randomIndex = Random.Range(0, unlockedConfigs.Count);
+                    tilePrefab = unlockedPrefabs[randomIndex];
+                    config = unlockedConfigs[randomIndex];
                 }
 
                 GameObject tile = Instantiate(tilePrefab, pos, Quaternion.identity);
@@ -132,7 +185,10 @@ public class Board : MonoBehaviour
                 Tile tileComponent = tile.GetComponent<Tile>();
                 tileComponent.x = x;
                 tileComponent.y = y;
-                tileComponent.type = tileType;
+                tileComponent.type = config.tileType;
+                tileComponent.isLocked = config.isLocked;
+                tileComponent.coinValue = config.coinValue;
+                tileComponent.purchasePrice = config.purchasePrice;
 
                 tiles[x, y] = tileComponent;
             }
@@ -150,12 +206,12 @@ public class Board : MonoBehaviour
             {
                 if (selectedTile == null)
                 {
-                    selectedTile = tile;
+                    if (!tile.isLocked)
+                        selectedTile = tile;
                 }
                 else if (selectedTile != tile)
                 {
-                    // Only allow swapping if tiles are adjacent
-                    if (AreAdjacent(selectedTile, tile))
+                    if (!tile.isLocked && AreAdjacent(selectedTile, tile))
                     {
                         StartCoroutine(SwapTilesCoroutine(selectedTile, tile));
                         movesRemaining--;
@@ -163,8 +219,7 @@ public class Board : MonoBehaviour
                     }
                     else
                     {
-                        // If not adjacent, treat the new tile as the selected tile
-                        selectedTile = tile;
+                        selectedTile = !tile.isLocked ? tile : null;
                     }
                 }
             }
@@ -187,10 +242,7 @@ public class Board : MonoBehaviour
         {
             return tiles[x, y];
         }
-        else
-        {
-            return null;
-        }
+        return null;
     }
 
     IEnumerator SwapTilesCoroutine(Tile a, Tile b)
@@ -368,16 +420,23 @@ public class Board : MonoBehaviour
     void RemoveMatches(HashSet<Tile> matchedTiles)
     {
         bool containsRobot = false;
+        int totalCoins = 0;
+
         foreach (Tile tile in matchedTiles)
         {
-            if (tile != null && tile.type == Tile.TileType.Robot)
+            if (tile != null)
             {
-                containsRobot = true;
-                break;
+                if (tile.type == Tile.TileType.Robot)
+                {
+                    containsRobot = true;
+                }
+                else
+                {
+                    totalCoins += tile.coinValue;
+                }
             }
         }
 
-        // Play appropriate sound effect
         if (containsRobot && robotRemovalSound != null)
         {
             audioSource.PlayOneShot(robotRemovalSound);
@@ -406,12 +465,25 @@ public class Board : MonoBehaviour
             Destroy(tile.gameObject, 0.5f);
         }
 
-        GameManager.Instance.AddItemsCollected(matchedTiles.Count);
+        GameManager.Instance.AddItemsCollected(matchedTiles);
     }
 
     IEnumerator RefillBoardCoroutine()
     {
         yield return new WaitForSeconds(0.5f);
+
+        // Create lists of unlocked configurations for refilling
+        List<TileConfig> unlockedConfigs = new List<TileConfig>();
+        List<GameObject> unlockedPrefabs = new List<GameObject>();
+        
+        for (int i = 0; i < tileConfigs.Length; i++)
+        {
+            if (!tileConfigs[i].isLocked)
+            {
+                unlockedConfigs.Add(tileConfigs[i]);
+                unlockedPrefabs.Add(tilePrefabs[i]);
+            }
+        }
 
         // First pass: Shift existing tiles down and create new ones at the top
         for (int x = 0; x < width; x++)
@@ -435,26 +507,25 @@ public class Board : MonoBehaviour
                 }
             }
 
-            // Fill empty spaces at the top
+            // Fill empty spaces at the top with unlocked tiles
             for (int i = 0; i < emptySpaces; i++)
             {
                 int y = height - 1 - i;
                 Vector2 pos = new Vector2(x - width / 2f + 0.5f, y - height / 2f + 0.5f);
-                int randomIndex = Random.Range(0, tilePrefabs.Length);
-                GameObject tile = Instantiate(tilePrefabs[randomIndex], pos, Quaternion.identity);
+                int randomIndex = Random.Range(0, unlockedConfigs.Count);
+                GameObject tile = Instantiate(unlockedPrefabs[randomIndex], pos, Quaternion.identity);
                 tile.name = $"Tile ({x},{y})";
 
                 Tile tileComponent = tile.GetComponent<Tile>();
                 tileComponent.x = x;
                 tileComponent.y = y;
                 
-                // Ensure we don't create Robot type tiles during refill
-                Tile.TileType newType = (Tile.TileType)randomIndex;
-                if ((int)newType >= (int)Tile.TileType.Robot)
-                {
-                    newType = Tile.TileType.Type_00;
-                }
-                tileComponent.type = newType;
+                // Use the unlocked configuration for this tile type
+                TileConfig config = unlockedConfigs[randomIndex];
+                tileComponent.type = config.tileType;
+                tileComponent.isLocked = config.isLocked;
+                tileComponent.coinValue = config.coinValue;
+                tileComponent.purchasePrice = config.purchasePrice;
 
                 tiles[x, y] = tileComponent;
             }
@@ -472,13 +543,13 @@ public class Board : MonoBehaviour
             for (int y = 0; y < height; y++)
             {
                 Tile tile = tiles[x, y];
-                if (tile == null) continue;
+                if (tile == null || tile.isLocked) continue;
 
                 // Check horizontal swaps
                 if (x < width - 1)
                 {
                     Tile rightTile = tiles[x + 1, y];
-                    if (rightTile != null)
+                    if (rightTile != null && !rightTile.isLocked)
                     {
                         tiles[x, y] = rightTile;
                         tiles[x + 1, y] = tile;
@@ -497,7 +568,7 @@ public class Board : MonoBehaviour
                 if (y < height - 1)
                 {
                     Tile aboveTile = tiles[x, y + 1];
-                    if (aboveTile != null)
+                    if (aboveTile != null && !aboveTile.isLocked)
                     {
                         tiles[x, y] = aboveTile;
                         tiles[x, y + 1] = tile;

@@ -1,0 +1,1605 @@
+Folder PATH listing for volume Windows
+Volume serial number is C225-2F1E
+C:\USERS\CHRISHARDEN\AIGEN-MATCH3-U6-MUSEANDCLAUDE\ASSETS
+�   Animations.meta
+�   Audio.meta
+�   backgrounds.meta
+�   DefaultVolumeProfile.asset
+�   DefaultVolumeProfile.asset.meta
+�   Editor.meta
+�   happy stars.asset
+�   happy stars.asset.meta
+�   InputSystem_Actions.inputactions
+�   InputSystem_Actions.inputactions.meta
+�   Muse Chat Sprite.asset
+�   Muse Chat Sprite.asset.meta
+�   Particles.meta
+�   Prefabs.meta
+�   Scenes.meta
+�   Scripts.meta
+�   Settings.meta
+�   Sprites.meta
+�   swapping motion stripes.asset
+�   swapping motion stripes.asset.meta
+�   TEMP.meta
+�   TextMesh Pro.meta
+�   UI.meta
+�   UnityTechnologies.meta
+�   UniversalRenderPipelineGlobalSettings.asset
+�   UniversalRenderPipelineGlobalSettings.asset.meta
+�   
++---Animations
+�       MineralAtlas_AnimationController.controller
+�       MineralAtlas_AnimationController.controller.meta
+�       ShrinkAnimation.anim
+�       ShrinkAnimation.anim.meta
+�       SpeedLines.controller
+�       SpeedLines.controller.meta
+�       TileMatch.anim
+�       TileMatch.anim.meta
+�       TileSwap.anim
+�       TileSwap.anim.meta
+�       
++---Audio
+�   �   ding.wav
+�   �   ding.wav.meta
+�   �   Music.meta
+�   �   optimizerai.xyz-rock_crunch.wav
+�   �   optimizerai.xyz-rock_crunch.wav.meta
+�   �   optimizerai.xyz-small_explosion.wav
+�   �   optimizerai.xyz-small_explosion.wav.meta
+�   �   swish.wav
+�   �   swish.wav.meta
+�   �   wompwomp.wav
+�   �   wompwomp.wav.meta
+�   �   
+�   +---Music
+�           udio-echoesofthepast1.mp3
+�           udio-echoesofthepast1.mp3.meta
+�           udio-echoesofthepast2.mp3
+�           udio-echoesofthepast2.mp3.meta
+�           
++---backgrounds
+�       background_planet_1.png
+�       background_planet_1.png.meta
+�       background_planet_2.png
+�       background_planet_2.png.meta
+�       background_planet_3.png
+�       background_planet_3.png.meta
+�       
++---Editor
+�       NineSliceImageEditor.cs
+�       NineSliceImageEditor.cs.meta
+�       UnusedAssetsFinder.cs
+�       UnusedAssetsFinder.cs.meta
+�       
++---Particles
+�       FlameStream.prefab
+�       FlameStream.prefab.meta
+�       
++---Prefabs
+�       Bomb_4Way.prefab
+�       Bomb_4Way.prefab.meta
+�       Bomb_LeftRight.prefab
+�       Bomb_LeftRight.prefab.meta
+�       Bomb_UpDown.prefab
+�       Bomb_UpDown.prefab.meta
+�       CoinsEarnedText.prefab
+�       CoinsEarnedText.prefab.meta
+�       CollectionGoalText.prefab
+�       CollectionGoalText.prefab.meta
+�     tileBackgroundnd.prefab
+�     tileBackgroundnd.prefab.meta
+�       MineralAtlas_0.prefab
+�       MineralAtlas_0.prefab.meta
+�       MineralAtlas_1.prefab
+�       MineralAtlas_1.prefab.meta
+�       MineralAtlas_2.prefab
+�       MineralAtlas_2.prefab.meta
+�       MineralAtlas_3.prefab
+�       MineralAtlas_3.prefab.meta
+�       MineralAtlas_4.prefab
+�       MineralAtlas_4.prefab.meta
+�       MineralAtlas_5.prefab
+�       MineralAtlas_5.prefab.meta
+�       MineralAtlas_6.prefab
+�       MineralAtlas_6.prefab.meta
+�       MineralAtlas_7.prefab
+�       MineralAtlas_7.prefab.meta
+�       MineralAtlas_8.prefab
+�       MineralAtlas_8.prefab.meta
+�       MineralAtlas_9.prefab
+�       MineralAtlas_9.prefab.meta
+�       MovesRemainingText.prefab
+�       MovesRemainingText.prefab.meta
+�       Robots_1.prefab
+�       Robots_1.prefab.meta
+�       Robots_Hover.anim
+�       Robots_Hover.anim.meta
+�       Robots_Hover.controller
+�       Robots_Hover.controller.meta
+�       SpeedLines.prefab
+�       SpeedLines.prefab.meta
+�       
++---Scenes
+�       GameScene.unity
+�       GameScene.unity.meta
+�       
++---Scripts
+�       Board.cs
+�       Board.cs.meta
+�       GameManager.cs
+�       GameManager.cs.meta
+�       SetupNineSlice.cs
+�       SetupNineSlice.cs.meta
+�       Tile.cs
+�       Tile.cs.meta
+�       UIManager.cs
+�       UIManager.cs.meta
+�       
++---Settings
+�   �   Lit2DSceneTemplate.scenetemplate
+�   �   Lit2DSceneTemplate.scenetemplate.meta
+�   �   Renderer2D.asset
+�   �   Renderer2D.asset.meta
+�   �   Scenes.meta
+�   �   UniversalRP.asset
+�   �   UniversalRP.asset.meta
+�   �   
+�   +---Scenes
+�           URP2DSceneTemplate.unity
+�           URP2DSceneTemplate.unity.meta
+�           
++---Sprites
+�       Blue Tile.asset
+�       Blue Tile.asset.meta
+�       bombs_2.png
+�       bombs_2.png.meta
+�       bombs_3_1.png
+�       bombs_3_1.png.meta
+�       characters_1.png
+�       characters_1.png.meta
+�       characters_2.png
+�       characters_2.png.meta
+�       MineralAtlas.png
+�       MineralAtlas.png.meta
+�       robots_1.png
+�       robots_1.png.meta
+�       ships_1.png
+�       ships_1.png.meta
+�       SpeedLines.png
+�       SpeedLines.png.meta
+�       
++---TEMP
+�       6.jpg
+�       6.jpg.meta
+�       7.jpg
+�       7.jpg.meta
+�       Thiking Prompts for AI.txt
+�       Thiking Prompts for AI.txt.meta
+�       
++---TextMesh Pro
+�   �   Examples & Extras.meta
+�   �   Fonts.meta
+�   �   Resources.meta
+�   �   Shaders.meta
+�   �   Sprites.meta
+�   �   
+�   +---Examples & Extras
+�   �   �   Fonts.meta
+�   �   �   Materials.meta
+�   �   �   Prefabs.meta
+�   �   �   Resources.meta
+�   �   �   Scenes.meta
+�   �   �   Scripts.meta
+�   �   �   Sprites.meta
+�   �   �   Textures.meta
+�   �   �   
+�   �   +---Fonts
+�   �   �       Anton OFL.txt
+�   �   �       Anton OFL.txt.meta
+�   �   �       Anton.ttf
+�   �   �       Anton.ttf.meta
+�   �   �       Bangers - OFL.txt
+�   �   �       Bangers - OFL.txt.meta
+�   �   �       Bangers.ttf
+�   �   �       Bangers.ttf.meta
+�   �   �       Electronic Highway Sign.TTF
+�   �   �       Electronic Highway Sign.TTF.meta
+�   �   �       Oswald-Bold - OFL.txt
+�   �   �       Oswald-Bold - OFL.txt.meta
+�   �   �       Oswald-Bold.ttf
+�   �   �       Oswald-Bold.ttf.meta
+�   �   �       Roboto-Bold - AFL.txt
+�   �   �       Roboto-Bold - AFL.txt.meta
+�   �   �       Roboto-Bold - License.txt
+�   �   �       Roboto-Bold - License.txt.meta
+�   �   �       Roboto-Bold.ttf
+�   �   �       Roboto-Bold.ttf.meta
+�   �   �       Unity - OFL.txt
+�   �   �       Unity - OFL.txt.meta
+�   �   �       Unity.ttf
+�   �   �       Unity.ttf.meta
+�   �   �       
+�   �   +---Materials
+�   �   �       Crate - Surface Shader Scene.mat
+�   �   �       Crate - Surface Shader Scene.mat.meta
+�   �   �       Ground - Logo Scene.mat
+�   �   �       Ground - Logo Scene.mat.meta
+�   �   �       Ground - Surface Shader Scene.mat
+�   �   �       Ground - Surface Shader Scene.mat.meta
+�   �   �       Small Crate_diffuse.mat
+�   �   �       Small Crate_diffuse.mat.meta
+�   �   �       
+�   �   +---Prefabs
+�   �   �       Text Popup.prefab
+�   �   �       Text Popup.prefab.meta
+�   �   �       TextMeshPro - Prefab 1.prefab
+�   �   �       TextMeshPro - Prefab 1.prefab.meta
+�   �   �       TextMeshPro - Prefab 2.prefab
+�   �   �       TextMeshPro - Prefab 2.prefab.meta
+�   �   �       
+�   �   +---Resources
+�   �   �   �   Color Gradient Presets.meta
+�   �   �   �   Fonts & Materials.meta
+�   �   �   �   Sprite Assets.meta
+�   �   �   �   
+�   �   �   +---Color Gradient Presets
+�   �   �   �       Blue to Purple - Vertical.asset
+�   �   �   �       Blue to Purple - Vertical.asset.meta
+�   �   �   �       Dark to Light Green - Vertical.asset
+�   �   �   �       Dark to Light Green - Vertical.asset.meta
+�   �   �   �       Light to Dark Green - Vertical.asset
+�   �   �   �       Light to Dark Green - Vertical.asset.meta
+�   �   �   �       Yellow to Orange - Vertical.asset
+�   �   �   �       Yellow to Orange - Vertical.asset.meta
+�   �   �   �       
+�   �   �   +---Fonts & Materials
+�   �   �   �       Anton SDF - Drop Shadow.mat
+�   �   �   �       Anton SDF - Drop Shadow.mat.meta
+�   �   �   �       Anton SDF - Outline.mat
+�   �   �   �       Anton SDF - Outline.mat.meta
+�   �   �   �       Anton SDF - Sunny Days.mat
+�   �   �   �       Anton SDF - Sunny Days.mat.meta
+�   �   �   �       Anton SDF.asset
+�   �   �   �       Anton SDF.asset.meta
+�   �   �   �       Bangers SDF - Drop Shadow - 2 Pass.mat
+�   �   �   �       Bangers SDF - Drop Shadow - 2 Pass.mat.meta
+�   �   �   �       Bangers SDF - Drop Shadow.mat
+�   �   �   �       Bangers SDF - Drop Shadow.mat.meta
+�   �   �   �       Bangers SDF - Outline.mat
+�   �   �   �       Bangers SDF - Outline.mat.meta
+�   �   �   �       Bangers SDF Glow.mat
+�   �   �   �       Bangers SDF Glow.mat.meta
+�   �   �   �       Bangers SDF Logo.mat
+�   �   �   �       Bangers SDF Logo.mat.meta
+�   �   �   �       Bangers SDF.asset
+�   �   �   �       Bangers SDF.asset.meta
+�   �   �   �       Electronic Highway Sign SDF.asset
+�   �   �   �       Electronic Highway Sign SDF.asset.meta
+�   �   �   �       LiberationSans SDF - Metalic Green.mat
+�   �   �   �       LiberationSans SDF - Metalic Green.mat.meta
+�   �   �   �       LiberationSans SDF - Overlay.mat
+�   �   �   �       LiberationSans SDF - Overlay.mat.meta
+�   �   �   �       LiberationSans SDF - Soft Mask.mat
+�   �   �   �       LiberationSans SDF - Soft Mask.mat.meta
+�   �   �   �       Oswald Bold SDF.asset
+�   �   �   �       Oswald Bold SDF.asset.meta
+�   �   �   �       Roboto-Bold SDF - Drop Shadow.mat
+�   �   �   �       Roboto-Bold SDF - Drop Shadow.mat.meta
+�   �   �   �       Roboto-Bold SDF - HDRP Unlit.mat
+�   �   �   �       Roboto-Bold SDF - HDRP Unlit.mat.meta
+�   �   �   �       Roboto-Bold SDF - Surface.mat
+�   �   �   �       Roboto-Bold SDF - Surface.mat.meta
+�   �   �   �       Roboto-Bold SDF.asset
+�   �   �   �       Roboto-Bold SDF.asset.meta
+�   �   �   �       Unity SDF - HDRP LIT - Bloom.mat
+�   �   �   �       Unity SDF - HDRP LIT - Bloom.mat.meta
+�   �   �   �       Unity SDF - HDRP LIT - Outline.mat
+�   �   �   �       Unity SDF - HDRP LIT - Outline.mat.meta
+�   �   �   �       Unity SDF.asset
+�   �   �   �       Unity SDF.asset.meta
+�   �   �   �       
+�   �   �   +---Sprite Assets
+�   �   �           Default Sprite Asset.asset
+�   �   �           Default Sprite Asset.asset.meta
+�   �   �           DropCap Numbers.asset
+�   �   �           DropCap Numbers.asset.meta
+�   �   �           
+�   �   +---Scenes
+�   �   �       01-  Single Line TextMesh Pro.unity
+�   �   �       01-  Single Line TextMesh Pro.unity.meta
+�   �   �       02 - Multi-line TextMesh Pro.unity
+�   �   �       02 - Multi-line TextMesh Pro.unity.meta
+�   �   �       03 - Line Justification.unity
+�   �   �       03 - Line Justification.unity.meta
+�   �   �       04 - Word Wrapping.unity
+�   �   �       04 - Word Wrapping.unity.meta
+�   �   �       05 - Style Tags.unity
+�   �   �       05 - Style Tags.unity.meta
+�   �   �       06 - Extra Rich Text Examples.unity
+�   �   �       06 - Extra Rich Text Examples.unity.meta
+�   �   �       07 - Superscript & Subscript Example.unity
+�   �   �       07 - Superscript & Subscript Example.unity.meta
+�   �   �       08 - Improved Text Alignment.unity
+�   �   �       08 - Improved Text Alignment.unity.meta
+�   �   �       09 - Margin Tag Example.unity
+�   �   �       09 - Margin Tag Example.unity.meta
+�   �   �       10 - Bullets & Numbered List Example.unity
+�   �   �       10 - Bullets & Numbered List Example.unity.meta
+�   �   �       11 - The Style Tag.unity
+�   �   �       11 - The Style Tag.unity.meta
+�   �   �       12 - Link Example.unity
+�   �   �       12 - Link Example.unity.meta
+�   �   �       12a - Text Interactions.unity
+�   �   �       12a - Text Interactions.unity.meta
+�   �   �       13 - Soft Hyphenation.unity
+�   �   �       13 - Soft Hyphenation.unity.meta
+�   �   �       14 - Multi Font & Sprites.unity
+�   �   �       14 - Multi Font & Sprites.unity.meta
+�   �   �       15 - Inline Graphics & Sprites.unity
+�   �   �       15 - Inline Graphics & Sprites.unity.meta
+�   �   �       16 - Linked text overflow mode example.unity
+�   �   �       16 - Linked text overflow mode example.unity.meta
+�   �   �       17 - Old Computer Terminal.unity
+�   �   �       17 - Old Computer Terminal.unity.meta
+�   �   �       18 - ScrollRect & Masking & Layout.unity
+�   �   �       18 - ScrollRect & Masking & Layout.unity.meta
+�   �   �       19 - Masking Texture & Soft Mask.unity
+�   �   �       19 - Masking Texture & Soft Mask.unity.meta
+�   �   �       20 - Input Field with Scrollbar.unity
+�   �   �       20 - Input Field with Scrollbar.unity.meta
+�   �   �       21 - Script Example.unity
+�   �   �       21 - Script Example.unity.meta
+�   �   �       22 - Basic Scripting Example.unity
+�   �   �       22 - Basic Scripting Example.unity.meta
+�   �   �       23 - Animating Vertex Attributes.unity
+�   �   �       23 - Animating Vertex Attributes.unity.meta
+�   �   �       24 - Surface Shader Example.unity
+�   �   �       24 - Surface Shader Example.unity.meta
+�   �   �       25 - Sunny Days Example.unity
+�   �   �       25 - Sunny Days Example.unity.meta
+�   �   �       26 - Dropdown Placeholder Example.unity
+�   �   �       26 - Dropdown Placeholder Example.unity.meta
+�   �   �       27 - Double Pass Shader Example.unity
+�   �   �       27 - Double Pass Shader Example.unity.meta
+�   �   �       28 - HDRP Shader Example.unity
+�   �   �       28 - HDRP Shader Example.unity.meta
+�   �   �       Benchmark (Floating Text).unity
+�   �   �       Benchmark (Floating Text).unity.meta
+�   �   �       
+�   �   +---Scripts
+�   �   �       Benchmark01.cs
+�   �   �       Benchmark01.cs.meta
+�   �   �       Benchmark01_UGUI.cs
+�   �   �       Benchmark01_UGUI.cs.meta
+�   �   �       Benchmark02.cs
+�   �   �       Benchmark02.cs.meta
+�   �   �       Benchmark03.cs
+�   �   �       Benchmark03.cs.meta
+�   �   �       Benchmark04.cs
+�   �   �       Benchmark04.cs.meta
+�   �   �       CameraController.cs
+�   �   �       CameraController.cs.meta
+�   �   �       ChatController.cs
+�   �   �       ChatController.cs.meta
+�   �   �       DropdownSample.cs
+�   �   �       DropdownSample.cs.meta
+�   �   �       EnvMapAnimator.cs
+�   �   �       EnvMapAnimator.cs.meta
+�   �   �       ObjectSpin.cs
+�   �   �       ObjectSpin.cs.meta
+�   �   �       ShaderPropAnimator.cs
+�   �   �       ShaderPropAnimator.cs.meta
+�   �   �       SimpleScript.cs
+�   �   �       SimpleScript.cs.meta
+�   �   �       SkewTextExample.cs
+�   �   �       SkewTextExample.cs.meta
+�   �   �       TeleType.cs
+�   �   �       TeleType.cs.meta
+�   �   �       TextConsoleSimulator.cs
+�   �   �       TextConsoleSimulator.cs.meta
+�   �   �       TextMeshProFloatingText.cs
+�   �   �       TextMeshProFloatingText.cs.meta
+�   �   �       TextMeshSpawner.cs
+�   �   �       TextMeshSpawner.cs.meta
+�   �   �       TMPro_InstructionOverlay.cs
+�   �   �       TMPro_InstructionOverlay.cs.meta
+�   �   �       TMP_DigitValidator.cs
+�   �   �       TMP_DigitValidator.cs.meta
+�   �   �       TMP_ExampleScript_01.cs
+�   �   �       TMP_ExampleScript_01.cs.meta
+�   �   �       TMP_FrameRateCounter.cs
+�   �   �       TMP_FrameRateCounter.cs.meta
+�   �   �       TMP_PhoneNumberValidator.cs
+�   �   �       TMP_PhoneNumberValidator.cs.meta
+�   �   �       TMP_TextEventCheck.cs
+�   �   �       TMP_TextEventCheck.cs.meta
+�   �   �       TMP_TextEventHandler.cs
+�   �   �       TMP_TextEventHandler.cs.meta
+�   �   �       TMP_TextInfoDebugTool.cs
+�   �   �       TMP_TextInfoDebugTool.cs.meta
+�   �   �       TMP_TextSelector_A.cs
+�   �   �       TMP_TextSelector_A.cs.meta
+�   �   �       TMP_TextSelector_B.cs
+�   �   �       TMP_TextSelector_B.cs.meta
+�   �   �       TMP_UiFrameRateCounter.cs
+�   �   �       TMP_UiFrameRateCounter.cs.meta
+�   �   �       VertexColorCycler.cs
+�   �   �       VertexColorCycler.cs.meta
+�   �   �       VertexJitter.cs
+�   �   �       VertexJitter.cs.meta
+�   �   �       VertexShakeA.cs
+�   �   �       VertexShakeA.cs.meta
+�   �   �       VertexShakeB.cs
+�   �   �       VertexShakeB.cs.meta
+�   �   �       VertexZoom.cs
+�   �   �       VertexZoom.cs.meta
+�   �   �       WarpTextExample.cs
+�   �   �       WarpTextExample.cs.meta
+�   �   �       
+�   �   +---Sprites
+�   �   �       Default Sprites.png
+�   �   �       Default Sprites.png.meta
+�   �   �       DropCap Numbers.psd
+�   �   �       DropCap Numbers.psd.meta
+�   �   �       
+�   �   +---Textures
+�   �           Brushed Metal 3.jpg
+�   �           Brushed Metal 3.jpg.meta
+�   �           Floor Cement.jpg
+�   �           Floor Cement.jpg.meta
+�   �           Floor Tiles 1 - diffuse.jpg
+�   �           Floor Tiles 1 - diffuse.jpg.meta
+�   �           Fruit Jelly (B&W).jpg
+�   �           Fruit Jelly (B&W).jpg.meta
+�   �           Gradient Diagonal (Color).jpg
+�   �           Gradient Diagonal (Color).jpg.meta
+�   �           Gradient Horizontal (Color).jpg
+�   �           Gradient Horizontal (Color).jpg.meta
+�   �           Gradient Vertical (Color).jpg
+�   �           Gradient Vertical (Color).jpg.meta
+�   �           Mask Zig-n-Zag.psd
+�   �           Mask Zig-n-Zag.psd.meta
+�   �           Small Crate_diffuse.jpg
+�   �           Small Crate_diffuse.jpg.meta
+�   �           Small Crate_normal.jpg
+�   �           Small Crate_normal.jpg.meta
+�   �           Sunny Days - Seamless.jpg
+�   �           Sunny Days - Seamless.jpg.meta
+�   �           Text Overflow - Linked Text Image 1.png
+�   �           Text Overflow - Linked Text Image 1.png.meta
+�   �           Text Overflow - Linked Text UI Screenshot.png
+�   �           Text Overflow - Linked Text UI Screenshot.png.meta
+�   �           Wipe Pattern - Circle.psd
+�   �           Wipe Pattern - Circle.psd.meta
+�   �           Wipe Pattern - Diagonal.psd
+�   �           Wipe Pattern - Diagonal.psd.meta
+�   �           Wipe Pattern - Radial Double.psd
+�   �           Wipe Pattern - Radial Double.psd.meta
+�   �           Wipe Pattern - Radial Quad.psd
+�   �           Wipe Pattern - Radial Quad.psd.meta
+�   �           
+�   +---Fonts
+�   �       LiberationSans - OFL.txt
+�   �       LiberationSans - OFL.txt.meta
+�   �       LiberationSans.ttf
+�   �       LiberationSans.ttf.meta
+�   �       
+�   +---Resources
+�   �   �   Fonts & Materials.meta
+�   �   �   LineBreaking Following Characters.txt
+�   �   �   LineBreaking Following Characters.txt.meta
+�   �   �   LineBreaking Leading Characters.txt
+�   �   �   LineBreaking Leading Characters.txt.meta
+�   �   �   Sprite Assets.meta
+�   �   �   Style Sheets.meta
+�   �   �   TMP Settings.asset
+�   �   �   TMP Settings.asset.meta
+�   �   �   
+�   �   +---Fonts & Materials
+�   �   �       LiberationSans SDF - Drop Shadow.mat
+�   �   �       LiberationSans SDF - Drop Shadow.mat.meta
+�   �   �       LiberationSans SDF - Fallback.asset
+�   �   �       LiberationSans SDF - Fallback.asset.meta
+�   �   �       LiberationSans SDF - Outline.mat
+�   �   �       LiberationSans SDF - Outline.mat.meta
+�   �   �       LiberationSans SDF.asset
+�   �   �       LiberationSans SDF.asset.meta
+�   �   �       
+�   �   +---Sprite Assets
+�   �   �       EmojiOne.asset
+�   �   �       EmojiOne.asset.meta
+�   �   �       InlineIcons.png
+�   �   �       InlineIcons.png.meta
+�   �   �       MixedIndexTest.asset
+�   �   �       MixedIndexTest.asset.meta
+�   �   �       
+�   �   +---Style Sheets
+�   �           Default Style Sheet.asset
+�   �           Default Style Sheet.asset.meta
+�   �           
+�   +---Shaders
+�   �       SDFFunctions.hlsl
+�   �       SDFFunctions.hlsl.meta
+�   �       TMPro.cginc
+�   �       TMPro.cginc.meta
+�   �       TMPro_Mobile.cginc
+�   �       TMPro_Mobile.cginc.meta
+�   �       TMPro_Properties.cginc
+�   �       TMPro_Properties.cginc.meta
+�   �       TMPro_Surface.cginc
+�   �       TMPro_Surface.cginc.meta
+�   �       TMP_Bitmap-Custom-Atlas.shader
+�   �       TMP_Bitmap-Custom-Atlas.shader.meta
+�   �       TMP_Bitmap-Mobile.shader
+�   �       TMP_Bitmap-Mobile.shader.meta
+�   �       TMP_Bitmap.shader
+�   �       TMP_Bitmap.shader.meta
+�   �       TMP_SDF Overlay.shader
+�   �       TMP_SDF Overlay.shader.meta
+�   �       TMP_SDF SSD.shader
+�   �       TMP_SDF SSD.shader.meta
+�   �       TMP_SDF-HDRP LIT.shadergraph
+�   �       TMP_SDF-HDRP LIT.shadergraph.meta
+�   �       TMP_SDF-HDRP UNLIT.shadergraph
+�   �       TMP_SDF-HDRP UNLIT.shadergraph.meta
+�   �       TMP_SDF-Mobile Masking.shader
+�   �       TMP_SDF-Mobile Masking.shader.meta
+�   �       TMP_SDF-Mobile Overlay.shader
+�   �       TMP_SDF-Mobile Overlay.shader.meta
+�   �       TMP_SDF-Mobile SSD.shader
+�   �       TMP_SDF-Mobile SSD.shader.meta
+�   �       TMP_SDF-Mobile-2-Pass.shader
+�   �       TMP_SDF-Mobile-2-Pass.shader.meta
+�   �       TMP_SDF-Mobile.shader
+�   �       TMP_SDF-Mobile.shader.meta
+�   �       TMP_SDF-Surface-Mobile.shader
+�   �       TMP_SDF-Surface-Mobile.shader.meta
+�   �       TMP_SDF-Surface.shader
+�   �       TMP_SDF-Surface.shader.meta
+�   �       TMP_SDF-URP Lit.shadergraph
+�   �       TMP_SDF-URP Lit.shadergraph.meta
+�   �       TMP_SDF-URP Unlit.shadergraph
+�   �       TMP_SDF-URP Unlit.shadergraph.meta
+�   �       TMP_SDF.shader
+�   �       TMP_SDF.shader.meta
+�   �       TMP_Sprite.shader
+�   �       TMP_Sprite.shader.meta
+�   �       
+�   +---Sprites
+�           EmojiOne Attribution.txt
+�           EmojiOne Attribution.txt.meta
+�           EmojiOne.json
+�           EmojiOne.json.meta
+�           EmojiOne.png
+�           EmojiOne.png.meta
+�           
++---UI
+�       Button.prefab
+�       Button.prefab.meta
+�       Canvas.prefab
+�       Canvas.prefab.meta
+�       dialogBgnd.png
+�       dialogBgnd.png.meta
+�       dialogBgnd.prefab
+�       dialogBgnd.prefab.meta
+�       GameOverPanel.prefab
+�       GameOverPanel.prefab.meta
+�       LevelText.prefab
+�       LevelText.prefab.meta
+�       ScoreText.prefab
+�       ScoreText.prefab.meta
+�       
++---UnityTechnologies
+    �   ParticlePack.meta
+    �   
+    +---ParticlePack
+        �   DefaultVolumeProfile.asset
+        �   DefaultVolumeProfile.asset.meta
+        �   EffectExamples.meta
+        �   Main Camera Profile(URP).asset
+        �   Main Camera Profile(URP).asset.meta
+        �   Main Camera Profile.asset
+        �   Main Camera Profile.asset.meta
+        �   Readme.asset
+        �   Readme.asset.meta
+        �   Scenes.meta
+        �   Settings.meta
+        �   Shared.meta
+        �   TutorialInfo.meta
+        �   UniversalRenderPipelineGlobalSettings.asset
+        �   UniversalRenderPipelineGlobalSettings.asset.meta
+        �   URP.asset
+        �   URP.asset.meta
+        �   URP_Renderer.asset
+        �   URP_Renderer.asset.meta
+        �   
+        +---EffectExamples
+        �   �   Fire & Explosion Effects.meta
+        �   �   Goop Effects.meta
+        �   �   Legacy Particles.meta
+        �   �   Magic Effects.meta
+        �   �   Misc Effects.meta
+        �   �   Smoke & Steam Effects.meta
+        �   �   Water Effects.meta
+        �   �   Weapon Effects.meta
+        �   �   
+        �   +---Fire & Explosion Effects
+        �   �   �   Materials.meta
+        �   �   �   Prefabs.meta
+        �   �   �   Textures.meta
+        �   �   �   
+        �   �   +---Materials
+        �   �   �       DebrisParticle.mat
+        �   �   �       DebrisParticle.mat.meta
+        �   �   �       Dust.mat
+        �   �   �       Dust.mat.meta
+        �   �   �       Embers.mat
+        �   �   �       Embers.mat.meta
+        �   �   �       EnergyExplosion.mat
+        �   �   �       EnergyExplosion.mat.meta
+        �   �   �       EnergyShockwave.mat
+        �   �   �       EnergyShockwave.mat.meta
+        �   �   �       Explosion.mat
+        �   �   �       Explosion.mat.meta
+        �   �   �       ExplosionDistortion.mat
+        �   �   �       ExplosionDistortion.mat.meta
+        �   �   �       fireball.mat
+        �   �   �       fireball.mat.meta
+        �   �   �       FireExplosion.mat
+        �   �   �       FireExplosion.mat.meta
+        �   �   �       Flame02.mat
+        �   �   �       Flame02.mat.meta
+        �   �   �       Flame03.mat
+        �   �   �       Flame03.mat.meta
+        �   �   �       Flame04.mat
+        �   �   �       Flame04.mat.meta
+        �   �   �       LargeFlame01.mat
+        �   �   �       LargeFlame01.mat.meta
+        �   �   �       LargeFlame02.mat
+        �   �   �       LargeFlame02.mat.meta
+        �   �   �       Lightning.mat
+        �   �   �       Lightning.mat.meta
+        �   �   �       LightningTrail.mat
+        �   �   �       LightningTrail.mat.meta
+        �   �   �       MediumFlame01.mat
+        �   �   �       MediumFlame01.mat.meta
+        �   �   �       MediumFlame02.mat
+        �   �   �       MediumFlame02.mat.meta
+        �   �   �       MediumFlame03.mat
+        �   �   �       MediumFlame03.mat.meta
+        �   �   �       PlasmaExplosion.mat
+        �   �   �       PlasmaExplosion.mat.meta
+        �   �   �       PlasmaFire.mat
+        �   �   �       PlasmaFire.mat.meta
+        �   �   �       SandParticle.mat
+        �   �   �       SandParticle.mat.meta
+        �   �   �       SmokeDark.mat
+        �   �   �       SmokeDark.mat.meta
+        �   �   �       TinyFlame.mat
+        �   �   �       TinyFlame.mat.meta
+        �   �   �       
+        �   �   +---Prefabs
+        �   �   �       BigExplosion.prefab
+        �   �   �       BigExplosion.prefab.meta
+        �   �   �       DustExplosion.prefab
+        �   �   �       DustExplosion.prefab.meta
+        �   �   �       EnergyExplosion.prefab
+        �   �   �       EnergyExplosion.prefab.meta
+        �   �   �       FireBall.prefab
+        �   �   �       FireBall.prefab.meta
+        �   �   �       FlameStream.prefab
+        �   �   �       FlameStream.prefab.meta
+        �   �   �       FlameThrower.prefab
+        �   �   �       FlameThrower.prefab.meta
+        �   �   �       LargeFlames.prefab
+        �   �   �       LargeFlames.prefab.meta
+        �   �   �       MediumFlames.prefab
+        �   �   �       MediumFlames.prefab.meta
+        �   �   �       ParticlesLight.prefab
+        �   �   �       ParticlesLight.prefab.meta
+        �   �   �       SmallExplosion.prefab
+        �   �   �       SmallExplosion.prefab.meta
+        �   �   �       TinyExplosion.prefab
+        �   �   �       TinyExplosion.prefab.meta
+        �   �   �       TinyFlames.prefab
+        �   �   �       TinyFlames.prefab.meta
+        �   �   �       WildFire.prefab
+        �   �   �       WildFire.prefab.meta
+        �   �   �       
+        �   �   +---Textures
+        �   �           Debris.png
+        �   �           Debris.png.meta
+        �   �           EnergyEffect.tif
+        �   �           EnergyEffect.tif.meta
+        �   �           Explosion.tif
+        �   �           Explosion.tif.meta
+        �   �           ExplosionEmission.tif
+        �   �           ExplosionEmission.tif.meta
+        �   �           Fireball.tif
+        �   �           Fireball.tif.meta
+        �   �           FireBallEmission.tif
+        �   �           FireBallEmission.tif.meta
+        �   �           FireExplosion.tif
+        �   �           FireExplosion.tif.meta
+        �   �           Flame02.tif
+        �   �           Flame02.tif.meta
+        �   �           Flame03.tif
+        �   �           Flame03.tif.meta
+        �   �           Flame04.tif
+        �   �           Flame04.tif.meta
+        �   �           LargeFlame01.tif
+        �   �           LargeFlame01.tif.meta
+        �   �           LargeFlame02.tif
+        �   �           LargeFlame02.tif.meta
+        �   �           Lightning.tif
+        �   �           Lightning.tif.meta
+        �   �           LightningTrail.tif
+        �   �           LightningTrail.tif.meta
+        �   �           MediumFlame01.tif
+        �   �           MediumFlame01.tif.meta
+        �   �           MediumFlame01Emission.tif
+        �   �           MediumFlame01Emission.tif.meta
+        �   �           MediumFlame03.tif
+        �   �           MediumFlame03.tif.meta
+        �   �           MedumFlame02.tif
+        �   �           MedumFlame02.tif.meta
+        �   �           ramp01.png
+        �   �           ramp01.png.meta
+        �   �           Ramp02.png
+        �   �           Ramp02.png.meta
+        �   �           Ramp03.png
+        �   �           Ramp03.png.meta
+        �   �           RoundSoftParticle.tif
+        �   �           RoundSoftParticle.tif.meta
+        �   �           shockwave.tif
+        �   �           shockwave.tif.meta
+        �   �           SmokePuff01.tif
+        �   �           SmokePuff01.tif.meta
+        �   �           SmokePuff02.png
+        �   �           SmokePuff02.png.meta
+        �   �           SmokePuffNormal.tif
+        �   �           SmokePuffNormal.tif.meta
+        �   �           SphereNormal.tif
+        �   �           SphereNormal.tif.meta
+        �   �           TinyFlame.tif
+        �   �           TinyFlame.tif.meta
+        �   �           TinyStones.png
+        �   �           TinyStones.png.meta
+        �   �           
+        �   +---Goop Effects
+        �   �   �   Materials.meta
+        �   �   �   Prefabs.meta
+        �   �   �   Textures.meta
+        �   �   �   
+        �   �   +---Materials
+        �   �   �       GoopPoolParticle.mat
+        �   �   �       GoopPoolParticle.mat.meta
+        �   �   �       GoopSplashParticle.mat
+        �   �   �       GoopSplashParticle.mat.meta
+        �   �   �       GoopSplatParticle.mat
+        �   �   �       GoopSplatParticle.mat.meta
+        �   �   �       GoopStreamParticle.mat
+        �   �   �       GoopStreamParticle.mat.meta
+        �   �   �       
+        �   �   +---Prefabs
+        �   �   �       GoopSpray.prefab
+        �   �   �       GoopSpray.prefab.meta
+        �   �   �       GoopSprayEffect.prefab
+        �   �   �       GoopSprayEffect.prefab.meta
+        �   �   �       GoopStreamEffect.prefab
+        �   �   �       GoopStreamEffect.prefab.meta
+        �   �   �       
+        �   �   +---Textures
+        �   �           GoopDropAlbedo.tif
+        �   �           GoopDropAlbedo.tif.meta
+        �   �           GoopDropNormals.tif
+        �   �           GoopDropNormals.tif.meta
+        �   �           GoopPoolAlbedo.tif
+        �   �           GoopPoolAlbedo.tif.meta
+        �   �           GoopPoolNormals.tif
+        �   �           GoopPoolNormals.tif.meta
+        �   �           GoopSprayAlbedo.tif
+        �   �           GoopSprayAlbedo.tif.meta
+        �   �           GoopSprayNormals.tif
+        �   �           GoopSprayNormals.tif.meta
+        �   �           GoopStreamAlbedo.tif
+        �   �           GoopStreamAlbedo.tif.meta
+        �   �           SplatAlbedo.tif
+        �   �           SplatAlbedo.tif.meta
+        �   �           
+        �   +---Legacy Particles
+        �   �   �   Materials.meta
+        �   �   �   Prefabs.meta
+        �   �   �   Textures.meta
+        �   �   �   
+        �   �   +---Materials
+        �   �   �       ImpactSplashParticle.mat
+        �   �   �       ImpactSplashParticle.mat.meta
+        �   �   �       SparkParticle.mat
+        �   �   �       SparkParticle.mat.meta
+        �   �   �       StormCloudParticle.mat
+        �   �   �       StormCloudParticle.mat.meta
+        �   �   �       WaterDropParticle.mat
+        �   �   �       WaterDropParticle.mat.meta
+        �   �   �       WaterfallMain Spray.mat
+        �   �   �       WaterfallMain Spray.mat.meta
+        �   �   �       WaterfallMain.mat
+        �   �   �       WaterfallMain.mat.meta
+        �   �   �       WaterFallRipple.mat
+        �   �   �       WaterFallRipple.mat.meta
+        �   �   �       WaterfallSplash.mat
+        �   �   �       WaterfallSplash.mat.meta
+        �   �   �       WaterFallTop.mat
+        �   �   �       WaterFallTop.mat.meta
+        �   �   �       WaterRipplesParticle.mat
+        �   �   �       WaterRipplesParticle.mat.meta
+        �   �   �       
+        �   �   +---Prefabs
+        �   �   �       ElectricalSparksEffect.prefab
+        �   �   �       ElectricalSparksEffect.prefab.meta
+        �   �   �       LightnigStormCloud.prefab
+        �   �   �       LightnigStormCloud.prefab.meta
+        �   �   �       PlasmaExplosionEffect.prefab
+        �   �   �       PlasmaExplosionEffect.prefab.meta
+        �   �   �       RainEffect.prefab
+        �   �   �       RainEffect.prefab.meta
+        �   �   �       SparksEffect.prefab
+        �   �   �       SparksEffect.prefab.meta
+        �   �   �       WaterFall.prefab
+        �   �   �       WaterFall.prefab.meta
+        �   �   �       
+        �   �   +---Textures
+        �   �           FlameRoundGreyParticleSheet.tif
+        �   �           FlameRoundGreyParticleSheet.tif.meta
+        �   �           ImpactSplashParticle.tif
+        �   �           ImpactSplashParticle.tif.meta
+        �   �           WaterDropParticle.tif
+        �   �           WaterDropParticle.tif.meta
+        �   �           WaterfallDropTexture.tif
+        �   �           WaterfallDropTexture.tif.meta
+        �   �           WaterMistSoftParticle.tif
+        �   �           WaterMistSoftParticle.tif.meta
+        �   �           WaterRippleEdgeParticle.tif
+        �   �           WaterRippleEdgeParticle.tif.meta
+        �   �           WaterRipplesParticle.tif
+        �   �           WaterRipplesParticle.tif.meta
+        �   �           
+        �   +---Magic Effects
+        �   �   �   Materials.meta
+        �   �   �   Models.meta
+        �   �   �   Prefabs.meta
+        �   �   �   Shaders.meta
+        �   �   �   Textures.meta
+        �   �   �   
+        �   �   +---Materials
+        �   �   �       EarthCrack.mat
+        �   �   �       EarthCrack.mat.meta
+        �   �   �       Embers.mat
+        �   �   �       Embers.mat.meta
+        �   �   �       Fireball.mat
+        �   �   �       Fireball.mat.meta
+        �   �   �       Ice.mat
+        �   �   �       Ice.mat.meta
+        �   �   �       IceBall.mat
+        �   �   �       IceBall.mat.meta
+        �   �   �       IceMist.mat
+        �   �   �       IceMist.mat.meta
+        �   �   �       IceTrail.mat
+        �   �   �       IceTrail.mat.meta
+        �   �   �       RockDust.mat
+        �   �   �       RockDust.mat.meta
+        �   �   �       RockSpike.mat
+        �   �   �       RockSpike.mat.meta
+        �   �   �       
+        �   �   +---Models
+        �   �   �       IceLance.FBX
+        �   �   �       IceLance.FBX.meta
+        �   �   �       IceShard.FBX
+        �   �   �       IceShard.FBX.meta
+        �   �   �       RockDebris.FBX
+        �   �   �       RockDebris.FBX.meta
+        �   �   �       RockSpike.FBX
+        �   �   �       RockSpike.FBX.meta
+        �   �   �       
+        �   �   +---Prefabs
+        �   �   �       EarthShatter.prefab
+        �   �   �       EarthShatter.prefab.meta
+        �   �   �       IceLance.prefab
+        �   �   �       IceLance.prefab.meta
+        �   �   �       
+        �   �   +---Shaders
+        �   �   �       Ice Ball.shadergraph
+        �   �   �       Ice Ball.shadergraph.meta
+        �   �   �       Ice Shapes.shadergraph
+        �   �   �       Ice Shapes.shadergraph.meta
+        �   �   �       Ice.shader
+        �   �   �       Ice.shader.meta
+        �   �   �       
+        �   �   +---Textures
+        �   �           DustPuffSmall.png
+        �   �           DustPuffSmall.png.meta
+        �   �           EarthCrackAlbedo.tif
+        �   �           EarthCrackAlbedo.tif.meta
+        �   �           EarthCrackEmissive.tif
+        �   �           EarthCrackEmissive.tif.meta
+        �   �           EarthCrackNormal.tif
+        �   �           EarthCrackNormal.tif.meta
+        �   �           Fireball.tif
+        �   �           Fireball.tif.meta
+        �   �           FireBallEmission.tif
+        �   �           FireBallEmission.tif.meta
+        �   �           IceCurvature.tif
+        �   �           IceCurvature.tif.meta
+        �   �           IceGrey.png
+        �   �           IceGrey.png.meta
+        �   �           IceNormals.tif
+        �   �           IceNormals.tif.meta
+        �   �           Ramp01.png
+        �   �           Ramp01.png.meta
+        �   �           Ramp02.png
+        �   �           Ramp02.png.meta
+        �   �           Ramp03.png
+        �   �           Ramp03.png.meta
+        �   �           RockNormal.tga
+        �   �           RockNormal.tga.meta
+        �   �           RocksAlbedo.tga
+        �   �           RocksAlbedo.tga.meta
+        �   �           RocksAlbedoEmissive.tif
+        �   �           RocksAlbedoEmissive.tif.meta
+        �   �           RocksSpecGloss.tga
+        �   �           RocksSpecGloss.tga.meta
+        �   �           SmokePuff.png
+        �   �           SmokePuff.png.meta
+        �   �           
+        �   +---Misc Effects
+        �   �   �   Animations.meta
+        �   �   �   Materials.meta
+        �   �   �   Models.meta
+        �   �   �   Prefabs.meta
+        �   �   �   Scripts.meta
+        �   �   �   Shaders.meta
+        �   �   �   Textures.meta
+        �   �   �   
+        �   �   +---Animations
+        �   �   �       @EllenIdle.fbx
+        �   �   �       @EllenIdle.fbx.meta
+        �   �   �       Ellen.controller
+        �   �   �       Ellen.controller.meta
+        �   �   �       
+        �   �   +---Materials
+        �   �   �       candle.mat
+        �   �   �       candle.mat.meta
+        �   �   �       CandleFlame.mat
+        �   �   �       CandleFlame.mat.meta
+        �   �   �       Dissolve.mat
+        �   �   �       Dissolve.mat.meta
+        �   �   �       DissolveChunks.mat
+        �   �   �       DissolveChunks.mat.meta
+        �   �   �       DissolveLineHorizontal.mat
+        �   �   �       DissolveLineHorizontal.mat.meta
+        �   �   �       DustMote.mat
+        �   �   �       DustMote.mat.meta
+        �   �   �       ElectricalSparks.mat
+        �   �   �       ElectricalSparks.mat.meta
+        �   �   �       Embers.mat
+        �   �   �       Embers.mat.meta
+        �   �   �       FireFly.mat
+        �   �   �       FireFly.mat.meta
+        �   �   �       FireFlyTrail.mat
+        �   �   �       FireFlyTrail.mat.meta
+        �   �   �       HeatWobble.mat
+        �   �   �       HeatWobble.mat.meta
+        �   �   �       Respawn.mat
+        �   �   �       Respawn.mat.meta
+        �   �   �       SandSwirls.mat
+        �   �   �       SandSwirls.mat.meta
+        �   �   �       SmokePuff.mat
+        �   �   �       SmokePuff.mat.meta
+        �   �   �       Sparks.mat
+        �   �   �       Sparks.mat.meta
+        �   �   �       SpawnTrail.mat
+        �   �   �       SpawnTrail.mat.meta
+        �   �   �       
+        �   �   +---Models
+        �   �   �       Candle.fbx
+        �   �   �       Candle.fbx.meta
+        �   �   �       Ellen.fbx
+        �   �   �       Ellen.fbx.meta
+        �   �   �       FireFly.fbx
+        �   �   �       FireFly.fbx.meta
+        �   �   �       Flakes.fbx
+        �   �   �       Flakes.fbx.meta
+        �   �   �       
+        �   �   +---Prefabs
+        �   �   �       Candles.prefab
+        �   �   �       Candles.prefab.meta
+        �   �   �       Dissolve.prefab
+        �   �   �       Dissolve.prefab.meta
+        �   �   �       DissolveSolidHorizontal.prefab
+        �   �   �       DissolveSolidHorizontal.prefab.meta
+        �   �   �       DustMotesEffect.prefab
+        �   �   �       DustMotesEffect.prefab.meta
+        �   �   �       ElectricalSparks.prefab
+        �   �   �       ElectricalSparks.prefab.meta
+        �   �   �       EllenDissolve.prefab
+        �   �   �       EllenDissolve.prefab.meta
+        �   �   �       EllenRespawn.prefab
+        �   �   �       EllenRespawn.prefab.meta
+        �   �   �       FireFlies.prefab
+        �   �   �       FireFlies.prefab.meta
+        �   �   �       HeatDistortion.prefab
+        �   �   �       HeatDistortion.prefab.meta
+        �   �   �       ParticlesLight.prefab
+        �   �   �       ParticlesLight.prefab.meta
+        �   �   �       Readme_Dissolve_Respawn_.txt
+        �   �   �       Readme_Dissolve_Respawn_.txt.meta
+        �   �   �       Respawn.prefab
+        �   �   �       Respawn.prefab.meta
+        �   �   �       SandSwirlsEffect.prefab
+        �   �   �       SandSwirlsEffect.prefab.meta
+        �   �   �       SparksEffect.prefab
+        �   �   �       SparksEffect.prefab.meta
+        �   �   �       
+        �   �   +---Scripts
+        �   �   �       SpawnEffect.cs
+        �   �   �       SpawnEffect.cs.meta
+        �   �   �       
+        �   �   +---Shaders
+        �   �   �       Dissolve.shadergraph
+        �   �   �       Dissolve.shadergraph.meta
+        �   �   �       DissolveLine.shadergraph
+        �   �   �       DissolveLine.shadergraph.meta
+        �   �   �       FireFly.shader
+        �   �   �       FireFly.shader.meta
+        �   �   �       HeatDisstortionWobble.shadergraph
+        �   �   �       HeatDisstortionWobble.shadergraph.meta
+        �   �   �       Respawn.shader
+        �   �   �       Respawn.shader.meta
+        �   �   �       Respawn.shadergraph
+        �   �   �       Respawn.shadergraph.meta
+        �   �   �       
+        �   �   +---Textures
+        �   �           CandleFlame.tif
+        �   �           CandleFlame.tif.meta
+        �   �           Clouds01.tif
+        �   �           Clouds01.tif.meta
+        �   �           Clouds02.png
+        �   �           Clouds02.png.meta
+        �   �           DissolveChunks.tif
+        �   �           DissolveChunks.tif.meta
+        �   �           DustMote.png
+        �   �           DustMote.png.meta
+        �   �           DustPuffSmall.png
+        �   �           DustPuffSmall.png.meta
+        �   �           FireFlyAlbedo.tif
+        �   �           FireFlyAlbedo.tif.meta
+        �   �           FireFlyEmission.tif
+        �   �           FireFlyEmission.tif.meta
+        �   �           FireFlyWings.png
+        �   �           FireFlyWings.png.meta
+        �   �           HexagonPattern_Albedo.tif
+        �   �           HexagonPattern_Albedo.tif.meta
+        �   �           HexagonPattern_Normal.tif
+        �   �           HexagonPattern_Normal.tif.meta
+        �   �           HexagonPattern_Opt.tif
+        �   �           HexagonPattern_Opt.tif.meta
+        �   �           noise.tif
+        �   �           noise.tif.meta
+        �   �           Ramp01.png
+        �   �           Ramp01.png.meta
+        �   �           SmokePuff.png
+        �   �           SmokePuff.png.meta
+        �   �           SmokeySteam.tif
+        �   �           SmokeySteam.tif.meta
+        �   �           SparkParticle.tif
+        �   �           SparkParticle.tif.meta
+        �   �           Stripes.png
+        �   �           Stripes.png.meta
+        �   �           
+        �   +---Smoke & Steam Effects
+        �   �   �   Materials.meta
+        �   �   �   Models.meta
+        �   �   �   Prefabs.meta
+        �   �   �   Textures.meta
+        �   �   �   
+        �   �   +---Materials
+        �   �   �       Dust.mat
+        �   �   �       Dust.mat.meta
+        �   �   �       Embers.mat
+        �   �   �       Embers.mat.meta
+        �   �   �       Flame01.mat
+        �   �   �       Flame01.mat.meta
+        �   �   �       GroundFog.mat
+        �   �   �       GroundFog.mat.meta
+        �   �   �       RockDebris.mat
+        �   �   �       RockDebris.mat.meta
+        �   �   �       SandParticle.mat
+        �   �   �       SandParticle.mat.meta
+        �   �   �       Smoke02.mat
+        �   �   �       Smoke02.mat.meta
+        �   �   �       SmokeLight.mat
+        �   �   �       SmokeLight.mat.meta
+        �   �   �       SmokeySteam01.mat
+        �   �   �       SmokeySteam01.mat.meta
+        �   �   �       SmokeySteam02.mat
+        �   �   �       SmokeySteam02.mat.meta
+        �   �   �       SmokeySteam03.mat
+        �   �   �       SmokeySteam03.mat.meta
+        �   �   �       Twinkle.mat
+        �   �   �       Twinkle.mat.meta
+        �   �   �       wispySmoke.mat
+        �   �   �       wispySmoke.mat.meta
+        �   �   �       
+        �   �   +---Models
+        �   �   �       RockDebris.FBX
+        �   �   �       RockDebris.FBX.meta
+        �   �   �       
+        �   �   +---Prefabs
+        �   �   �       DustStorm.prefab
+        �   �   �       DustStorm.prefab.meta
+        �   �   �       GroundFog.prefab
+        �   �   �       GroundFog.prefab.meta
+        �   �   �       HeatDistortion.prefab
+        �   �   �       HeatDistortion.prefab.meta
+        �   �   �       PoisonGas.prefab
+        �   �   �       PoisonGas.prefab.meta
+        �   �   �       PressurisedSteam.prefab
+        �   �   �       PressurisedSteam.prefab.meta
+        �   �   �       RisingSteam.prefab
+        �   �   �       RisingSteam.prefab.meta
+        �   �   �       RocketTrail.prefab
+        �   �   �       RocketTrail.prefab.meta
+        �   �   �       SmokeEffect.prefab
+        �   �   �       SmokeEffect.prefab.meta
+        �   �   �       Steam.prefab
+        �   �   �       Steam.prefab.meta
+        �   �   �       
+        �   �   +---Textures
+        �   �           Flame01.tif
+        �   �           Flame01.tif.meta
+        �   �           SmokeLoop01.tif
+        �   �           SmokeLoop01.tif.meta
+        �   �           SmokeLoop02.tif
+        �   �           SmokeLoop02.tif.meta
+        �   �           SmokePuff.png
+        �   �           SmokePuff.png.meta
+        �   �           SmokePuffNormal.tif
+        �   �           SmokePuffNormal.tif.meta
+        �   �           smokeysteam.tif
+        �   �           smokeysteam.tif.meta
+        �   �           TinyStones.png
+        �   �           TinyStones.png.meta
+        �   �           Twinkle.png
+        �   �           Twinkle.png.meta
+        �   �           wispySmoke.tif
+        �   �           wispySmoke.tif.meta
+        �   �           WispySmokeNormal.tif
+        �   �           WispySmokeNormal.tif.meta
+        �   �           
+        �   +---Water Effects
+        �   �   �   Materials.meta
+        �   �   �   Models.meta
+        �   �   �   Prefabs.meta
+        �   �   �   Textures.meta
+        �   �   �   
+        �   �   +---Materials
+        �   �   �       Splash.mat
+        �   �   �       Splash.mat.meta
+        �   �   �       SplashDrop.mat
+        �   �   �       SplashDrop.mat.meta
+        �   �   �       Water.mat
+        �   �   �       Water.mat.meta
+        �   �   �       WaterDropBig.mat
+        �   �   �       WaterDropBig.mat.meta
+        �   �   �       WaterDropSmall.mat
+        �   �   �       WaterDropSmall.mat.meta
+        �   �   �       WaterFog.mat
+        �   �   �       WaterFog.mat.meta
+        �   �   �       WaterRipple.mat
+        �   �   �       WaterRipple.mat.meta
+        �   �   �       
+        �   �   +---Models
+        �   �   �       DropSplash.fbx
+        �   �   �       DropSplash.fbx.meta
+        �   �   �       
+        �   �   +---Prefabs
+        �   �   �       BigSplash.prefab
+        �   �   �       BigSplash.prefab.meta
+        �   �   �       Shower.prefab
+        �   �   �       Shower.prefab.meta
+        �   �   �       WaterLeak.prefab
+        �   �   �       WaterLeak.prefab.meta
+        �   �   �       
+        �   �   +---Textures
+        �   �           RippleAlbedo.png
+        �   �           RippleAlbedo.png.meta
+        �   �           RippleNormal.tif
+        �   �           RippleNormal.tif.meta
+        �   �           SphereAlbedo.tif
+        �   �           SphereAlbedo.tif.meta
+        �   �           SplashAlbedo.tif
+        �   �           SplashAlbedo.tif.meta
+        �   �           SplashDropAlbedo.tif
+        �   �           SplashDropAlbedo.tif.meta
+        �   �           SplashDropNormal.tif
+        �   �           SplashDropNormal.tif.meta
+        �   �           SplashNormal.tif
+        �   �           SplashNormal.tif.meta
+        �   �           SplatAlbedo.tif
+        �   �           SplatAlbedo.tif.meta
+        �   �           SplatNormal.tif
+        �   �           SplatNormal.tif.meta
+        �   �           WaterNormal.tif
+        �   �           WaterNormal.tif.meta
+        �   �           
+        �   +---Weapon Effects
+        �       �   Materials.meta
+        �       �   Prefabs.meta
+        �       �   Textures.meta
+        �       �   
+        �       +---Materials
+        �       �       BulletDecalMetal.mat
+        �       �       BulletDecalMetal.mat.meta
+        �       �       BulletDecalSand.mat
+        �       �       BulletDecalSand.mat.meta
+        �       �       BulletDecalStone.mat
+        �       �       BulletDecalStone.mat.meta
+        �       �       BulletDecalWood.mat
+        �       �       BulletDecalWood.mat.meta
+        �       �       BulletFleshDecal.mat
+        �       �       BulletFleshDecal.mat.meta
+        �       �       DustPuffParticle.mat
+        �       �       DustPuffParticle.mat.meta
+        �       �       FleshSurface.mat
+        �       �       FleshSurface.mat.meta
+        �       �       GoopMist.mat
+        �       �       GoopMist.mat.meta
+        �       �       GoopSplat2.mat
+        �       �       GoopSplat2.mat.meta
+        �       �       GoopStreak.mat
+        �       �       GoopStreak.mat.meta
+        �       �       MetalSparks.mat
+        �       �       MetalSparks.mat.meta
+        �       �       MetalSurface.mat
+        �       �       MetalSurface.mat.meta
+        �       �       MuzzleFlash.mat
+        �       �       MuzzleFlash.mat.meta
+        �       �       RockDebris.mat
+        �       �       RockDebris.mat.meta
+        �       �       SandSurface.mat
+        �       �       SandSurface.mat.meta
+        �       �       StoneSurface.mat
+        �       �       StoneSurface.mat.meta
+        �       �       TinyStonesParticle.mat
+        �       �       TinyStonesParticle.mat.meta
+        �       �       WaterStreamParticle.mat
+        �       �       WaterStreamParticle.mat.meta
+        �       �       WoodSplintersParticle.mat
+        �       �       WoodSplintersParticle.mat.meta
+        �       �       WoodSurface.mat
+        �       �       WoodSurface.mat.meta
+        �       �       
+        �       +---Prefabs
+        �       �       FleshImpacts.prefab
+        �       �       FleshImpacts.prefab.meta
+        �       �       MetalImpacts.prefab
+        �       �       MetalImpacts.prefab.meta
+        �       �       MuzzleFlash.prefab
+        �       �       MuzzleFlash.prefab.meta
+        �       �       SandImpacts.prefab
+        �       �       SandImpacts.prefab.meta
+        �       �       StoneImpacts.prefab
+        �       �       StoneImpacts.prefab.meta
+        �       �       WoodImpacts.prefab
+        �       �       WoodImpacts.prefab.meta
+        �       �       
+        �       +---Textures
+        �               BulletHoleMetalThroughAlbedo.tif
+        �               BulletHoleMetalThroughAlbedo.tif.meta
+        �               BulletHoleMetalThroughNormal.tif
+        �               BulletHoleMetalThroughNormal.tif.meta
+        �               BulletHoleRockAlbedo.tif
+        �               BulletHoleRockAlbedo.tif.meta
+        �               BulletHoleRockHeight.tif
+        �               BulletHoleRockHeight.tif.meta
+        �               BulletHoleRockNormal.tif
+        �               BulletHoleRockNormal.tif.meta
+        �               DustPuffSmallParticleSheet.png
+        �               DustPuffSmallParticleSheet.png.meta
+        �               FleshBulletHoleAlbedo.tif
+        �               FleshBulletHoleAlbedo.tif.meta
+        �               FleshBulletHoleHeight.tif
+        �               FleshBulletHoleHeight.tif.meta
+        �               FleshBulletHoleNormal.tif
+        �               FleshBulletHoleNormal.tif.meta
+        �               FleshNormals.tif
+        �               FleshNormals.tif.meta
+        �               GoopSprayAlbedo.tif
+        �               GoopSprayAlbedo.tif.meta
+        �               GoopSprayNormal.tif
+        �               GoopSprayNormal.tif.meta
+        �               GoopStreakAlbedo.tif
+        �               GoopStreakAlbedo.tif.meta
+        �               GoopStreakNormal.tif
+        �               GoopStreakNormal.tif.meta
+        �               MuzzleFlashFront.tif
+        �               MuzzleFlashFront.tif.meta
+        �               SandDecalAlbedo.tif
+        �               SandDecalAlbedo.tif.meta
+        �               SandDecalNormal.tif
+        �               SandDecalNormal.tif.meta
+        �               SparkParticle.tif
+        �               SparkParticle.tif.meta
+        �               StoneAlbedo.tif
+        �               StoneAlbedo.tif.meta
+        �               StoneNormal.tif
+        �               StoneNormal.tif.meta
+        �               StreamNormal.tif
+        �               StreamNormal.tif.meta
+        �               TinyStones.png
+        �               TinyStones.png.meta
+        �               TinyStonesNormals.tif
+        �               TinyStonesNormals.tif.meta
+        �               WoodAlbedo.tif
+        �               WoodAlbedo.tif.meta
+        �               WoodBulletHoleAlbedo.tif
+        �               WoodBulletHoleAlbedo.tif.meta
+        �               WoodBulletHoleDepth.tif
+        �               WoodBulletHoleDepth.tif.meta
+        �               WoodBulletHoleNormal.tif
+        �               WoodBulletHoleNormal.tif.meta
+        �               WoodNormals.tif
+        �               WoodNormals.tif.meta
+        �               WoodOcclusion.tif
+        �               WoodOcclusion.tif.meta
+        �               woodSplintersAlbedo.tif
+        �               woodSplintersAlbedo.tif.meta
+        �               woodSplintersNormal.tif
+        �               woodSplintersNormal.tif.meta
+        �               
+        +---Scenes
+        �   �   Main Scene with Legacy Particles.meta
+        �   �   Main Scene with Legacy Particles.unity
+        �   �   Main Scene with Legacy Particles.unity.meta
+        �   �   Profiles.meta
+        �   �   
+        �   +---Main Scene with Legacy Particles
+        �   �       LightingData.asset
+        �   �       LightingData.asset.meta
+        �   �       Lightmap-0_comp_dir.png
+        �   �       Lightmap-0_comp_dir.png.meta
+        �   �       Lightmap-0_comp_light.exr
+        �   �       Lightmap-0_comp_light.exr.meta
+        �   �       Lightmap-1_comp_dir.png
+        �   �       Lightmap-1_comp_dir.png.meta
+        �   �       Lightmap-1_comp_light.exr
+        �   �       Lightmap-1_comp_light.exr.meta
+        �   �       Lightmap-2_comp_dir.png
+        �   �       Lightmap-2_comp_dir.png.meta
+        �   �       Lightmap-2_comp_light.exr
+        �   �       Lightmap-2_comp_light.exr.meta
+        �   �       ReflectionProbe-0.exr
+        �   �       ReflectionProbe-0.exr.meta
+        �   �       ReflectionProbe-1.exr
+        �   �       ReflectionProbe-1.exr.meta
+        �   �       ReflectionProbe-10.exr
+        �   �       ReflectionProbe-10.exr.meta
+        �   �       ReflectionProbe-2.exr
+        �   �       ReflectionProbe-2.exr.meta
+        �   �       ReflectionProbe-3.exr
+        �   �       ReflectionProbe-3.exr.meta
+        �   �       ReflectionProbe-4.exr
+        �   �       ReflectionProbe-4.exr.meta
+        �   �       ReflectionProbe-5.exr
+        �   �       ReflectionProbe-5.exr.meta
+        �   �       ReflectionProbe-6.exr
+        �   �       ReflectionProbe-6.exr.meta
+        �   �       ReflectionProbe-7.exr
+        �   �       ReflectionProbe-7.exr.meta
+        �   �       ReflectionProbe-8.exr
+        �   �       ReflectionProbe-8.exr.meta
+        �   �       ReflectionProbe-9.exr
+        �   �       ReflectionProbe-9.exr.meta
+        �   �       
+        �   +---Profiles
+        �           DefaultProfile(URP).asset
+        �           DefaultProfile(URP).asset.meta
+        �           DefaultProfile.asset
+        �           DefaultProfile.asset.meta
+        �           
+        +---Settings
+        �       Beautiful_PipelineAsset.asset
+        �       Beautiful_PipelineAsset.asset.meta
+        �       Beautiful_PipelineAsset_DeferredRenderer.asset
+        �       Beautiful_PipelineAsset_DeferredRenderer.asset.meta
+        �       Fastest_PipelineAsset.asset
+        �       Fastest_PipelineAsset.asset.meta
+        �       Fastest_PipelineAsset_DeferredRenderer.asset
+        �       Fastest_PipelineAsset_DeferredRenderer.asset.meta
+        �       Fast_PipelineAsset.asset
+        �       Fast_PipelineAsset.asset.meta
+        �       Fast_PipelineAsset_DeferredRenderer.asset
+        �       Fast_PipelineAsset_DeferredRenderer.asset.meta
+        �       Good_PipelineAsset.asset
+        �       Good_PipelineAsset.asset.meta
+        �       Good_PipelineAsset_DeferredRenderer.asset
+        �       Good_PipelineAsset_DeferredRenderer.asset.meta
+        �       Simple_PipelineAsset.asset
+        �       Simple_PipelineAsset.asset.meta
+        �       Simple_PipelineAsset_DeferredRenderer.asset
+        �       Simple_PipelineAsset_DeferredRenderer.asset.meta
+        �       
+        +---Shared
+        �   �   Environment.meta
+        �   �   Prefabs.meta
+        �   �   Ramps.meta
+        �   �   Scripts.meta
+        �   �   Sprites.meta
+        �   �   
+        �   +---Environment
+        �   �   �   Materials.meta
+        �   �   �   Models.meta
+        �   �   �   Prefabs.meta
+        �   �   �   Textures.meta
+        �   �   �   
+        �   �   +---Materials
+        �   �   �       ConcreteFloor.mat
+        �   �   �       ConcreteFloor.mat.meta
+        �   �   �       ConcreteWall.mat
+        �   �   �       ConcreteWall.mat.meta
+        �   �   �       Light.mat
+        �   �   �       Light.mat.meta
+        �   �   �       LinesWhite.mat
+        �   �   �       LinesWhite.mat.meta
+        �   �   �       MetalRailing.mat
+        �   �   �       MetalRailing.mat.meta
+        �   �   �       MetalTrim.mat
+        �   �   �       MetalTrim.mat.meta
+        �   �   �       ShadowCaster.mat
+        �   �   �       ShadowCaster.mat.meta
+        �   �   �       Skybox.mat
+        �   �   �       Skybox.mat.meta
+        �   �   �       UnityLogo.mat
+        �   �   �       UnityLogo.mat.meta
+        �   �   �       
+        �   �   +---Models
+        �   �   �       AreaLine.fbx
+        �   �   �       AreaLine.fbx.meta
+        �   �   �       CornerWall.fbx
+        �   �   �       CornerWall.fbx.meta
+        �   �   �       EndWall.fbx
+        �   �   �       EndWall.fbx.meta
+        �   �   �       FloorLong.fbx
+        �   �   �       FloorLong.fbx.meta
+        �   �   �       FloorMiddle.fbx
+        �   �   �       FloorMiddle.fbx.meta
+        �   �   �       FloorShort.fbx
+        �   �   �       FloorShort.fbx.meta
+        �   �   �       FloorTiny.fbx
+        �   �   �       FloorTiny.fbx.meta
+        �   �   �       LongOverhangWall.fbx
+        �   �   �       LongOverhangWall.fbx.meta
+        �   �   �       Railing.fbx
+        �   �   �       Railing.fbx.meta
+        �   �   �       SideWall.fbx
+        �   �   �       SideWall.fbx.meta
+        �   �   �       SmallLight.fbx
+        �   �   �       SmallLight.fbx.meta
+        �   �   �       Stairs.fbx
+        �   �   �       Stairs.fbx.meta
+        �   �   �       Step.fbx
+        �   �   �       Step.fbx.meta
+        �   �   �       
+        �   �   +---Prefabs
+        �   �   �       CornerWall.prefab
+        �   �   �       CornerWall.prefab.meta
+        �   �   �       EndWall.prefab
+        �   �   �       EndWall.prefab.meta
+        �   �   �       FloorLong.prefab
+        �   �   �       FloorLong.prefab.meta
+        �   �   �       FloorMiddle.prefab
+        �   �   �       FloorMiddle.prefab.meta
+        �   �   �       FloorShort.prefab
+        �   �   �       FloorShort.prefab.meta
+        �   �   �       FloorTiny.prefab
+        �   �   �       FloorTiny.prefab.meta
+        �   �   �       LongOverhangWall.prefab
+        �   �   �       LongOverhangWall.prefab.meta
+        �   �   �       Railing.prefab
+        �   �   �       Railing.prefab.meta
+        �   �   �       SideWall.prefab
+        �   �   �       SideWall.prefab.meta
+        �   �   �       SmallLight.prefab
+        �   �   �       SmallLight.prefab.meta
+        �   �   �       Stairs.prefab
+        �   �   �       Stairs.prefab.meta
+        �   �   �       Step.prefab
+        �   �   �       Step.prefab.meta
+        �   �   �       
+        �   �   +---Textures
+        �   �           ConcreteFloor_Albedo.tif
+        �   �           ConcreteFloor_Albedo.tif.meta
+        �   �           ConcreteFloor_AmbientOcclusion.tif
+        �   �           ConcreteFloor_AmbientOcclusion.tif.meta
+        �   �           ConcreteFloor_MetallicSmooth.tif
+        �   �           ConcreteFloor_MetallicSmooth.tif.meta
+        �   �           ConcreteFloor_Normal.tif
+        �   �           ConcreteFloor_Normal.tif.meta
+        �   �           ConcreteWall_Albedo.tif
+        �   �           ConcreteWall_Albedo.tif.meta
+        �   �           ConcreteWall_AmbientOcclusion.tif
+        �   �           ConcreteWall_AmbientOcclusion.tif.meta
+        �   �           ConcreteWall_MetallicSmooth.tif
+        �   �           ConcreteWall_MetallicSmooth.tif.meta
+        �   �           ConcreteWall_normal.tif
+        �   �           ConcreteWall_normal.tif.meta
+        �   �           MetalTrim_Albedo.tif
+        �   �           MetalTrim_Albedo.tif.meta
+        �   �           MetalTrim_MetallicSmooth.tif
+        �   �           MetalTrim_MetallicSmooth.tif.meta
+        �   �           MetalTrim_Normal.tif
+        �   �           MetalTrim_Normal.tif.meta
+        �   �           PaintLines_Albedo.tif
+        �   �           PaintLines_Albedo.tif.meta
+        �   �           PaintLines_normal.tif
+        �   �           PaintLines_normal.tif.meta
+        �   �           
+        �   +---Prefabs
+        �   �       Player.prefab
+        �   �       Player.prefab.meta
+        �   �       WorldSpaceLabel.prefab
+        �   �       WorldSpaceLabel.prefab.meta
+        �   �       
+        �   +---Ramps
+        �   �   �   Editor.meta
+        �   �   �   RampBaker.asset
+        �   �   �   RampBaker.asset.meta
+        �   �   �   Runtime.meta
+        �   �   �   
+        �   �   +---Editor
+        �   �   �       RampAssetEditor.cs
+        �   �   �       RampAssetEditor.cs.meta
+        �   �   �       
+        �   �   +---Runtime
+        �   �           RampAsset.cs
+        �   �           RampAsset.cs.meta
+        �   �           
+        �   +---Scripts
+        �   �       AdjustTimeScale.cs
+        �   �       AdjustTimeScale.cs.meta
+        �   �       ProximityActivate.cs
+        �   �       ProximityActivate.cs.meta
+        �   �       SimpleCameraController.cs
+        �   �       SimpleCameraController.cs.meta
+        �   �       SimpleCharacterMotor.cs
+        �   �       SimpleCharacterMotor.cs.meta
+        �   �       
+        �   +---Sprites
+        �           Info.png
+        �           Info.png.meta
+        �           TitleBorder.png
+        �           TitleBorder.png.meta
+        �           UnityLogo.png
+        �           UnityLogo.png.meta
+        �           
+        +---TutorialInfo
+            �   Icons.meta
+            �   Scripts.meta
+            �   
+            +---Icons
+            �       Help_Icon.png
+            �       Help_Icon.png.meta
+            �       ReadmeLogo.png
+            �       ReadmeLogo.png.meta
+            �       
+            +---Scripts
+                �   Editor.meta
+                �   Readme.cs
+                �   Readme.cs.meta
+                �   
+                +---Editor
+                        ReadmeEditor.cs
+                        ReadmeEditor.cs.meta
+                        

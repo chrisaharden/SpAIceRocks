@@ -9739,6 +9739,9 @@ MonoBehaviour:
   x: 0
   y: 0
   type: 0
+  isLocked: 0
+  coinValue: 0
+  purchasePrice: 0
 --- !u!61 &-4172908005121146360
 BoxCollider2D:
   m_ObjectHideFlags: 0
