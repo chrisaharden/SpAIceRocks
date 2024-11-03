@@ -77,6 +77,8 @@ public class UIManager : MonoBehaviour
 
     private void ShowPanel(GameObject panel)
     {
+        HideAllPanels();
+
         if (panel != null)
         {
             // Show modal background if this is the first panel
@@ -303,9 +305,9 @@ public class UIManager : MonoBehaviour
         #endif
     }
 
-    void Start()
+
+    public void HideAllPanels()
     {
-        // Hide all panels on launch
         if (timesUpPanel != null) timesUpPanel.SetActive(false);
         if (boardClearedPanel != null) boardClearedPanel.SetActive(false);
         if (creditsPanel != null) creditsPanel.SetActive(false);
@@ -313,6 +315,12 @@ public class UIManager : MonoBehaviour
         if (buyRocketPanel != null) buyRocketPanel.SetActive(false);
         if (buyItemsPanel != null) buyItemsPanel.SetActive(false);
         if (modalBackground != null) modalBackground.SetActive(false);
+    }
+
+    void Start()
+    {
+        // Hide all panels on launch
+        HideAllPanels();
 
         // Disable buy item buttons by default
         if (buyItem05Button != null) buyItem05Button.interactable = false;
