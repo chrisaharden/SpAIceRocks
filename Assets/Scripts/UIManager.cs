@@ -32,7 +32,6 @@ public class UIManager : MonoBehaviour
     [Header("Rocket Panel")]
     public GameObject buyRocketPanel;
     public Button confirmBuyRocketButton;
-    public Button cancelBuyRocketButton;
 
     [Header("Items Panel")]
     public GameObject buyItemsPanel;
@@ -41,7 +40,6 @@ public class UIManager : MonoBehaviour
     public Button buyItem07Button;    // Type_07
     public Button buyItem08Button;    // Type_08
     public Button buyItem09Button;    // Type_09
-    public Button cancelBuyItemButton;
 
     [Header("Robot Reward")]
     public Image robotRewardImage;
@@ -145,7 +143,7 @@ public class UIManager : MonoBehaviour
     public void UpdateCoinsEarned(int coins)
     {
         coinsEarnedText.text = $"{coins}";
-        UpdateBuyRocketButtonState(coins);
+        //UpdateBuyRocketButtonState(coins);
     }
 
     private void UpdateBuyRocketButtonState(int coins)
@@ -286,6 +284,37 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    
+    public void ToggleRocketPanel()
+    {
+        if (buyRocketPanel != null)
+        {
+            if (buyRocketPanel.activeSelf)
+            {
+                HidePanel(buyRocketPanel);
+            }
+            else
+            {
+                ShowPanel(buyRocketPanel);
+            }
+        }
+    }
+
+    public void ToggleItemsPanel()
+    {
+        if (buyItemsPanel != null)
+        {
+            if (buyItemsPanel.activeSelf)
+            {
+                HidePanel(buyItemsPanel);
+            }
+            else
+            {
+                ShowPanel(buyItemsPanel);
+            }
+        }
+    }
+
     public void ShowExitConfirmation()
     {
         ShowPanel(exitConfirmPanel);
@@ -330,7 +359,7 @@ public class UIManager : MonoBehaviour
         if (buyItem09Button != null) buyItem09Button.interactable = false;
 
         // Set the state of the buy button
-        UpdateBuyRocketButtonState(GameManager.Instance.coinsEarned);
+        //UpdateBuyRocketButtonState(GameManager.Instance.coinsEarned);
 
         // Set up button listeners
         creditsButton.onClick.AddListener(ToggleCreditsPanel);
@@ -356,23 +385,15 @@ public class UIManager : MonoBehaviour
         }
         if (rocketButton != null)
         {
-            rocketButton.onClick.AddListener(ShowBuyRocketPanel);
+            rocketButton.onClick.AddListener(ToggleRocketPanel);
         }
         if (confirmBuyRocketButton != null)
         {
             confirmBuyRocketButton.onClick.AddListener(() => GameManager.Instance.ConfirmRocketPurchase());
         }
-        if (cancelBuyRocketButton != null)
-        {
-            cancelBuyRocketButton.onClick.AddListener(HideBuyRocketPanel);
-        }
         if (buyItemsButton != null)
         {
-            buyItemsButton.onClick.AddListener(ShowBuyItemsPanel);
-        }
-        if (cancelBuyItemButton != null)
-        {
-            cancelBuyItemButton.onClick.AddListener(HideBuyItemsPanel);
+            buyItemsButton.onClick.AddListener(ToggleItemsPanel);
         }
 
         // Set up buy item button listeners
