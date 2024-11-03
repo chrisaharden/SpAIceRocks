@@ -18,9 +18,9 @@ public class UIManager : MonoBehaviour
     public Button rocketButton;
     public Button creditsButton;
 
-    [Header("Times Up Panel")]
-    public GameObject timesUpPanel;
-    public Button timesUpButton;
+    [Header("Out Of Moves Panel")]
+    public GameObject OutOfMovesPanel;
+    public Button OutOfMovesButton;
 
     [Header("Board Cleared Panel")]
     public GameObject boardClearedPanel;
@@ -143,15 +143,15 @@ public class UIManager : MonoBehaviour
     public void UpdateCoinsEarned(int coins)
     {
         coinsEarnedText.text = $"{coins}";
-        //UpdateBuyRocketButtonState(coins);
+        UpdateBuyRocketButtonState(coins);
     }
 
     private void UpdateBuyRocketButtonState(int coins)
     {
-        if (rocketButton != null)
+        if (confirmBuyRocketButton != null)
         {
             int rocketCost = GameManager.Instance.rocketCost;
-            rocketButton.interactable = coins >= rocketCost;
+            confirmBuyRocketButton.interactable = coins >= rocketCost;
         }
     }
 
@@ -165,14 +165,14 @@ public class UIManager : MonoBehaviour
         collectionGoalText.text = $"{goal} Minerals";
     }
 
-    public void ShowtimesUp()
+    public void ShowOutOfMoves()
     {
-        ShowPanel(timesUpPanel);
+        ShowPanel(OutOfMovesPanel);
     }
 
-    public void CloseTimesUpPanel()
+    public void CloseOutOfMovesPanel()
     {
-        HidePanel(timesUpPanel);
+        HidePanel(OutOfMovesPanel);
     }
 
     public void ShowBuyRocketPanel()
@@ -337,7 +337,7 @@ public class UIManager : MonoBehaviour
 
     public void HideAllPanels()
     {
-        if (timesUpPanel != null) timesUpPanel.SetActive(false);
+        if (OutOfMovesPanel != null) OutOfMovesPanel.SetActive(false);
         if (boardClearedPanel != null) boardClearedPanel.SetActive(false);
         if (creditsPanel != null) creditsPanel.SetActive(false);
         if (exitConfirmPanel != null) exitConfirmPanel.SetActive(false);
@@ -359,13 +359,13 @@ public class UIManager : MonoBehaviour
         if (buyItem09Button != null) buyItem09Button.interactable = false;
 
         // Set the state of the buy button
-        //UpdateBuyRocketButtonState(GameManager.Instance.coinsEarned);
+        UpdateBuyRocketButtonState(GameManager.Instance.coinsEarned);
 
         // Set up button listeners
         creditsButton.onClick.AddListener(ToggleCreditsPanel);
-        if (timesUpButton != null)
+        if (OutOfMovesButton != null)
         {
-            timesUpButton.onClick.AddListener(CloseTimesUpPanel);
+            OutOfMovesButton.onClick.AddListener(CloseOutOfMovesPanel);
         }
         if (boardClearedButton != null)
         {

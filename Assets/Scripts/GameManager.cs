@@ -175,7 +175,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        UIManager.Instance.ShowtimesUp();
+        UIManager.Instance.ShowOutOfMoves();
         
         //reset for the next try
         itemsLeftToCollect = intialCollectionGoal;
