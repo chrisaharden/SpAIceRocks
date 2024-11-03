@@ -1,0 +1,21 @@
+flowchart TD
+    Mine["Match/Mine Gems"]
+    Credits["Earn Credits"]
+    Tools["Buy Tools"]
+    Ships["Buy Spaceships"]
+    Planets["Access New Planets"]
+    ExoticMinerals["Mine Exotic Minerals"]
+    
+    Mine -->|"Generates"| Credits
+    Credits -->|"Purchase"| Tools
+    Credits -->|"Purchase"| Ships
+    Tools -->|"Speeds up"| Mine
+    Ships -->|"Travel to"| Planets
+    Planets -->|"Unlock"| ExoticMinerals
+    ExoticMinerals -->|"More valuable"| Credits
+
+    classDef primary fill:#4a9eff,stroke:#666,stroke-width:2px,color:white
+    classDef secondary fill:#50C878,stroke:#666,stroke-width:2px,color:white
+    
+    class Mine,Credits primary
+    class Tools,Ships,Planets,ExoticMinerals secondary
