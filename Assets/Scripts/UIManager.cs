@@ -6,6 +6,9 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
 
+    [Header("Modal Background")]
+    public GameObject modalBackground; // Add this in Unity - full screen transparent black image
+
     [Header("Main Screen")]
     public TMP_Text coinsEarnedText;
     public TMP_Text collectionGoalText;
@@ -15,26 +18,21 @@ public class UIManager : MonoBehaviour
     public Button rocketButton;
     public Button creditsButton;
 
-
     [Header("Times Up Panel")]
     public GameObject timesUpPanel;
     public Button timesUpButton;
-
 
     [Header("Board Cleared Panel")]
     public GameObject boardClearedPanel;
     public Button boardClearedButton;
 
-
     [Header("Credits Panel")]
     public GameObject creditsPanel;
-
 
     [Header("Rocket Panel")]
     public GameObject buyRocketPanel;
     public Button confirmBuyRocketButton;
     public Button cancelBuyRocketButton;
-
 
     [Header("Items Panel")]
     public GameObject buyItemsPanel;
@@ -45,21 +43,101 @@ public class UIManager : MonoBehaviour
     public Button buyItem09Button;    // Type_09
     public Button cancelBuyItemButton;
 
-
     [Header("Robot Reward")]
     public Image robotRewardImage;
     public TMP_Text robotRewardText;
-
 
     [Header("Exit Panel")]
     public GameObject exitConfirmPanel;
     public Button confirmExitButton;
     public Button cancelExitButton;
-   
+
+    private System.Collections.Generic.Stack<GameObject> activeModalPanels = new System.Collections.Generic.Stack<GameObject>();
 
     void Awake()
     {
         Instance = this;
+        
+        // Ensure modal background is ready
+        if (modalBackground != null)
+        {
+            modalBackground.SetActive(false);
+            
+            // Set up modal background to block raycasts but be invisible
+            Image modalImage = modalBackground.GetComponent<Image>();
+            if (modalImage != null)
+            {
+                Color modalColor = modalImage.color;
+                modalColor.a = 0.5f; // Semi-transparent black
+                modalImage.color = modalColor;
+                modalImage.raycastTarget = true;
+            }
+        }
+    }
+
+    private void ShowPanel(GameObject panel)
+    {
+        if (panel != null)
+        {
+            // Show modal background if this is the first panel
+            if (activeModalPanels.Count == 0)
+            {
+                modalBackground?.SetActive(true);
+            }
+
+            panel.SetActive(true);
+            
+            // Ensure proper layering
+            if (modalBackground != null)
+            {
+                modalBackground.transform.SetAsLastSibling();
+            }
+            panel.transform.SetAsLastSibling();
+            
+            activeModalPanels.Push(panel);
+
+            // Ensure the panel blocks raycasts
+            CanvasGroup canvasGroup = panel.GetComponent<CanvasGroup>();
+            if (canvasGroup == null)
+            {
+                canvasGroup = panel.AddComponent<CanvasGroup>();
+            }
+            canvasGroup.blocksRaycasts = true;
+            canvasGroup.interactable = true;
+        }
+    }
+
+    private void HidePanel(GameObject panel)
+    {
+        if (panel != null && panel.activeSelf)
+        {
+            panel.SetActive(false);
+            
+            if (activeModalPanels.Count > 0)
+            {
+                GameObject topPanel = activeModalPanels.Peek();
+                if (topPanel == panel)
+                {
+                    activeModalPanels.Pop();
+                    
+                    // Hide modal background if no panels are active
+                    if (activeModalPanels.Count == 0)
+                    {
+                        modalBackground?.SetActive(false);
+                    }
+                    // Otherwise, ensure the new top panel is properly layered
+                    else if (activeModalPanels.Count > 0)
+                    {
+                        GameObject newTopPanel = activeModalPanels.Peek();
+                        if (modalBackground != null)
+                        {
+                            modalBackground.transform.SetAsLastSibling();
+                        }
+                        newTopPanel.transform.SetAsLastSibling();
+                    }
+                }
+            }
+        }
     }
 
     public void UpdateCoinsEarned(int coins)
@@ -89,32 +167,22 @@ public class UIManager : MonoBehaviour
 
     public void ShowtimesUp()
     {
-        timesUpPanel.SetActive(true);
+        ShowPanel(timesUpPanel);
     }
 
     public void CloseTimesUpPanel()
     {
-        if (timesUpPanel != null)
-        {
-            timesUpPanel.SetActive(false);
-        }
+        HidePanel(timesUpPanel);
     }
 
     public void ShowBuyRocketPanel()
     {
-        if (buyRocketPanel != null)
-        {
-            buyRocketPanel.SetActive(true);
-            buyRocketPanel.transform.SetAsLastSibling();
-        }
+        ShowPanel(buyRocketPanel);
     }
 
     public void HideBuyRocketPanel()
     {
-        if (buyRocketPanel != null)
-        {
-            buyRocketPanel.SetActive(false);
-        }
+        HidePanel(buyRocketPanel);
     }
 
     private void UpdateBuyItemButton(Button button, TileConfig config, int coins)
@@ -134,8 +202,7 @@ public class UIManager : MonoBehaviour
     {
         if (buyItemsPanel != null)
         {
-            buyItemsPanel.SetActive(true);
-            buyItemsPanel.transform.SetAsLastSibling();
+            ShowPanel(buyItemsPanel);
 
             // Update button states based on tile configurations
             TileConfig[] configs = GameManager.board.tileConfigs;
@@ -151,10 +218,7 @@ public class UIManager : MonoBehaviour
 
     public void HideBuyItemsPanel()
     {
-        if (buyItemsPanel != null)
-        {
-            buyItemsPanel.SetActive(false);
-        }
+        HidePanel(buyItemsPanel);
     }
 
     public void PurchaseTile(int tileIndex)
@@ -178,11 +242,10 @@ public class UIManager : MonoBehaviour
     {
         if (boardClearedPanel != null)
         {
-            bool isActive = !boardClearedPanel.activeSelf;
-            boardClearedPanel.SetActive(isActive);
+            ShowPanel(boardClearedPanel);
 
             // Show robot reward if provided
-            if (isActive && robotReward != null && robotRewardImage != null)
+            if (robotReward != null && robotRewardImage != null)
             {
                 // Get the sprite from the robot prefab's SpriteRenderer
                 SpriteRenderer robotSprite = robotReward.GetComponent<SpriteRenderer>();
@@ -198,53 +261,37 @@ public class UIManager : MonoBehaviour
                     robotRewardText.gameObject.SetActive(true);
                 }
             }
-
-            // Bring the panel to the top of the z-order
-            if (isActive)
-            {
-                boardClearedPanel.transform.SetAsLastSibling();
-            }
         }
     }
 
     public void CloseBoardClearedPanel()
     {
-        if (boardClearedPanel != null)
-        {
-            boardClearedPanel.SetActive(false);
-        }
+        HidePanel(boardClearedPanel);
     }
 
     public void ToggleCreditsPanel()
     {
         if (creditsPanel != null)
         {
-            bool isActive = !creditsPanel.activeSelf;
-            creditsPanel.SetActive(isActive);
-
-            // Bring the panel to the top of the z-order
-            if (isActive)
+            if (creditsPanel.activeSelf)
             {
-                creditsPanel.transform.SetAsLastSibling();
+                HidePanel(creditsPanel);
+            }
+            else
+            {
+                ShowPanel(creditsPanel);
             }
         }
     }
 
     public void ShowExitConfirmation()
     {
-        if (exitConfirmPanel != null)
-        {
-            exitConfirmPanel.SetActive(true);
-            exitConfirmPanel.transform.SetAsLastSibling();
-        }
+        ShowPanel(exitConfirmPanel);
     }
 
     public void CloseExitConfirmation()
     {
-        if (exitConfirmPanel != null)
-        {
-            exitConfirmPanel.SetActive(false);
-        }
+        HidePanel(exitConfirmPanel);
     }
 
     public void ExitGame()
@@ -265,6 +312,7 @@ public class UIManager : MonoBehaviour
         if (exitConfirmPanel != null) exitConfirmPanel.SetActive(false);
         if (buyRocketPanel != null) buyRocketPanel.SetActive(false);
         if (buyItemsPanel != null) buyItemsPanel.SetActive(false);
+        if (modalBackground != null) modalBackground.SetActive(false);
 
         // Disable buy item buttons by default
         if (buyItem05Button != null) buyItem05Button.interactable = false;
