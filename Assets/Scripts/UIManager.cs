@@ -36,10 +36,15 @@ public class UIManager : MonoBehaviour
     [Header("Items Panel")]
     public GameObject buyItemsPanel;
     public Button buyItem05Button;    // Type_05
+    public TMP_Text CoinValue_05; // Add this
     public Button buyItem06Button;    // Type_06
+    public TMP_Text CoinValue_06; // Add this
     public Button buyItem07Button;    // Type_07
-    public Button buyItem08Button;    // Type_08
+    public TMP_Text CoinValue_07; // Add this
+    public Button buyItem08Button;    // Type_08 
+    public TMP_Text CoinValue_08; // Add this
     public Button buyItem09Button;    // Type_09
+    public TMP_Text CoinValue_09; // Add this
 
     [Header("Robot Reward")]
     public Image robotRewardImage;
@@ -175,17 +180,7 @@ public class UIManager : MonoBehaviour
         HidePanel(OutOfMovesPanel);
     }
 
-    public void ShowBuyRocketPanel()
-    {
-        ShowPanel(buyRocketPanel);
-    }
-
-    public void HideBuyRocketPanel()
-    {
-        HidePanel(buyRocketPanel);
-    }
-
-    private void UpdateBuyItemButton(Button button, TileConfig config, int coins)
+    private void UpdateBuyItemButton(Button button, TMP_Text valueText, TileConfig config, int coins)
     {
         if (button != null)
         {
@@ -193,32 +188,13 @@ public class UIManager : MonoBehaviour
             TMP_Text buttonText = button.GetComponentInChildren<TMP_Text>();
             if (buttonText != null)
             {
-                buttonText.text = config.isLocked ? $"{config.purchasePrice} Coins" : "Unlocked";
+                buttonText.text = config.isLocked ? $"Buy: {config.purchasePrice} Coins" : "Unlocked";
             }
         }
-    }
-
-    public void ShowBuyItemsPanel()
-    {
-        if (buyItemsPanel != null)
+        if (valueText != null)
         {
-            ShowPanel(buyItemsPanel);
-
-            // Update button states based on tile configurations
-            TileConfig[] configs = GameManager.board.tileConfigs;
-            int coins = GameManager.Instance.coinsEarned;
-            
-            UpdateBuyItemButton(buyItem05Button, configs[5], coins);
-            UpdateBuyItemButton(buyItem06Button, configs[6], coins);
-            UpdateBuyItemButton(buyItem07Button, configs[7], coins);
-            UpdateBuyItemButton(buyItem08Button, configs[8], coins);
-            UpdateBuyItemButton(buyItem09Button, configs[9], coins);
+            valueText.text = $"Earns: {config.coinValue} Coins"; // Update value text
         }
-    }
-
-    public void HideBuyItemsPanel()
-    {
-        HidePanel(buyItemsPanel);
     }
 
     public void PurchaseTile(int tileIndex)
@@ -226,6 +202,9 @@ public class UIManager : MonoBehaviour
         TileConfig config = GameManager.board.tileConfigs[tileIndex];
         if (config.isLocked && GameManager.Instance.coinsEarned >= config.purchasePrice)
         {
+            // Play cash register sound
+            GameManager.Instance.PlayCashRegisterSound();
+            
             // Deduct coins
             GameManager.Instance.coinsEarned -= config.purchasePrice;
             UpdateCoinsEarned(GameManager.Instance.coinsEarned);
@@ -234,7 +213,7 @@ public class UIManager : MonoBehaviour
             GameManager.board.UnlockTileType(tileIndex);
 
             // Hide the panel
-            HideBuyItemsPanel();
+            ToggleItemsPanel();
         }
     }
 
@@ -311,6 +290,16 @@ public class UIManager : MonoBehaviour
             else
             {
                 ShowPanel(buyItemsPanel);
+                            
+                // Update button states based on tile configurations
+                TileConfig[] configs = GameManager.board.tileConfigs;
+                int coins = GameManager.Instance.coinsEarned;
+                
+                UpdateBuyItemButton(buyItem05Button, CoinValue_05, configs[5], coins);
+                UpdateBuyItemButton(buyItem06Button, CoinValue_06, configs[6], coins);
+                UpdateBuyItemButton(buyItem07Button, CoinValue_07, configs[7], coins);
+                UpdateBuyItemButton(buyItem08Button, CoinValue_08, configs[8], coins);
+                UpdateBuyItemButton(buyItem09Button, CoinValue_09, configs[9], coins);
             }
         }
     }

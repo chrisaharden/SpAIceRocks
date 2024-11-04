@@ -9,6 +9,7 @@ public class TileConfig
     public bool isLocked;
     public int coinValue;
     public int purchasePrice;
+    public int value; // Add this property
 }
 
 public class Board : MonoBehaviour

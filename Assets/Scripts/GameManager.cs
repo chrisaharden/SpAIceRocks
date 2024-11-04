@@ -15,7 +15,9 @@ public class GameManager : MonoBehaviour
     
     [Header("Audio")]
     private AudioSource backgroundAudio;
+    private AudioSource sfxAudio; // New audio source for sound effects
     public AudioClip[] backgroundMusics; // Array of background music tracks
+    public AudioClip cashRegisterSound; // New cash register sound clip
     private int currentMusicIndex = 0;
 
     [Header("Robot Collection")]
@@ -36,9 +38,16 @@ public class GameManager : MonoBehaviour
         Instance = this;
         board = FindFirstObjectByType<Board>();
         mainCamera = Camera.main;
+        
+        // Setup background music audio source
         backgroundAudio = gameObject.AddComponent<AudioSource>();
         backgroundAudio.loop = true;
         backgroundAudio.volume = 0.015f;
+        
+        // Setup SFX audio source
+        sfxAudio = gameObject.AddComponent<AudioSource>();
+        sfxAudio.loop = false;
+        sfxAudio.volume = 1f;
     }
 
     void Start()
@@ -70,15 +79,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void TryPurchaseRocket()
+    public void PlayCashRegisterSound()
     {
-        if (coinsEarned >= rocketCost)
+        if (sfxAudio != null && cashRegisterSound != null)
         {
-            UIManager.Instance.ShowBuyRocketPanel();
-        }
-        else
-        {
-            Debug.Log("Not enough coins to purchase rocket");
+            sfxAudio.PlayOneShot(cashRegisterSound);
         }
     }
 
@@ -86,6 +91,8 @@ public class GameManager : MonoBehaviour
     {
         if (coinsEarned >= rocketCost)
         {
+            PlayCashRegisterSound(); // Play sound when rocket is purchased
+            
             coinsEarned -= rocketCost;
             UIManager.Instance.UpdateCoinsEarned(coinsEarned);
             
@@ -110,7 +117,7 @@ public class GameManager : MonoBehaviour
                 PlayBackgroundMusic();
             }
 
-            UIManager.Instance.HideBuyRocketPanel();
+            UIManager.Instance.ToggleRocketPanel();
         }
     }
 
