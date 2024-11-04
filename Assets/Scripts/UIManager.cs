@@ -232,8 +232,10 @@ public class UIManager : MonoBehaviour
     }
 
     public void PurchaseTool(int toolIndex)
+    {
         GameManager.Instance.PurchaseTool(toolIndex);
         ToggleToolsPanel(); // Refresh the panel to update button states
+    }
 
     public void ShowBoardCleared(GameObject ToolReward = null)
     {
