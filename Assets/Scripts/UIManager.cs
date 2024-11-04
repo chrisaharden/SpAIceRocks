@@ -7,7 +7,7 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance;
 
     [Header("Modal Background")]
-    public GameObject modalBackground; // Add this in Unity - full screen transparent black image
+    public GameObject modalBackground;
 
     [Header("Main Screen")]
     public TMP_Text coinsEarnedText;
@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
     public TMP_Text movesRemainingText;
     public Button exitButton;
     public Button buyItemsButton;
+    public Button buyToolsButton; 
     public Button rocketButton;
     public Button creditsButton;
 
@@ -36,19 +37,25 @@ public class UIManager : MonoBehaviour
     [Header("Items Panel")]
     public GameObject buyItemsPanel;
     public Button buyItem05Button;    // Type_05
-    public TMP_Text CoinValue_05; // Add this
+    public TMP_Text CoinValue_05;
     public Button buyItem06Button;    // Type_06
-    public TMP_Text CoinValue_06; // Add this
+    public TMP_Text CoinValue_06;
     public Button buyItem07Button;    // Type_07
-    public TMP_Text CoinValue_07; // Add this
+    public TMP_Text CoinValue_07;
     public Button buyItem08Button;    // Type_08 
-    public TMP_Text CoinValue_08; // Add this
+    public TMP_Text CoinValue_08;
     public Button buyItem09Button;    // Type_09
-    public TMP_Text CoinValue_09; // Add this
+    public TMP_Text CoinValue_09;
 
-    [Header("Robot Reward")]
-    public Image robotRewardImage;
-    public TMP_Text robotRewardText;
+    [Header("Tools Panel")]
+    public GameObject buyToolsPanel; // Panel for Tool shop
+    public Button[] ToolButtons; // Array of buttons to buy Tools (0: Tool_01, 1: Tool_02, 2: Tool_03)
+    public TMP_Text[] ToolLabels; // Array of texts to show Tool prices
+
+
+    [Header("Tool Reward")]
+    public Image ToolRewardImage;
+    public TMP_Text ToolRewardText;
 
     [Header("Exit Panel")]
     public GameObject exitConfirmPanel;
@@ -61,17 +68,15 @@ public class UIManager : MonoBehaviour
     {
         Instance = this;
         
-        // Ensure modal background is ready
         if (modalBackground != null)
         {
             modalBackground.SetActive(false);
             
-            // Set up modal background to block raycasts but be invisible
             Image modalImage = modalBackground.GetComponent<Image>();
             if (modalImage != null)
             {
                 Color modalColor = modalImage.color;
-                modalColor.a = 0.5f; // Semi-transparent black
+                modalColor.a = 0.5f;
                 modalImage.color = modalColor;
                 modalImage.raycastTarget = true;
             }
@@ -84,7 +89,6 @@ public class UIManager : MonoBehaviour
 
         if (panel != null)
         {
-            // Show modal background if this is the first panel
             if (activeModalPanels.Count == 0)
             {
                 modalBackground?.SetActive(true);
@@ -92,7 +96,6 @@ public class UIManager : MonoBehaviour
 
             panel.SetActive(true);
             
-            // Ensure proper layering
             if (modalBackground != null)
             {
                 modalBackground.transform.SetAsLastSibling();
@@ -101,7 +104,6 @@ public class UIManager : MonoBehaviour
             
             activeModalPanels.Push(panel);
 
-            // Ensure the panel blocks raycasts
             CanvasGroup canvasGroup = panel.GetComponent<CanvasGroup>();
             if (canvasGroup == null)
             {
@@ -125,12 +127,10 @@ public class UIManager : MonoBehaviour
                 {
                     activeModalPanels.Pop();
                     
-                    // Hide modal background if no panels are active
                     if (activeModalPanels.Count == 0)
                     {
                         modalBackground?.SetActive(false);
                     }
-                    // Otherwise, ensure the new top panel is properly layered
                     else if (activeModalPanels.Count > 0)
                     {
                         GameObject newTopPanel = activeModalPanels.Peek();
@@ -193,7 +193,25 @@ public class UIManager : MonoBehaviour
         }
         if (valueText != null)
         {
-            valueText.text = $"Earns: {config.coinValue} Coins"; // Update value text
+            valueText.text = $"Earns: {config.coinValue} Coins";
+        }
+    }
+
+    public void UpdateToolButtons(Button button, TMP_Text valueText, TileConfig config, int coins)
+    {
+        if (button != null)
+        {
+            bool isUnlocked = !config.isLocked;
+            button.interactable = !isUnlocked && coins >= config.purchasePrice;
+            TMP_Text buttonText = button.GetComponentInChildren<TMP_Text>();
+            if (buttonText != null)
+            {
+                buttonText.text = !isUnlocked ? $"Buy: {config.purchasePrice} Coins" : "Unlocked";
+            }
+        }
+        if (valueText != null)
+        {
+            valueText.text = config.info;
         }
     }
 
@@ -202,44 +220,26 @@ public class UIManager : MonoBehaviour
         TileConfig config = GameManager.board.tileConfigs[tileIndex];
         if (config.isLocked && GameManager.Instance.coinsEarned >= config.purchasePrice)
         {
-            // Play cash register sound
             GameManager.Instance.PlayCashRegisterSound();
             
-            // Deduct coins
             GameManager.Instance.coinsEarned -= config.purchasePrice;
             UpdateCoinsEarned(GameManager.Instance.coinsEarned);
 
-            // Unlock the tile type
             GameManager.board.UnlockTileType(tileIndex);
 
-            // Hide the panel
             ToggleItemsPanel();
         }
     }
 
-    public void ShowBoardCleared(GameObject robotReward = null)
+    public void PurchaseTool(int toolIndex)
+        GameManager.Instance.PurchaseTool(toolIndex);
+        ToggleToolsPanel(); // Refresh the panel to update button states
+
+    public void ShowBoardCleared(GameObject ToolReward = null)
     {
         if (boardClearedPanel != null)
         {
             ShowPanel(boardClearedPanel);
-
-            // Show robot reward if provided
-            if (robotReward != null && robotRewardImage != null)
-            {
-                // Get the sprite from the robot prefab's SpriteRenderer
-                SpriteRenderer robotSprite = robotReward.GetComponent<SpriteRenderer>();
-                if (robotSprite != null)
-                {
-                    robotRewardImage.sprite = robotSprite.sprite;
-                    robotRewardImage.gameObject.SetActive(true);
-                }
-                
-                if (robotRewardText != null)
-                {
-                    robotRewardText.text = "Cherry Bomb R17";
-                    robotRewardText.gameObject.SetActive(true);
-                }
-            }
         }
     }
 
@@ -263,7 +263,6 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    
     public void ToggleRocketPanel()
     {
         if (buyRocketPanel != null)
@@ -275,6 +274,29 @@ public class UIManager : MonoBehaviour
             else
             {
                 ShowPanel(buyRocketPanel);
+            }
+        }
+    }
+
+    public void ToggleToolsPanel()
+    {
+        if (buyToolsPanel != null)
+        {
+            if (buyToolsPanel.activeSelf)
+            {
+                HidePanel(buyToolsPanel);
+            }
+            else
+            {
+                ShowPanel(buyToolsPanel);
+
+                // Update each tool button (Tool_01, Tool_02, Tool_03)
+                for (int i = 0; i < ToolButtons.Length && i < 3; i++)
+                {
+                    TileConfig config = GameManager.board.toolConfigs[i];
+                    int coins = GameManager.Instance.coinsEarned;
+                    UpdateToolButtons(ToolButtons[i], ToolLabels[i], config, coins);
+                }
             }
         }
     }
@@ -291,7 +313,6 @@ public class UIManager : MonoBehaviour
             {
                 ShowPanel(buyItemsPanel);
                             
-                // Update button states based on tile configurations
                 TileConfig[] configs = GameManager.board.tileConfigs;
                 int coins = GameManager.Instance.coinsEarned;
                 
@@ -323,7 +344,6 @@ public class UIManager : MonoBehaviour
         #endif
     }
 
-
     public void HideAllPanels()
     {
         if (OutOfMovesPanel != null) OutOfMovesPanel.SetActive(false);
@@ -332,25 +352,22 @@ public class UIManager : MonoBehaviour
         if (exitConfirmPanel != null) exitConfirmPanel.SetActive(false);
         if (buyRocketPanel != null) buyRocketPanel.SetActive(false);
         if (buyItemsPanel != null) buyItemsPanel.SetActive(false);
+        if (buyToolsPanel != null) buyToolsPanel.SetActive(false);
         if (modalBackground != null) modalBackground.SetActive(false);
     }
 
     void Start()
     {
-        // Hide all panels on launch
         HideAllPanels();
 
-        // Disable buy item buttons by default
         if (buyItem05Button != null) buyItem05Button.interactable = false;
         if (buyItem06Button != null) buyItem06Button.interactable = false;
         if (buyItem07Button != null) buyItem07Button.interactable = false;
         if (buyItem08Button != null) buyItem08Button.interactable = false;
         if (buyItem09Button != null) buyItem09Button.interactable = false;
 
-        // Set the state of the buy button
         UpdateBuyRocketButtonState(GameManager.Instance.coinsEarned);
 
-        // Set up button listeners
         creditsButton.onClick.AddListener(ToggleCreditsPanel);
         if (OutOfMovesButton != null)
         {
@@ -384,6 +401,10 @@ public class UIManager : MonoBehaviour
         {
             buyItemsButton.onClick.AddListener(ToggleItemsPanel);
         }
+        if (buyToolsButton != null)
+        {
+            buyToolsButton.onClick.AddListener(ToggleToolsPanel);
+        }
 
         // Set up buy item button listeners
         if (buyItem05Button != null)
@@ -396,5 +417,15 @@ public class UIManager : MonoBehaviour
             buyItem08Button.onClick.AddListener(() => PurchaseTile(8));
         if (buyItem09Button != null)
             buyItem09Button.onClick.AddListener(() => PurchaseTile(9));
+
+        // Set up Tool button listeners (Tool_01, Tool_02, Tool_03)
+        for (int i = 0; i < ToolButtons.Length && i < 3; i++)
+        {
+            int toolIndex = i; // Capture the index for the lambda
+            if (ToolButtons[i] != null)
+            {
+                ToolButtons[i].onClick.AddListener(() => PurchaseTool(toolIndex));
+            }
+        }
     }
 }

@@ -21,7 +21,9 @@ public class Tile : MonoBehaviour
         Type_07,
         Type_08,
         Type_09,
-        Robot
+        Tool_01,
+        Tool_02,
+        Tool_03
     }
 
     public bool CanPurchase()

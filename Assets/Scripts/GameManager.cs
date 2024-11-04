@@ -20,9 +20,10 @@ public class GameManager : MonoBehaviour
     public AudioClip cashRegisterSound; // New cash register sound clip
     private int currentMusicIndex = 0;
 
-    [Header("Robot Collection")]
-    public int robotsCollected = 0;
-    public GameObject[] robotPrefabs; // Array of different robot prefabs to award
+    [Header("Tool Collection")]
+    public int[] unlockedTools; // Array to track which Tools are unlocked (0: Tool_01, 1: Tool_02, 2: Tool_03)
+    public GameObject[] ToolPrefabs; // Array of Tool prefabs (0: Tool_01, 1: Tool_02, 2: Tool_03)
+    public int[] ToolPrices; // Array of prices for each Tool
 
     [Header("Backgrounds and Characters")]
     public Sprite[] planetaryBackgrounds;
@@ -48,6 +49,17 @@ public class GameManager : MonoBehaviour
         sfxAudio = gameObject.AddComponent<AudioSource>();
         sfxAudio.loop = false;
         sfxAudio.volume = 1f;
+
+        // Initialize Tool unlock states
+        if (ToolPrefabs != null)
+        {
+            unlockedTools = new int[ToolPrefabs.Length];
+            // All Tools start locked (0)
+            for (int i = 0; i < unlockedTools.Length; i++)
+            {
+                unlockedTools[i] = 0;
+            }
+        }
     }
 
     void Start()
@@ -121,6 +133,24 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void PurchaseTool(int toolIndex)
+    {
+        if (toolIndex >= 0 && toolIndex < ToolPrefabs.Length && 
+            unlockedTools[toolIndex] == 0 && // Check if Tool is locked
+            coinsEarned >= ToolPrices[toolIndex]) // Check if player has enough coins
+        {
+            PlayCashRegisterSound();
+            coinsEarned -= ToolPrices[toolIndex];
+            unlockedTools[toolIndex] = 1; // Mark Tool as unlocked
+            UIManager.Instance.UpdateCoinsEarned(coinsEarned);
+        }
+    }
+
+    public bool IsToolUnlocked(int toolIndex)
+    {
+        return toolIndex >= 0 && toolIndex < unlockedTools.Length && unlockedTools[toolIndex] == 1;
+    }
+
     void PlayBackgroundMusic()
     {
         if (backgroundMusics != null && backgroundMusics.Length > 0)
@@ -159,17 +189,7 @@ public class GameManager : MonoBehaviour
         level++;
         itemsLeftToCollect = intialCollectionGoal;
         
-        // Award a new robot
-        if (robotPrefabs != null && robotPrefabs.Length > 0)
-        {
-            int robotIndex = robotsCollected % robotPrefabs.Length;
-            robotsCollected++;
-            UIManager.Instance.ShowBoardCleared(robotPrefabs[robotIndex]);
-        }
-        else
-        {
-            UIManager.Instance.ShowBoardCleared(null);
-        }
+        UIManager.Instance.ShowBoardCleared();
         
         board.UpdateBoardSize(level);
 

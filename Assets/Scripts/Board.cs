@@ -9,7 +9,8 @@ public class TileConfig
     public bool isLocked;
     public int coinValue;
     public int purchasePrice;
-    public int value; // Add this property
+    public int value; 
+    public string info = "";
 }
 
 public class Board : MonoBehaviour
@@ -24,12 +25,20 @@ public class Board : MonoBehaviour
     public TileConfig[] tileConfigs;
     public GameObject[] tilePrefabs;
 
+
+    [Header("Tool Configuration")]
+    [Tooltip("Configure each tool tile's properties. This array should match the toolPrefabs array order.")]
+    public TileConfig[] toolConfigs;
+    public GameObject[] toolPrefabs;
+
+
+
     public GameObject tileBackground;
 
     public AudioClip swapSound;
     public AudioClip matchSound;
     public AudioClip gameOverSound;
-    public AudioClip robotRemovalSound;
+    public AudioClip ToolRemovalSound;
 
     public AudioSource audioSource;
     private Tile selectedTile;
@@ -146,14 +155,27 @@ public class Board : MonoBehaviour
 
         CreateBackgroundGrid();
 
-        // If we have collected robots, choose a random position to place one
-        bool shouldPlaceRobot = GameManager.Instance.robotsCollected > 0 && GameManager.Instance.robotPrefabs != null && GameManager.Instance.robotPrefabs.Length > 0;
-        Vector2Int robotPosition = new Vector2Int(-1, -1);
-        
-        if (shouldPlaceRobot)
+        // Get list of unlocked Tools
+        List<int> unlockedToolIndices = new List<int>();
+        for (int i = 0; i < GameManager.Instance.ToolPrefabs.Length; i++)
         {
-            robotPosition.x = Random.Range(0, width);
-            robotPosition.y = Random.Range(0, height);
+            if (GameManager.Instance.IsToolUnlocked(i))
+            {
+                unlockedToolIndices.Add(i);
+            }
+        }
+
+        // Only place Tools if we have unlocked ones
+        bool shouldPlaceTool = unlockedToolIndices.Count > 0;
+        Vector2Int ToolPosition = new Vector2Int(-1, -1);
+        int selectedToolIndex = -1;
+        
+        if (shouldPlaceTool)
+        {
+            ToolPosition.x = Random.Range(0, width);
+            ToolPosition.y = Random.Range(0, height);
+            // Randomly select one of the unlocked Tools
+            selectedToolIndex = unlockedToolIndices[Random.Range(0, unlockedToolIndices.Count)];
         }
 
         for (int x = 0; x < width; x++)
@@ -164,13 +186,14 @@ public class Board : MonoBehaviour
                 GameObject tilePrefab;
                 TileConfig config;
                 
-                // If this is the robot position and we should place a robot
-                if (shouldPlaceRobot && x == robotPosition.x && y == robotPosition.y)
+                // If this is the Tool position and we should place a Tool
+                if (shouldPlaceTool && x == ToolPosition.x && y == ToolPosition.y)
                 {
-                    // Get the most recently collected robot
-                    int lastRobotIndex = (GameManager.Instance.robotsCollected - 1) % GameManager.Instance.robotPrefabs.Length;
-                    tilePrefab = GameManager.Instance.robotPrefabs[lastRobotIndex];
-                    config = new TileConfig { tileType = Tile.TileType.Robot, isLocked = false, coinValue = 0, purchasePrice = 0 };
+                    tilePrefab = GameManager.Instance.ToolPrefabs[selectedToolIndex];
+                    Tile.TileType toolType = selectedToolIndex == 0 ? Tile.TileType.Tool_01 :
+                                           selectedToolIndex == 1 ? Tile.TileType.Tool_02 :
+                                           Tile.TileType.Tool_03;
+                    config = new TileConfig { tileType = toolType, isLocked = false, coinValue = 0, purchasePrice = 0 };
                 }
                 else
                 {
@@ -301,11 +324,11 @@ public class Board : MonoBehaviour
     {
         HashSet<Tile> matchedTiles = new HashSet<Tile>();
 
-        // Check for robot matches only if a robot tile was involved in the swap
-        if (selectedTile != null && (selectedTile.type == Tile.TileType.Robot || 
-            (tiles[selectedTile.x, selectedTile.y] != null && tiles[selectedTile.x, selectedTile.y].type == Tile.TileType.Robot)))
+        // Check for Tool matches only if a Tool tile was involved in the swap
+        if (selectedTile != null && (IsTool(selectedTile.type) || 
+            (tiles[selectedTile.x, selectedTile.y] != null && IsTool(tiles[selectedTile.x, selectedTile.y].type))))
         {
-            matchedTiles.UnionWith(FindRobotMatches());
+            matchedTiles.UnionWith(FindToolMatches());
         }
         else
         {
@@ -329,7 +352,14 @@ public class Board : MonoBehaviour
         }
     }
 
-    HashSet<Tile> FindRobotMatches()
+    private bool IsTool(Tile.TileType type)
+    {
+        return type == Tile.TileType.Tool_01 || 
+               type == Tile.TileType.Tool_02 || 
+               type == Tile.TileType.Tool_03;
+    }
+
+    HashSet<Tile> FindToolMatches()
     {
         HashSet<Tile> matchedTiles = new HashSet<Tile>();
 
@@ -338,32 +368,32 @@ public class Board : MonoBehaviour
             for (int y = 0; y < height; y++)
             {
                 Tile tile = tiles[x, y];
-                if (tile != null && tile.type == Tile.TileType.Robot)
+                if (tile != null && IsTool(tile.type))
                 {
                     bool hasAdjacentMatch = false;
                     // Add adjacent tiles (up, down, left, right)
-                    if (x > 0 && tiles[x - 1, y] != null && tiles[x - 1, y].type != Tile.TileType.Robot) 
+                    if (x > 0 && tiles[x - 1, y] != null && !IsTool(tiles[x - 1, y].type)) 
                     {
                         matchedTiles.Add(tiles[x - 1, y]);
                         hasAdjacentMatch = true;
                     }
-                    if (x < width - 1 && tiles[x + 1, y] != null && tiles[x + 1, y].type != Tile.TileType.Robot) 
+                    if (x < width - 1 && tiles[x + 1, y] != null && !IsTool(tiles[x + 1, y].type)) 
                     {
                         matchedTiles.Add(tiles[x + 1, y]);
                         hasAdjacentMatch = true;
                     }
-                    if (y > 0 && tiles[x, y - 1] != null && tiles[x, y - 1].type != Tile.TileType.Robot) 
+                    if (y > 0 && tiles[x, y - 1] != null && !IsTool(tiles[x, y - 1].type)) 
                     {
                         matchedTiles.Add(tiles[x, y - 1]);
                         hasAdjacentMatch = true;
                     }
-                    if (y < height - 1 && tiles[x, y + 1] != null && tiles[x, y + 1].type != Tile.TileType.Robot) 
+                    if (y < height - 1 && tiles[x, y + 1] != null && !IsTool(tiles[x, y + 1].type)) 
                     {
                         matchedTiles.Add(tiles[x, y + 1]);
                         hasAdjacentMatch = true;
                     }
                     
-                    // If the robot matched with any adjacent tiles, add it to be removed
+                    // If the Tool matched with any adjacent tiles, add it to be removed
                     if (hasAdjacentMatch)
                     {
                         matchedTiles.Add(tile);
@@ -385,8 +415,8 @@ public class Board : MonoBehaviour
             {
                 Tile tile = tiles[x, y];
                 
-                // Skip robot tiles and null tiles for regular matching
-                if (tile == null || tile.type == Tile.TileType.Robot)
+                // Skip Tool tiles and null tiles for regular matching
+                if (tile == null || IsTool(tile.type))
                     continue;
 
                 // Check horizontal matches
@@ -420,16 +450,16 @@ public class Board : MonoBehaviour
 
     void RemoveMatches(HashSet<Tile> matchedTiles)
     {
-        bool containsRobot = false;
+        bool containsTool = false;
         int totalCoins = 0;
 
         foreach (Tile tile in matchedTiles)
         {
             if (tile != null)
             {
-                if (tile.type == Tile.TileType.Robot)
+                if (IsTool(tile.type))
                 {
-                    containsRobot = true;
+                    containsTool = true;
                 }
                 else
                 {
@@ -438,9 +468,9 @@ public class Board : MonoBehaviour
             }
         }
 
-        if (containsRobot && robotRemovalSound != null)
+        if (containsTool && ToolRemovalSound != null)
         {
-            audioSource.PlayOneShot(robotRemovalSound);
+            audioSource.PlayOneShot(ToolRemovalSound);
             audioSource.PlayOneShot(matchSound);
         }
         else
