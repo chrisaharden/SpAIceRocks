@@ -26,6 +26,7 @@ public class UIManager : MonoBehaviour
     [Header("Board Cleared Panel")]
     public GameObject boardClearedPanel;
     public Button boardClearedButton;
+    public TMP_Text boardClearCreditsText;
 
     [Header("Credits Panel")]
     public GameObject creditsPanel;
@@ -33,6 +34,7 @@ public class UIManager : MonoBehaviour
     [Header("Rocket Panel")]
     public GameObject buyRocketPanel;
     public Button confirmBuyRocketButton;
+    public TMP_Text rocketCostText;
 
     [Header("Items Panel")]
     public GameObject buyItemsPanel;
@@ -51,11 +53,6 @@ public class UIManager : MonoBehaviour
     public GameObject buyToolsPanel; // Panel for Tool shop
     public Button[] ToolButtons; // Array of buttons to buy Tools (0: TOOL_COLUMN_CLEARER, 1: TOOL_ROW_CLEARER, 2: TOOL_PLUS_CLEARER)
     public TMP_Text[] ToolLabels; // Array of texts to show Tool prices
-
-
-    [Header("Tool Reward")]
-    public Image ToolRewardImage;
-    public TMP_Text ToolRewardText;
 
     [Header("Exit Panel")]
     public GameObject exitConfirmPanel;
@@ -242,6 +239,10 @@ public class UIManager : MonoBehaviour
         if (boardClearedPanel != null)
         {
             ShowPanel(boardClearedPanel);
+            if (boardClearCreditsText != null)
+            {
+                boardClearCreditsText.text = $"Board Clear Bonus: {GameManager.Instance.boardClearCredits} Credits!";
+            }
         }
     }
 
@@ -276,6 +277,10 @@ public class UIManager : MonoBehaviour
             else
             {
                 ShowPanel(buyRocketPanel);
+                if (rocketCostText != null)
+                {
+                    rocketCostText.text = $"Cost: {GameManager.Instance.rocketCost} Credits";
+                }
             }
         }
     }

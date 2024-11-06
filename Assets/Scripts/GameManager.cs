@@ -27,7 +27,10 @@ public class GameManager : MonoBehaviour
     private int currentCharacterIndex = 0;
     public SpriteRenderer backgroundRenderer;
     public SpriteRenderer characterRenderer;
+    
+    [Header("Economy")]
     public int rocketCost = 10000;
+    public int boardClearCredits = 1000;
 
     void Awake()
     {
@@ -154,6 +157,10 @@ public class GameManager : MonoBehaviour
     {
         level++;
         itemsLeftToCollect = intialCollectionGoal;
+        
+        // Award board clear credits
+        coinsEarned += boardClearCredits;
+        UIManager.Instance.UpdateCoinsEarned(coinsEarned);
         
         UIManager.Instance.ShowBoardCleared();
         
