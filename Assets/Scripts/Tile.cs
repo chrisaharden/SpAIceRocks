@@ -23,7 +23,8 @@ public class Tile : MonoBehaviour
         Type_09,
         TOOL_COLUMN_CLEARER,
         TOOL_ROW_CLEARER,
-        TOOL_PLUS_CLEARER
+        TOOL_PLUS_CLEARER,
+        NONE
     }
 
     public bool CanPurchase()

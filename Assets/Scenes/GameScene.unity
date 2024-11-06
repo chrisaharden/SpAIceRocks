@@ -756,12 +756,15 @@ MonoBehaviour:
   - {fileID: 7403765228107922335, guid: dbd875cdee7524a458ebdd4245d8f563, type: 3}
   - {fileID: 7403765228107922335, guid: c6cbffb15d139cd4e9c93962aab0302f, type: 3}
   - {fileID: 7498715437833581285, guid: 37d9df6f290644a4f9797119271873a7, type: 3}
+  toolSounds:
+  - {fileID: 8300000, guid: fd2562d85639b82478b7cfce7ba4c8bd, type: 3}
+  - {fileID: 8300000, guid: 88fff8f02e353af4ba019c4c5c74fb14, type: 3}
+  - {fileID: 8300000, guid: 2eeba612352b854489d69e9cc76f594e, type: 3}
   toolProbability: 0.99
   tileBackground: {fileID: 8325794399025711601, guid: f142b4a0c6cd4cc43b8416fa6f5afb97, type: 3}
   swapSound: {fileID: 8300000, guid: 0196f4997a127f1459b1f5893b967767, type: 3}
   matchSound: {fileID: 8300000, guid: f201f53b2801396488c735937b102c62, type: 3}
   gameOverSound: {fileID: 8300000, guid: a2c4712db2857fd4aa5207b1fbfc7530, type: 3}
-  ToolRemovalSound: {fileID: 8300000, guid: 2eeba612352b854489d69e9cc76f594e, type: 3}
   audioSource: {fileID: 421583426}
 --- !u!1 &95384789
 GameObject:
@@ -1283,8 +1286,8 @@ Transform:
   m_GameObject: {fileID: 183258000}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.4587, y: 0.07, z: -0.4}
-  m_LocalScale: {x: 11.897329, y: 3.336048, z: 3.25125}
+  m_LocalPosition: {x: 0.4587, y: 0.0298, z: -0.4}
+  m_LocalScale: {x: 11.897329, y: 3.4164464, z: 3.25125}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 67418620}
@@ -3463,11 +3466,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3903446352778831972, guid: 469945c2d745c444588c1168e1fb94ab, type: 3}
       propertyPath: m_Name
-      value: RobotRewardText
+      value: BoardClearedText
       objectReference: {fileID: 0}
     - target: {fileID: 6638600982340888748, guid: 469945c2d745c444588c1168e1fb94ab, type: 3}
       propertyPath: m_text
-      value: You are getting the hang of this!
+      value: Be sure to check the Minerals, Tools, and Rockets to see what you can
+        unlock!
       objectReference: {fileID: 0}
     - target: {fileID: 6638600982340888748, guid: 469945c2d745c444588c1168e1fb94ab, type: 3}
       propertyPath: m_fontSize
@@ -3479,7 +3483,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6638600982340888748, guid: 469945c2d745c444588c1168e1fb94ab, type: 3}
       propertyPath: m_margin.x
-      value: 4.550208
+      value: 2.6746182
       objectReference: {fileID: 0}
     - target: {fileID: 6638600982340888748, guid: 469945c2d745c444588c1168e1fb94ab, type: 3}
       propertyPath: m_margin.y
@@ -3543,7 +3547,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9044297161313928064, guid: 469945c2d745c444588c1168e1fb94ab, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 12.8756
+      value: 13.867
       objectReference: {fileID: 0}
     - target: {fileID: 9044297161313928064, guid: 469945c2d745c444588c1168e1fb94ab, type: 3}
       propertyPath: m_SizeDelta.y
@@ -3579,11 +3583,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9044297161313928064, guid: 469945c2d745c444588c1168e1fb94ab, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -1.4087
+      value: -0.913
       objectReference: {fileID: 0}
     - target: {fileID: 9044297161313928064, guid: 469945c2d745c444588c1168e1fb94ab, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.5178
+      value: 0.32
       objectReference: {fileID: 0}
     - target: {fileID: 9044297161313928064, guid: 469945c2d745c444588c1168e1fb94ab, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -4731,7 +4735,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4820096904664746618, guid: c617e19f8dd5e9445a5a341e6a9bcce4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.83
+      value: -0.98
       objectReference: {fileID: 0}
     - target: {fileID: 4820096904664746618, guid: c617e19f8dd5e9445a5a341e6a9bcce4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

@@ -29,14 +29,16 @@ public class Board : MonoBehaviour
     [Tooltip("Configure each tool tile's properties. This array should match the toolPrefabs array order.")]
     public TileConfig[] toolConfigs;
     public GameObject[] toolPrefabs;
+    [Tooltip("Sound effect for each tool type. Order should match toolPrefabs: Column, Row, Plus Shape")]
+    public AudioClip[] toolSounds;
     public float toolProbability = 0.99f; // % chance to place a tool
 
+    [Header("General Configuration")]
     public GameObject tileBackground;
 
     public AudioClip swapSound;
     public AudioClip matchSound;
     public AudioClip gameOverSound;
-    public AudioClip ToolRemovalSound;
 
     public AudioSource audioSource;
     private Tile selectedTile;
@@ -372,6 +374,21 @@ public class Board : MonoBehaviour
                type == Tile.TileType.TOOL_PLUS_CLEARER;
     }
 
+    private int GetToolIndex(Tile.TileType type)
+    {
+        switch (type)
+        {
+            case Tile.TileType.TOOL_COLUMN_CLEARER:
+                return 0;
+            case Tile.TileType.TOOL_ROW_CLEARER:
+                return 1;
+            case Tile.TileType.TOOL_PLUS_CLEARER:
+                return 2;
+            default:
+                return -1;
+        }
+    }
+
     HashSet<Tile> FindToolMatches()
     {
         HashSet<Tile> matchedTiles = new HashSet<Tile>();
@@ -501,6 +518,7 @@ public class Board : MonoBehaviour
     void RemoveMatches(HashSet<Tile> matchedTiles)
     {
         bool containsTool = false;
+        Tile.TileType toolType = Tile.TileType.NONE;
         int totalCoins = 0;
 
         foreach (Tile tile in matchedTiles)
@@ -510,6 +528,7 @@ public class Board : MonoBehaviour
                 if (IsTool(tile.type))
                 {
                     containsTool = true;
+                    toolType = tile.type;
                 }
                 else
                 {
@@ -518,9 +537,13 @@ public class Board : MonoBehaviour
             }
         }
 
-        if (containsTool && ToolRemovalSound != null)
+        if (containsTool)
         {
-            audioSource.PlayOneShot(ToolRemovalSound);
+            int toolIndex = GetToolIndex(toolType);
+            if (toolIndex >= 0 && toolIndex < toolSounds.Length && toolSounds[toolIndex] != null)
+            {
+                audioSource.PlayOneShot(toolSounds[toolIndex]);
+            }
             audioSource.PlayOneShot(matchSound);
         }
         else
