@@ -25,13 +25,11 @@ public class Board : MonoBehaviour
     public TileConfig[] tileConfigs;
     public GameObject[] tilePrefabs;
 
-
     [Header("Tool Configuration")]
     [Tooltip("Configure each tool tile's properties. This array should match the toolPrefabs array order.")]
     public TileConfig[] toolConfigs;
     public GameObject[] toolPrefabs;
-
-
+    public float toolProbability = 0.99f; // % chance to place a tool
 
     public GameObject tileBackground;
 
@@ -43,6 +41,24 @@ public class Board : MonoBehaviour
     public AudioSource audioSource;
     private Tile selectedTile;
     private bool isSwapping;
+
+    public bool IsToolUnlocked(int toolIndex)
+    {
+        return toolIndex >= 0 && toolIndex < toolConfigs.Length && !toolConfigs[toolIndex].isLocked;
+    }
+
+    public void UnlockTool(int toolIndex)
+    {
+        if (toolIndex >= 0 && toolIndex < toolConfigs.Length && 
+            toolConfigs[toolIndex].isLocked && 
+            GameManager.Instance.coinsEarned >= toolConfigs[toolIndex].purchasePrice)
+        {
+            GameManager.Instance.PlayCashRegisterSound();
+            GameManager.Instance.coinsEarned -= toolConfigs[toolIndex].purchasePrice;
+            toolConfigs[toolIndex].isLocked = false;
+            UIManager.Instance.UpdateCoinsEarned(GameManager.Instance.coinsEarned);
+        }
+    }
 
     public void UnlockTileType(int tileIndex)
     {
@@ -157,9 +173,9 @@ public class Board : MonoBehaviour
 
         // Get list of unlocked Tools
         List<int> unlockedToolIndices = new List<int>();
-        for (int i = 0; i < GameManager.Instance.ToolPrefabs.Length; i++)
+        for (int i = 0; i < toolPrefabs.Length; i++)
         {
-            if (GameManager.Instance.IsToolUnlocked(i))
+            if (IsToolUnlocked(i))
             {
                 unlockedToolIndices.Add(i);
             }
@@ -189,11 +205,8 @@ public class Board : MonoBehaviour
                 // If this is the Tool position and we should place a Tool
                 if (shouldPlaceTool && x == ToolPosition.x && y == ToolPosition.y)
                 {
-                    tilePrefab = GameManager.Instance.ToolPrefabs[selectedToolIndex];
-                    Tile.TileType toolType = selectedToolIndex == 0 ? Tile.TileType.Tool_01 :
-                                           selectedToolIndex == 1 ? Tile.TileType.Tool_02 :
-                                           Tile.TileType.Tool_03;
-                    config = new TileConfig { tileType = toolType, isLocked = false, coinValue = 0, purchasePrice = 0 };
+                    tilePrefab = toolPrefabs[selectedToolIndex];
+                    config = toolConfigs[selectedToolIndex];
                 }
                 else
                 {
@@ -516,6 +529,26 @@ public class Board : MonoBehaviour
             }
         }
 
+        // Get list of unlocked Tools
+        List<int> unlockedToolIndices = new List<int>();
+        for (int i = 0; i < toolPrefabs.Length; i++)
+        {
+            if (IsToolUnlocked(i))
+            {
+                unlockedToolIndices.Add(i);
+            }
+        }
+
+        // Only consider placing Tools if we have unlocked ones
+        bool shouldPlaceTool = unlockedToolIndices.Count > 0 && Random.Range(0f, 1f) < toolProbability; 
+        int selectedToolIndex = -1;
+        Vector2Int toolPosition = new Vector2Int(-1, -1);
+        
+        if (shouldPlaceTool)
+        {
+            selectedToolIndex = unlockedToolIndices[Random.Range(0, unlockedToolIndices.Count)];
+        }
+
         // First pass: Shift existing tiles down and create new ones at the top
         for (int x = 0; x < width; x++)
         {
@@ -538,21 +571,45 @@ public class Board : MonoBehaviour
                 }
             }
 
-            // Fill empty spaces at the top with unlocked tiles
+            // If we should place a tool and haven't placed it yet, randomly choose one of the empty spaces
+            if (shouldPlaceTool && toolPosition.x == -1 && emptySpaces > 0)
+            {
+                if (Random.Range(0f, 1f) < 0.2f) // 20% chance per column to place the tool
+                {
+                    toolPosition.x = x;
+                    toolPosition.y = height - Random.Range(1, emptySpaces + 1); // Random empty space in this column
+                }
+            }
+
+            // Fill empty spaces at the top with tiles
             for (int i = 0; i < emptySpaces; i++)
             {
                 int y = height - 1 - i;
                 Vector2 pos = new Vector2(x - width / 2f + 0.5f, y - height / 2f + 0.5f);
-                int randomIndex = Random.Range(0, unlockedConfigs.Count);
-                GameObject tile = Instantiate(unlockedPrefabs[randomIndex], pos, Quaternion.identity);
+                
+                GameObject tilePrefab;
+                TileConfig config;
+
+                // If this position is chosen for a tool
+                if (shouldPlaceTool && x == toolPosition.x && y == toolPosition.y)
+                {
+                    tilePrefab = toolPrefabs[selectedToolIndex];
+                    config = toolConfigs[selectedToolIndex];
+                }
+                else
+                {
+                    // Place a regular unlocked tile
+                    int randomIndex = Random.Range(0, unlockedConfigs.Count);
+                    tilePrefab = unlockedPrefabs[randomIndex];
+                    config = unlockedConfigs[randomIndex];
+                }
+
+                GameObject tile = Instantiate(tilePrefab, pos, Quaternion.identity);
                 tile.name = $"Tile ({x},{y})";
 
                 Tile tileComponent = tile.GetComponent<Tile>();
                 tileComponent.x = x;
                 tileComponent.y = y;
-                
-                // Use the unlocked configuration for this tile type
-                TileConfig config = unlockedConfigs[randomIndex];
                 tileComponent.type = config.tileType;
                 tileComponent.isLocked = config.isLocked;
                 tileComponent.coinValue = config.coinValue;

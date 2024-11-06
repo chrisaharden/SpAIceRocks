@@ -756,6 +756,7 @@ MonoBehaviour:
   - {fileID: 7403765228107922335, guid: dbd875cdee7524a458ebdd4245d8f563, type: 3}
   - {fileID: 7403765228107922335, guid: c6cbffb15d139cd4e9c93962aab0302f, type: 3}
   - {fileID: 7498715437833581285, guid: 37d9df6f290644a4f9797119271873a7, type: 3}
+  toolProbability: 0.99
   tileBackground: {fileID: 8325794399025711601, guid: f142b4a0c6cd4cc43b8416fa6f5afb97, type: 3}
   swapSound: {fileID: 8300000, guid: 0196f4997a127f1459b1f5893b967767, type: 3}
   matchSound: {fileID: 8300000, guid: f201f53b2801396488c735937b102c62, type: 3}
@@ -8335,9 +8336,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e7a03c88d46020a4c98f45e985a61896, type: 3}
   - {fileID: 8300000, guid: 7c6c7d2f3e8b1f74fb8ea423df20c766, type: 3}
   cashRegisterSound: {fileID: 8300000, guid: 26f2cea7a8c3e4f43ba0da4c874fefdc, type: 3}
-  unlockedTools: 
-  ToolPrefabs: []
-  ToolPrices: 
   planetaryBackgrounds:
   - {fileID: 3433612512276972047, guid: 9259889984ac1c64ba9bf15970d8f3d0, type: 3}
   - {fileID: -6451869253236908681, guid: e594218ff18893f4c90182a0a8c5ad02, type: 3}

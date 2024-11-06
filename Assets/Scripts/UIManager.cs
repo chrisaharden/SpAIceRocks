@@ -233,7 +233,7 @@ public class UIManager : MonoBehaviour
 
     public void PurchaseTool(int toolIndex)
     {
-        GameManager.Instance.PurchaseTool(toolIndex);
+        GameManager.board.UnlockTool(toolIndex);
         ToggleToolsPanel(); // Refresh the panel to update button states
     }
 
