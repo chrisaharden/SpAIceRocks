@@ -367,9 +367,9 @@ public class Board : MonoBehaviour
 
     private bool IsTool(Tile.TileType type)
     {
-        return type == Tile.TileType.Tool_01 || 
-               type == Tile.TileType.Tool_02 || 
-               type == Tile.TileType.Tool_03;
+        return type == Tile.TileType.TOOL_COLUMN_CLEARER || 
+               type == Tile.TileType.TOOL_ROW_CLEARER || 
+               type == Tile.TileType.TOOL_PLUS_CLEARER;
     }
 
     HashSet<Tile> FindToolMatches()
@@ -383,39 +383,76 @@ public class Board : MonoBehaviour
                 Tile tile = tiles[x, y];
                 if (tile != null && IsTool(tile.type))
                 {
-                    bool hasAdjacentMatch = false;
-                    // Add adjacent tiles (up, down, left, right)
-                    if (x > 0 && tiles[x - 1, y] != null && !IsTool(tiles[x - 1, y].type)) 
+                    switch (tile.type)
                     {
-                        matchedTiles.Add(tiles[x - 1, y]);
-                        hasAdjacentMatch = true;
+                        case Tile.TileType.TOOL_COLUMN_CLEARER: // Column clear
+                            matchedTiles.UnionWith(FindColumnMatches(x));
+                            break;
+                        case Tile.TileType.TOOL_ROW_CLEARER: // Row clear
+                            matchedTiles.UnionWith(FindRowMatches(y));
+                            break;
+                        case Tile.TileType.TOOL_PLUS_CLEARER: // Plus shape clear
+                            matchedTiles.UnionWith(FindPlusShapeMatches(x, y));
+                            break;
                     }
-                    if (x < width - 1 && tiles[x + 1, y] != null && !IsTool(tiles[x + 1, y].type)) 
-                    {
-                        matchedTiles.Add(tiles[x + 1, y]);
-                        hasAdjacentMatch = true;
-                    }
-                    if (y > 0 && tiles[x, y - 1] != null && !IsTool(tiles[x, y - 1].type)) 
-                    {
-                        matchedTiles.Add(tiles[x, y - 1]);
-                        hasAdjacentMatch = true;
-                    }
-                    if (y < height - 1 && tiles[x, y + 1] != null && !IsTool(tiles[x, y + 1].type)) 
-                    {
-                        matchedTiles.Add(tiles[x, y + 1]);
-                        hasAdjacentMatch = true;
-                    }
-                    
-                    // If the Tool matched with any adjacent tiles, add it to be removed
-                    if (hasAdjacentMatch)
-                    {
-                        matchedTiles.Add(tile);
-                    }
+                    // Add the tool tile itself to be removed
+                    matchedTiles.Add(tile);
                 }
             }
         }
 
         return matchedTiles;
+    }
+
+    private HashSet<Tile> FindColumnMatches(int x)
+    {
+        HashSet<Tile> matches = new HashSet<Tile>();
+        for (int y = 0; y < height; y++)
+        {
+            if (tiles[x, y] != null && !IsTool(tiles[x, y].type))
+            {
+                matches.Add(tiles[x, y]);
+            }
+        }
+        return matches;
+    }
+
+    private HashSet<Tile> FindRowMatches(int y)
+    {
+        HashSet<Tile> matches = new HashSet<Tile>();
+        for (int x = 0; x < width; x++)
+        {
+            if (tiles[x, y] != null && !IsTool(tiles[x, y].type))
+            {
+                matches.Add(tiles[x, y]);
+            }
+        }
+        return matches;
+    }
+
+    private HashSet<Tile> FindPlusShapeMatches(int x, int y)
+    {
+        HashSet<Tile> matches = new HashSet<Tile>();
+        
+        // Check horizontal
+        for (int i = x - 1; i <= x + 1; i++)
+        {
+            if (i >= 0 && i < width && tiles[i, y] != null && !IsTool(tiles[i, y].type))
+            {
+                matches.Add(tiles[i, y]);
+            }
+        }
+        
+        // Check vertical
+        for (int j = y - 1; j <= y + 1; j++)
+        {
+            if (j >= 0 && j < height && tiles[x, j] != null && !IsTool(tiles[x, j].type))
+            {
+                matches.Add(tiles[x, j]);
+            }
+        }
+        
+        return matches;
     }
 
     HashSet<Tile> FindMatches()

@@ -49,7 +49,7 @@ public class UIManager : MonoBehaviour
 
     [Header("Tools Panel")]
     public GameObject buyToolsPanel; // Panel for Tool shop
-    public Button[] ToolButtons; // Array of buttons to buy Tools (0: Tool_01, 1: Tool_02, 2: Tool_03)
+    public Button[] ToolButtons; // Array of buttons to buy Tools (0: TOOL_COLUMN_CLEARER, 1: TOOL_ROW_CLEARER, 2: TOOL_PLUS_CLEARER)
     public TMP_Text[] ToolLabels; // Array of texts to show Tool prices
 
 
@@ -292,7 +292,7 @@ public class UIManager : MonoBehaviour
             {
                 ShowPanel(buyToolsPanel);
 
-                // Update each tool button (Tool_01, Tool_02, Tool_03)
+                // Update each tool button (TOOL_COLUMN_CLEARER, TOOL_ROW_CLEARER, TOOL_PLUS_CLEARER)
                 for (int i = 0; i < ToolButtons.Length && i < 3; i++)
                 {
                     TileConfig config = GameManager.board.toolConfigs[i];
@@ -420,7 +420,7 @@ public class UIManager : MonoBehaviour
         if (buyItem09Button != null)
             buyItem09Button.onClick.AddListener(() => PurchaseTile(9));
 
-        // Set up Tool button listeners (Tool_01, Tool_02, Tool_03)
+        // Set up Tool button listeners (TOOL_COLUMN_CLEARER, TOOL_ROW_CLEARER, TOOL_PLUS_CLEARER)
         for (int i = 0; i < ToolButtons.Length && i < 3; i++)
         {
             int toolIndex = i; // Capture the index for the lambda
