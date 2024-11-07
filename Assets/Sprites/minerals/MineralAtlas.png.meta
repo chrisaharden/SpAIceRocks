@@ -1,0 +1,521 @@
+fileFormatVersion: 2
+guid: 3ecd1881383df6e4dac1a8b1c0c76cea
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1381988029255349630
+    second: MineralAtlas_0
+  - first:
+      213: 4086382044270816206
+    second: MineralAtlas_1
+  - first:
+      213: 23578928259575310
+    second: MineralAtlas_2
+  - first:
+      213: -818125516720076242
+    second: MineralAtlas_3
+  - first:
+      213: -876005584201507885
+    second: MineralAtlas_4
+  - first:
+      213: 3439297060976200795
+    second: MineralAtlas_5
+  - first:
+      213: 744177301226172575
+    second: MineralAtlas_6
+  - first:
+      213: 131374154951697480
+    second: MineralAtlas_7
+  - first:
+      213: -6828900789802243918
+    second: MineralAtlas_8
+  - first:
+      213: -3197061309982944129
+    second: MineralAtlas_9
+  - first:
+      213: 3465375693566856853
+    second: MineralAtlas_10
+  - first:
+      213: -6002288084607514394
+    second: MineralAtlas_11
+  - first:
+      213: 583004574597368935
+    second: MineralAtlas_12
+  - first:
+      213: 8409337555957173335
+    second: MineralAtlas_13
+  - first:
+      213: 8517277191887170764
+    second: MineralAtlas_14
+  - first:
+      213: -4800411029986556177
+    second: MineralAtlas_15
+  - first:
+      213: -2762584817787624730
+    second: MineralAtlas_16
+  - first:
+      213: 8468693522732099038
+    second: MineralAtlas_17
+  - first:
+      213: 5793614641396551619
+    second: MineralAtlas_18
+  - first:
+      213: -2948723508481324094
+    second: MineralAtlas_19
+  - first:
+      213: 4527301457200936027
+    second: MineralAtlas_20
+  - first:
+      213: 7566693182864343251
+    second: MineralAtlas_21
+  - first:
+      213: 6329755698459394159
+    second: MineralAtlas_22
+  - first:
+      213: 6524081944835874586
+    second: MineralAtlas_23
+  - first:
+      213: 4578522209396384458
+    second: MineralAtlas_24
+  - first:
+      213: -1899116304980831839
+    second: MineralAtlas_25
+  - first:
+      213: 4811576231110392932
+    second: MineralAtlas_26
+  - first:
+      213: 1890102707521325974
+    second: MineralAtlas_27
+  - first:
+      213: -6088824753166648857
+    second: MineralAtlas_28
+  - first:
+      213: 3226583035024931727
+    second: MineralAtlas_29
+  - first:
+      213: 5196614349492087920
+    second: MineralAtlas_30
+  - first:
+      213: 3254673264315893164
+    second: MineralAtlas_31
+  - first:
+      213: 1309028128311566236
+    second: MineralAtlas_32
+  - first:
+      213: -6782604854579559943
+    second: MineralAtlas_33
+  - first:
+      213: -1755861940397083796
+    second: MineralAtlas_34
+  - first:
+      213: 9123847294858145201
+    second: MineralAtlas_35
+  - first:
+      213: 7972612246835559666
+    second: MineralAtlas_36
+  - first:
+      213: -2094611091175400806
+    second: MineralAtlas_37
+  - first:
+      213: -5506015124281997917
+    second: MineralAtlas_38
+  - first:
+      213: 5185828627570072173
+    second: MineralAtlas_39
+  - first:
+      213: -1747413799226296790
+    second: MineralAtlas_40
+  - first:
+      213: -1093643789901677370
+    second: MineralAtlas_41
+  - first:
+      213: 6376439649259423874
+    second: MineralAtlas_42
+  - first:
+      213: -1620708742733129393
+    second: MineralAtlas_43
+  - first:
+      213: 6495039862362978934
+    second: MineralAtlas_44
+  - first:
+      213: -4599365490369451104
+    second: MineralAtlas_45
+  - first:
+      213: 6709614719496382240
+    second: MineralAtlas_46
+  - first:
+      213: -2584790764149032468
+    second: MineralAtlas_47
+  - first:
+      213: -7176600605877847417
+    second: MineralAtlas_48
+  - first:
+      213: -6779027195976828818
+    second: MineralAtlas_49
+  - first:
+      213: 6465153967051453850
+    second: MineralAtlas_50
+  - first:
+      213: -8426474690589900154
+    second: MineralAtlas_51
+  - first:
+      213: -1609995279736931729
+    second: MineralAtlas_52
+  - first:
+      213: 7534131364579189152
+    second: MineralAtlas_53
+  - first:
+      213: 2145793609932930027
+    second: MineralAtlas_54
+  - first:
+      213: 1454579255378509950
+    second: MineralAtlas_55
+  - first:
+      213: 9142966525335476817
+    second: MineralAtlas_56
+  - first:
+      213: -8880378276171624699
+    second: MineralAtlas_57
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: MineralAtlas_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3869
+        width: 1562
+        height: 1934
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a68d762201c0c494a8f1166ca2e6f7ee
+      internalID: 478971412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MineralAtlas_1
+      rect:
+        serializedVersion: 2
+        x: 1562
+        y: 3869
+        width: 1562
+        height: 1934
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 899a05b456b0fd340bbff2db0285ac82
+      internalID: -1119073323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MineralAtlas_2
+      rect:
+        serializedVersion: 2
+        x: 3124
+        y: 3869
+        width: 1562
+        height: 1934
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7d15b3e7d5e43641bce4480edbe1f78
+      internalID: -555052926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MineralAtlas_3
+      rect:
+        serializedVersion: 2
+        x: 4686
+        y: 3869
+        width: 1562
+        height: 1934
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f558f8dcfada5c44cb26c6d5fe48b0c4
+      internalID: -126785953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MineralAtlas_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1935
+        width: 1562
+        height: 1934
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84660b197a3ec5a4ca2acf326f242944
+      internalID: -2086009003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MineralAtlas_5
+      rect:
+        serializedVersion: 2
+        x: 1562
+        y: 1935
+        width: 1562
+        height: 1934
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2669f31696a25954299746aa5e59a2de
+      internalID: 981584452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MineralAtlas_6
+      rect:
+        serializedVersion: 2
+        x: 3124
+        y: 1935
+        width: 1562
+        height: 1934
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b8de94dc1dc712439950646429d474a
+      internalID: -1682170948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MineralAtlas_7
+      rect:
+        serializedVersion: 2
+        x: 4686
+        y: 1935
+        width: 1562
+        height: 1934
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c67cfc21ff352d479399cc5251adbe8
+      internalID: 239457584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MineralAtlas_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1
+        width: 1562
+        height: 1934
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67b136e286881624daf29fc5c4530561
+      internalID: -1008471973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MineralAtlas_9
+      rect:
+        serializedVersion: 2
+        x: 1562
+        y: 1
+        width: 1562
+        height: 1934
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fd0a6bcef7b22e4386a9b7a2bc98b02
+      internalID: -1266342792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 05761041dfc3dd54a8bfbca234092c2b
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      MineralAtlas_0: 478971412
+      MineralAtlas_1: -1119073323
+      MineralAtlas_2: -555052926
+      MineralAtlas_3: -126785953
+      MineralAtlas_4: -2086009003
+      MineralAtlas_5: 981584452
+      MineralAtlas_6: -1682170948
+      MineralAtlas_7: 239457584
+      MineralAtlas_8: -1008471973
+      MineralAtlas_9: -1266342792
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
