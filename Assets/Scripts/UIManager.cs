@@ -241,7 +241,7 @@ public class UIManager : MonoBehaviour
             ShowPanel(boardClearedPanel);
             if (boardClearCreditsText != null)
             {
-                boardClearCreditsText.text = $"Bonus: {GameManager.Instance.boardClearCredits} Credits!";
+                boardClearCreditsText.text = $"Bonus: {GameManager.Instance.boardClearCredits} Coins!";
             }
         }
     }
@@ -279,7 +279,7 @@ public class UIManager : MonoBehaviour
                 ShowPanel(buyRocketPanel);
                 if (rocketCostText != null)
                 {
-                    rocketCostText.text = $"Cost: {GameManager.Instance.rocketCost} Credits";
+                    rocketCostText.text = $"Cost: {GameManager.Instance.rocketCost} Coins";
                 }
             }
         }
