@@ -9700,6 +9700,7 @@ GameObject:
   - component: {fileID: 7051169586405298115}
   - component: {fileID: 24030760436541851}
   - component: {fileID: -4172908005121146360}
+  - component: {fileID: -8571020226376224391}
   m_Layer: 0
   m_Name: Bomb_LeftRight
   m_TagString: Bomb
@@ -9716,7 +9717,7 @@ Transform:
   m_GameObject: {fileID: 7403765228107922335}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -19.78, y: -1.41, z: -1}
+  m_LocalPosition: {x: -19.78, y: -1.41, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9788,6 +9789,18 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!210 &-8571020226376224391
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7403765228107922335}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
 --- !u!1 &7596672418569847067
 GameObject:
   m_ObjectHideFlags: 0

@@ -241,7 +241,7 @@ public class UIManager : MonoBehaviour
             ShowPanel(boardClearedPanel);
             if (boardClearCreditsText != null)
             {
-                boardClearCreditsText.text = $"Board Clear Bonus: {GameManager.Instance.boardClearCredits} Credits!";
+                boardClearCreditsText.text = $"Bonus: {GameManager.Instance.boardClearCredits} Credits!";
             }
         }
     }
