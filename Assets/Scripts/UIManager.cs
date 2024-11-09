@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     public TMP_Text coinsEarnedText;
     public TMP_Text collectionGoalText;
     public TMP_Text movesRemainingText;
+    public TMP_Text planetText;
     public Button exitButton;
     public Button buyItemsButton;
     public Button buyToolsButton; 
@@ -166,6 +167,10 @@ public class UIManager : MonoBehaviour
     {
         collectionGoalText.text = $"{goal} Minerals";
     }
+    public void UpdatePlanet(int planetNumber)
+    {
+        planetText.text = $"{planetNumber}";
+    }
 
     public void ShowOutOfMoves()
     {
@@ -181,11 +186,22 @@ public class UIManager : MonoBehaviour
     {
         if (button != null)
         {
-            button.interactable = config.isLocked && coins >= config.purchasePrice;
+            // Only enable if config's PlanetNumber matches current PlanetNumber and other conditions are met
+            button.interactable = config.isLocked && 
+                                coins >= config.purchasePrice && 
+                                config.PlanetNumber == GameManager.Instance.PlanetNumber;
+            
             TMP_Text buttonText = button.GetComponentInChildren<TMP_Text>();
             if (buttonText != null)
             {
-                buttonText.text = config.isLocked ? $"Buy: {config.purchasePrice} Coins" : "Unlocked";
+                if (config.PlanetNumber != GameManager.Instance.PlanetNumber)
+                {
+                    buttonText.text = $"Available on Planet {config.PlanetNumber}";
+                }
+                else
+                {
+                    buttonText.text = config.isLocked ? $"Unlock: {config.purchasePrice} Coins" : "Unlocked";
+                }
             }
         }
         if (valueText != null)
@@ -215,7 +231,9 @@ public class UIManager : MonoBehaviour
     public void PurchaseTile(int tileIndex)
     {
         TileConfig config = GameManager.board.tileConfigs[tileIndex];
-        if (config.isLocked && GameManager.Instance.coinsEarned >= config.purchasePrice)
+        if (config.isLocked && 
+            GameManager.Instance.coinsEarned >= config.purchasePrice && 
+            config.PlanetNumber == GameManager.Instance.PlanetNumber)
         {
             GameManager.Instance.PlayCashRegisterSound();
             
@@ -374,6 +392,7 @@ public class UIManager : MonoBehaviour
         if (buyItem09Button != null) buyItem09Button.interactable = false;
 
         UpdateBuyRocketButtonState(GameManager.Instance.coinsEarned);
+        UpdatePlanet(GameManager.Instance.PlanetNumber);
 
         creditsButton.onClick.AddListener(ToggleCreditsPanel);
         if (OutOfMovesButton != null)

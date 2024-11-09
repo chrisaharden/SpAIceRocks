@@ -11,6 +11,7 @@ public class TileConfig
     public int purchasePrice;
     public int value; 
     public string info = "";
+    public int PlanetNumber = 0; 
 }
 
 public class Board : MonoBehaviour

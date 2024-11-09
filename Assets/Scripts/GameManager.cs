@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     int collectionGoal;
     public int level;
     private Camera mainCamera;
+    public int PlanetNumber = 1; 
     
     [Header("Audio")]
     private AudioSource backgroundAudio;
@@ -115,6 +116,10 @@ public class GameManager : MonoBehaviour
                 currentMusicIndex = (currentMusicIndex + 1) % backgroundMusics.Length;
                 PlayBackgroundMusic();
             }
+
+            // Update PlanetNumber when moving to a new planet
+            PlanetNumber = PlanetNumber % planetaryBackgrounds.Length+1; //Planet labels start at 1, so mod before incrementing
+            UIManager.Instance.UpdatePlanet(PlanetNumber);
 
             UIManager.Instance.ToggleRocketPanel();
         }
