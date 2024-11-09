@@ -340,11 +340,29 @@ public class Board : MonoBehaviour
     {
         HashSet<Tile> matchedTiles = new HashSet<Tile>();
 
-        // Check for Tool matches only if a Tool tile was involved in the swap
-        if (selectedTile != null && (IsTool(selectedTile.type) || 
-            (tiles[selectedTile.x, selectedTile.y] != null && IsTool(tiles[selectedTile.x, selectedTile.y].type))))
+        // Find the tool tile involved in the swap (if any)
+        Tile toolTile = null;
+        if (selectedTile != null)
         {
-            matchedTiles.UnionWith(FindToolMatches());
+            if (IsTool(selectedTile.type))
+            {
+                toolTile = selectedTile;
+            }
+            else
+            {
+                // Check the tile it was swapped with
+                Tile swappedTile = tiles[selectedTile.x, selectedTile.y];
+                if (swappedTile != null && IsTool(swappedTile.type))
+                {
+                    toolTile = swappedTile;
+                }
+            }
+        }
+
+        // If a tool was involved in the swap, only check that specific tool
+        if (toolTile != null)
+        {
+            matchedTiles.UnionWith(FindToolMatches(toolTile));
         }
         else
         {
@@ -390,34 +408,24 @@ public class Board : MonoBehaviour
         }
     }
 
-    HashSet<Tile> FindToolMatches()
+    HashSet<Tile> FindToolMatches(Tile toolTile)
     {
         HashSet<Tile> matchedTiles = new HashSet<Tile>();
 
-        for (int x = 0; x < width; x++)
+        switch (toolTile.type)
         {
-            for (int y = 0; y < height; y++)
-            {
-                Tile tile = tiles[x, y];
-                if (tile != null && IsTool(tile.type))
-                {
-                    switch (tile.type)
-                    {
-                        case Tile.TileType.TOOL_COLUMN_CLEARER: // Column clear
-                            matchedTiles.UnionWith(FindColumnMatches(x));
-                            break;
-                        case Tile.TileType.TOOL_ROW_CLEARER: // Row clear
-                            matchedTiles.UnionWith(FindRowMatches(y));
-                            break;
-                        case Tile.TileType.TOOL_PLUS_CLEARER: // Plus shape clear
-                            matchedTiles.UnionWith(FindPlusShapeMatches(x, y));
-                            break;
-                    }
-                    // Add the tool tile itself to be removed
-                    matchedTiles.Add(tile);
-                }
-            }
+            case Tile.TileType.TOOL_COLUMN_CLEARER:
+                matchedTiles.UnionWith(FindColumnMatches(toolTile.x));
+                break;
+            case Tile.TileType.TOOL_ROW_CLEARER:
+                matchedTiles.UnionWith(FindRowMatches(toolTile.y));
+                break;
+            case Tile.TileType.TOOL_PLUS_CLEARER:
+                matchedTiles.UnionWith(FindPlusShapeMatches(toolTile.x, toolTile.y));
+                break;
         }
+        // Add the tool tile itself to be removed
+        matchedTiles.Add(toolTile);
 
         return matchedTiles;
     }
