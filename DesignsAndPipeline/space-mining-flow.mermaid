@@ -1,5 +1,5 @@
 flowchart TD
-    Mine["Match/Mine Minerals"]
+    Mine["Match/Mine Gems"]
     Credits["Earn Credits"]
     Tools["Buy Tools"]
     Ships["Buy Spaceships"]
@@ -14,31 +14,8 @@ flowchart TD
     Planets -->|"Unlock"| ExoticMinerals
     ExoticMinerals -->|"More valuable"| Credits
 
-    %% Planet Pack Contents
-    subgraph PlanetPack["Planet Pack Contents"]
-        PlanetName["Planet Name"]
-        Minerals["Special Minerals"]
-        Background["Background Image"]
-        Music["Planet Music"]
-    end
-
-    %% Ship Contents
-    subgraph ShipPack["Ship Contents"]
-        ShipName["Ship Name"]
-        Parts["Ship Parts"]
-        ShipModel["Ship Model"]
-        Fuel["Fuel System"]
-    end
-
-    Planets --- PlanetPack
-    Ships --- ShipPack
-
     classDef primary fill:#4a9eff,stroke:#666,stroke-width:2px,color:white
     classDef secondary fill:#50C878,stroke:#666,stroke-width:2px,color:white
-    classDef pack fill:#FF7F50,stroke:#666,stroke-width:2px,color:white
-    classDef ship fill:#9370DB,stroke:#666,stroke-width:2px,color:white
     
     class Mine,Credits primary
     class Tools,Ships,Planets,ExoticMinerals secondary
-    class PlanetName,Minerals,Background,Music pack
-    class ShipName,Parts,ShipModel,Fuel ship
