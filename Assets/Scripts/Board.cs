@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 [System.Serializable]
 public class TileConfig
@@ -33,6 +34,11 @@ public class Board : MonoBehaviour
     [Tooltip("Sound effect for each tool type. Order should match toolPrefabs: Column, Row, Plus Shape")]
     public AudioClip[] toolSounds;
     public float toolProbability = 0.99f; // % chance to place a tool
+
+    [Header("Tile Text Animation Configuration")]
+    public Canvas canvas;
+    public GameObject textMoveAndFadePrefab; // Reference to the TextMoveAndFade prefab
+
 
     [Header("General Configuration")]
     public GameObject tileBackground;
@@ -534,15 +540,40 @@ public class Board : MonoBehaviour
         {
             if (tile != null)
             {
-                if (IsTool(tile.type))
+            if (IsTool(tile.type))
+            {
+                containsTool = true;
+                toolType = tile.type;
+            }
+            else
+            {
+                totalCoins += tile.coinValue;
+            }
+
+            // Instantiate TextMoveAndFade prefab at the tile's position
+            if (textMoveAndFadePrefab != null)
+            {
+                Vector3 tilePos = tile.transform.position;
+                //tilePos.z = -2; // Place it in front of tiles
+                GameObject instance = Instantiate(textMoveAndFadePrefab, tilePos, Quaternion.identity, canvas.transform);
+
+                // Set the text to the tile's coin value
+                TMP_Text textMesh = instance.GetComponent<TMP_Text>();
+                if (textMesh != null)
                 {
-                    containsTool = true;
-                    toolType = tile.type;
+                textMesh.text = tile.coinValue.ToString();
                 }
-                else
+
+                // Trigger the animation
+                Animator animator = instance.GetComponent<Animator>();
+                if (animator != null)
                 {
-                    totalCoins += tile.coinValue;
+                animator.SetTrigger("StartFade");
                 }
+
+                // Destroy the instance after 0.5 seconds
+                Destroy(instance, 0.5f);
+            }
             }
         }
 
