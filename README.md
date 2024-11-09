@@ -13,7 +13,7 @@ I've also explored a couple other solutions, and I go to ChatGPT and Gemini when
 This work is very much a work in progress.  Not all funcationality is nice or complete yet. 
 -Chris
 
-Characater Progression:
+Character Progression:
 ```mermaid
 flowchart TD
     Mine["Match/Mine Gems"]
