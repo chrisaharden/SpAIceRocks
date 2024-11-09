@@ -5,6 +5,10 @@
 [Bb]uilds/
 [Ll]ogs/
 MemoryCaptures/
+UserSettings/
+ProjectSettings/Packages/com.unity.muse.common/
+ProjectSettings/Packages/com.unity.muse.sprite/
+UserSettings/Layouts/
 
 # Visual Studio generated files
 .vscode/
