@@ -1,0 +1,635 @@
+fileFormatVersion: 2
+guid: 646e2d8a0bfae65409b3d36b65f8cae7
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -463851452834556704
+    second: planets_7_0
+  - first:
+      213: -591412950809316773
+    second: planets_7_1
+  - first:
+      213: -9185079529044753241
+    second: planets_7_2
+  - first:
+      213: 8173246238351134324
+    second: planets_7_3
+  - first:
+      213: 7294946091360048306
+    second: planets_7_4
+  - first:
+      213: 6209605718475790249
+    second: planets_7_5
+  - first:
+      213: 835745396553909960
+    second: planets_7_6
+  - first:
+      213: 6346642664101802366
+    second: planets_7_7
+  - first:
+      213: -9101142945805653495
+    second: planets_7_8
+  - first:
+      213: 1152871244662681510
+    second: planets_7_9
+  - first:
+      213: 7457426501097850285
+    second: planets_7_10
+  - first:
+      213: 3056864437720818192
+    second: planets_7_11
+  - first:
+      213: 7014803431071837127
+    second: planets_7_12
+  - first:
+      213: 6494235394666010964
+    second: planets_7_13
+  - first:
+      213: -2725521893484802102
+    second: planets_7_14
+  - first:
+      213: -7953524667394189342
+    second: planets_7_15
+  - first:
+      213: -727689534016139595
+    second: planets_7_16
+  - first:
+      213: -2142244015116297561
+    second: planets_7_17
+  - first:
+      213: 5110638340190885780
+    second: planets_7_18
+  - first:
+      213: 3380232851372180304
+    second: planets_7_19
+  - first:
+      213: 3961162457433235629
+    second: planets_7_20
+  - first:
+      213: -2830371313359284828
+    second: planets_7_21
+  - first:
+      213: 7875474295286448138
+    second: planets_7_22
+  - first:
+      213: -4010914202916461168
+    second: planets_7_23
+  - first:
+      213: -1917287853337763905
+    second: planets_7_24
+  - first:
+      213: -148456917839268493
+    second: planets_7_25
+  - first:
+      213: -6472650057784139929
+    second: planets_7_26
+  - first:
+      213: 2682424302092920297
+    second: planets_7_27
+  - first:
+      213: 2911833892288355702
+    second: planets_7_28
+  - first:
+      213: 3157806638035720684
+    second: planets_7_29
+  - first:
+      213: -2233931385540639109
+    second: planets_7_30
+  - first:
+      213: 1549820262290277317
+    second: planets_7_31
+  - first:
+      213: -6858237011286433117
+    second: planets_7_32
+  - first:
+      213: 4331392691339147520
+    second: planets_7_33
+  - first:
+      213: -3831961533632466637
+    second: planets_7_34
+  - first:
+      213: 5694614729804229020
+    second: planets_7_35
+  - first:
+      213: 6726916722397364978
+    second: planets_7_36
+  - first:
+      213: -481639679014949574
+    second: planets_7_37
+  - first:
+      213: -2404538348418442627
+    second: planets_7_38
+  - first:
+      213: 4354611179009621659
+    second: planets_7_39
+  - first:
+      213: -8234965051205511191
+    second: planets_7_40
+  - first:
+      213: -4879170585782082535
+    second: planets_7_41
+  - first:
+      213: 7158076567109525154
+    second: planets_7_42
+  - first:
+      213: -6451391884476618297
+    second: planets_7_43
+  - first:
+      213: 3217472149549008920
+    second: planets_7_44
+  - first:
+      213: -2412281975519490447
+    second: planets_7_45
+  - first:
+      213: 4150577695374795290
+    second: planets_7_46
+  - first:
+      213: -7519308287162910992
+    second: planets_7_47
+  - first:
+      213: -8504209063903595826
+    second: planets_7_48
+  - first:
+      213: 6636340387388317937
+    second: planets_7_49
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: planets_7_8
+      rect:
+        serializedVersion: 2
+        x: 909
+        y: 1001
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90aa331f5be32b180800000000000000
+      internalID: -9101142945805653495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: planets_7_9
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 825
+        width: 195
+        height: 178
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6afa1e1f942dfff00800000000000000
+      internalID: 1152871244662681510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: planets_7_12
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 837
+        width: 182
+        height: 166
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7cb6a36fd86995160800000000000000
+      internalID: 7014803431071837127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: planets_7_14
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 824
+        width: 179
+        height: 185
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: acfc94f37400d2ad0800000000000000
+      internalID: -2725521893484802102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: planets_7_15
+      rect:
+        serializedVersion: 2
+        x: 793
+        y: 815
+        width: 191
+        height: 188
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e799af54776f9190800000000000000
+      internalID: -7953524667394189342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: planets_7_22
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 574
+        width: 198
+        height: 209
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a00c440452e4b4d60800000000000000
+      internalID: 7875474295286448138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: planets_7_24
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 565
+        width: 262
+        height: 230
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbf91a90bdc6465e0800000000000000
+      internalID: -1917287853337763905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: planets_7_26
+      rect:
+        serializedVersion: 2
+        x: 831
+        y: 578
+        width: 159
+        height: 166
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76f5d56e0178c26a0800000000000000
+      internalID: -6472650057784139929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: planets_7_27
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 668
+        width: 12
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e5af1fc0b2e93520800000000000000
+      internalID: 2682424302092920297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: planets_7_29
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 46
+        width: 201
+        height: 208
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce95d711868c2db20800000000000000
+      internalID: 3157806638035720684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: planets_7_34
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 319
+        width: 183
+        height: 195
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33130eaa94322dac0800000000000000
+      internalID: -3831961533632466637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: planets_7_39
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 37
+        width: 218
+        height: 239
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9e30dbabcfae6c30800000000000000
+      internalID: 4354611179009621659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: planets_7_41
+      rect:
+        serializedVersion: 2
+        x: 981
+        y: 213
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 914ace30434b94cb0800000000000000
+      internalID: -4879170585782082535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: planets_7_42
+      rect:
+        serializedVersion: 2
+        x: 988
+        y: 184
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ae5c9176b8965360800000000000000
+      internalID: 7158076567109525154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: planets_7_43
+      rect:
+        serializedVersion: 2
+        x: 519
+        y: 124
+        width: 14
+        height: 47
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c9eee2134d0876a0800000000000000
+      internalID: -6451391884476618297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: planets_7_47
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 28
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f6f00ba3fc06a790800000000000000
+      internalID: -7519308287162910992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 2e771b84c2644134587575337c1dc1ea
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      planets_7_12: 7014803431071837127
+      planets_7_14: -2725521893484802102
+      planets_7_15: -7953524667394189342
+      planets_7_22: 7875474295286448138
+      planets_7_24: -1917287853337763905
+      planets_7_26: -6472650057784139929
+      planets_7_27: 2682424302092920297
+      planets_7_29: 3157806638035720684
+      planets_7_34: -3831961533632466637
+      planets_7_39: 4354611179009621659
+      planets_7_41: -4879170585782082535
+      planets_7_42: 7158076567109525154
+      planets_7_43: -6451391884476618297
+      planets_7_47: -7519308287162910992
+      planets_7_8: -9101142945805653495
+      planets_7_9: 1152871244662681510
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
