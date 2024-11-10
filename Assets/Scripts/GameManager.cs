@@ -1,6 +1,15 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+[System.Serializable]
+public class PlanetConfig
+{
+    public bool isLocked;
+    public int purchasePrice;
+    public string info = "";
+    public int planetNumber;
+}
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
@@ -32,6 +41,9 @@ public class GameManager : MonoBehaviour
     [Header("Economy")]
     public int rocketCost = 10000;
     public int boardClearCredits = 1000;
+
+    [Header("Planets")]
+    public PlanetConfig[] planetConfigs;
 
     void Awake()
     {
@@ -87,41 +99,50 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void ConfirmRocketPurchase()
+    public void GoToNextPlanet()
     {
-        if (coinsEarned >= rocketCost)
+        // Update background
+        currentBackgroundIndex = (currentBackgroundIndex + 1) % planetaryBackgrounds.Length;
+        if (backgroundRenderer != null)
         {
-            PlayCashRegisterSound(); // Play sound when rocket is purchased
-            
-            coinsEarned -= rocketCost;
-            UIManager.Instance.UpdateCoinsEarned(coinsEarned);
-            
-            // Update background
-            currentBackgroundIndex = (currentBackgroundIndex + 1) % planetaryBackgrounds.Length;
-            if (backgroundRenderer != null)
+            backgroundRenderer.sprite = planetaryBackgrounds[currentBackgroundIndex];
+        }
+
+        // Update character
+        currentCharacterIndex = (currentCharacterIndex + 1) % characterSprites.Length;
+        if (characterRenderer != null)
+        {
+            characterRenderer.sprite = characterSprites[currentCharacterIndex];
+        }
+
+        // Update music track
+        if (backgroundMusics != null && backgroundMusics.Length > 0)
+        {
+            currentMusicIndex = (currentMusicIndex + 1) % backgroundMusics.Length;
+            PlayBackgroundMusic();
+        }
+
+        // Update PlanetNumber when moving to a new planet
+        PlanetNumber = PlanetNumber % planetaryBackgrounds.Length+1; //Planet labels start at 1, so mod before incrementing
+        UIManager.Instance.UpdatePlanet(PlanetNumber);
+
+        UIManager.Instance.ToggleRocketPanel();
+    }
+
+    public void PurchasePlanet(int planetIndex)
+    {
+        if (planetIndex >= 0 && planetIndex < planetConfigs.Length)
+        {
+            PlanetConfig config = planetConfigs[planetIndex];
+            if (config.isLocked && coinsEarned >= config.purchasePrice)
             {
-                backgroundRenderer.sprite = planetaryBackgrounds[currentBackgroundIndex];
+                PlayCashRegisterSound();
+                coinsEarned -= config.purchasePrice;
+                config.isLocked = false;
+                UIManager.Instance.UpdateCoinsEarned(coinsEarned);
+                UIManager.Instance.TogglePlanetsPanel();
+                GoToNextPlanet();
             }
-
-            // Update character
-            currentCharacterIndex = (currentCharacterIndex + 1) % characterSprites.Length;
-            if (characterRenderer != null)
-            {
-                characterRenderer.sprite = characterSprites[currentCharacterIndex];
-            }
-
-            // Update music track
-            if (backgroundMusics != null && backgroundMusics.Length > 0)
-            {
-                currentMusicIndex = (currentMusicIndex + 1) % backgroundMusics.Length;
-                PlayBackgroundMusic();
-            }
-
-            // Update PlanetNumber when moving to a new planet
-            PlanetNumber = PlanetNumber % planetaryBackgrounds.Length+1; //Planet labels start at 1, so mod before incrementing
-            UIManager.Instance.UpdatePlanet(PlanetNumber);
-
-            UIManager.Instance.ToggleRocketPanel();
         }
     }
 

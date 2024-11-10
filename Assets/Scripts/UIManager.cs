@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour
     public Button buyToolsButton; 
     public Button rocketButton;
     public Button creditsButton;
+    public Button buyPlanetsButton;
 
     [Header("Out Of Moves Panel")]
     public GameObject OutOfMovesPanel;
@@ -54,6 +55,11 @@ public class UIManager : MonoBehaviour
     public GameObject buyToolsPanel; // Panel for Tool shop
     public Button[] ToolButtons; // Array of buttons to buy Tools (0: TOOL_COLUMN_CLEARER, 1: TOOL_ROW_CLEARER, 2: TOOL_PLUS_CLEARER)
     public TMP_Text[] ToolLabels; // Array of texts to show Tool prices
+
+    [Header("Planets Panel")]
+    public GameObject buyPlanetsPanel;
+    public Button[] buyPlanetButtons; // Array of buttons to buy planets
+    public TMP_Text[] planetLabels; // Array of texts to show planet info
 
     [Header("Exit Panel")]
     public GameObject exitConfirmPanel;
@@ -228,6 +234,23 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void UpdateBuyPlanetButton(Button button, TMP_Text label, PlanetConfig config, int coins)
+    {
+        if (button != null)
+        {
+            button.interactable = config.isLocked && coins >= config.purchasePrice;
+            TMP_Text buttonText = button.GetComponentInChildren<TMP_Text>();
+            if (buttonText != null)
+            {
+                buttonText.text = config.isLocked ? $"Buy: {config.purchasePrice} Coins" : "Unlocked";
+            }
+        }
+        if (label != null)
+        {
+            label.text = config.info;
+        }
+    }
+
     public void PurchaseTile(int tileIndex)
     {
         TileConfig config = GameManager.board.tileConfigs[tileIndex];
@@ -250,6 +273,12 @@ public class UIManager : MonoBehaviour
     {
         GameManager.board.UnlockTool(toolIndex);
         ToggleToolsPanel(); // Refresh the panel to update button states
+    }
+
+    public void PurchasePlanet(int planetIndex)
+    {
+        GameManager.Instance.PurchasePlanet(planetIndex);
+        TogglePlanetsPanel(); // Refresh the panel to update button states
     }
 
     public void ShowBoardCleared(GameObject ToolReward = null)
@@ -298,6 +327,29 @@ public class UIManager : MonoBehaviour
                 if (rocketCostText != null)
                 {
                     rocketCostText.text = $"Cost: {GameManager.Instance.rocketCost} Coins";
+                }
+            }
+        }
+    }
+
+    public void TogglePlanetsPanel()
+    {
+        if (buyPlanetsPanel != null)
+        {
+            if (buyPlanetsPanel.activeSelf)
+            {
+                HidePanel(buyPlanetsPanel);
+            }
+            else
+            {
+                ShowPanel(buyPlanetsPanel);
+
+                // Update each planet button
+                for (int i = 0; i < buyPlanetButtons.Length && i < GameManager.Instance.planetConfigs.Length; i++)
+                {
+                    PlanetConfig config = GameManager.Instance.planetConfigs[i];
+                    int coins = GameManager.Instance.coinsEarned;
+                    UpdateBuyPlanetButton(buyPlanetButtons[i], planetLabels[i], config, coins);
                 }
             }
         }
@@ -378,6 +430,7 @@ public class UIManager : MonoBehaviour
         if (buyRocketPanel != null) buyRocketPanel.SetActive(false);
         if (buyItemsPanel != null) buyItemsPanel.SetActive(false);
         if (buyToolsPanel != null) buyToolsPanel.SetActive(false);
+        if (buyPlanetsPanel != null) buyPlanetsPanel.SetActive(false);
         if (modalBackground != null) modalBackground.SetActive(false);
     }
 
@@ -390,6 +443,15 @@ public class UIManager : MonoBehaviour
         if (buyItem07Button != null) buyItem07Button.interactable = false;
         if (buyItem08Button != null) buyItem08Button.interactable = false;
         if (buyItem09Button != null) buyItem09Button.interactable = false;
+
+        // Set all planet buttons to not interactable by default
+        if (buyPlanetButtons != null)
+        {
+            foreach (Button button in buyPlanetButtons)
+            {
+                if (button != null) button.interactable = false;
+            }
+        }
 
         UpdateBuyRocketButtonState(GameManager.Instance.coinsEarned);
         UpdatePlanet(GameManager.Instance.PlanetNumber);
@@ -421,7 +483,7 @@ public class UIManager : MonoBehaviour
         }
         if (confirmBuyRocketButton != null)
         {
-            confirmBuyRocketButton.onClick.AddListener(() => GameManager.Instance.ConfirmRocketPurchase());
+            confirmBuyRocketButton.onClick.AddListener(() => GameManager.Instance.GoToNextPlanet());
         }
         if (buyItemsButton != null)
         {
@@ -430,6 +492,10 @@ public class UIManager : MonoBehaviour
         if (buyToolsButton != null)
         {
             buyToolsButton.onClick.AddListener(ToggleToolsPanel);
+        }
+        if (buyPlanetsButton != null)
+        {
+            buyPlanetsButton.onClick.AddListener(TogglePlanetsPanel);
         }
 
         // Set up buy item button listeners
@@ -451,6 +517,19 @@ public class UIManager : MonoBehaviour
             if (ToolButtons[i] != null)
             {
                 ToolButtons[i].onClick.AddListener(() => PurchaseTool(toolIndex));
+            }
+        }
+
+        // Set up planet button listeners
+        if (buyPlanetButtons != null)
+        {
+            for (int i = 0; i < buyPlanetButtons.Length; i++)
+            {
+                int planetIndex = i; // Capture the index for the lambda
+                if (buyPlanetButtons[i] != null)
+                {
+                    buyPlanetButtons[i].onClick.AddListener(() => PurchasePlanet(planetIndex));
+                }
             }
         }
     }
