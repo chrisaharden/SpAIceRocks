@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections;
 
 public class UIManager : MonoBehaviour
 {
@@ -27,7 +28,6 @@ public class UIManager : MonoBehaviour
 
     [Header("Board Cleared Panel")]
     public GameObject boardClearedPanel;
-    public Button boardClearedButton;
     public TMP_Text boardClearCreditsText;
 
     [Header("Credits Panel")]
@@ -290,11 +290,15 @@ public class UIManager : MonoBehaviour
             {
                 boardClearCreditsText.text = $"Bonus: {GameManager.Instance.boardClearCredits} Coins!";
             }
+            
+            // Start coroutine to auto-hide the panel after 3 seconds
+            StartCoroutine(AutoHideBoardClearedPanel());
         }
     }
 
-    public void CloseBoardClearedPanel()
+    private IEnumerator AutoHideBoardClearedPanel()
     {
+        yield return new WaitForSeconds(1.5f);
         HidePanel(boardClearedPanel);
     }
 
@@ -339,10 +343,12 @@ public class UIManager : MonoBehaviour
             if (buyPlanetsPanel.activeSelf)
             {
                 HidePanel(buyPlanetsPanel);
+                GameManager.Instance.RestorePreviousBackgroundMusic();
             }
             else
             {
                 ShowPanel(buyPlanetsPanel);
+                GameManager.Instance.PlayShopBackgroundMusic();
 
                 // Update each planet button
                 for (int i = 0; i < buyPlanetButtons.Length && i < GameManager.Instance.planetConfigs.Length; i++)
@@ -461,10 +467,7 @@ public class UIManager : MonoBehaviour
         {
             OutOfMovesButton.onClick.AddListener(CloseOutOfMovesPanel);
         }
-        if (boardClearedButton != null)
-        {
-            boardClearedButton.onClick.AddListener(CloseBoardClearedPanel);
-        }
+        // Removed boardClearedButton listener
         if (exitButton != null)
         {
             exitButton.onClick.AddListener(ShowExitConfirmation);

@@ -27,8 +27,11 @@ public class GameManager : MonoBehaviour
     private AudioSource backgroundAudio;
     private AudioSource sfxAudio; // New audio source for sound effects
     public AudioClip[] backgroundMusics; // Array of background music tracks
-    public AudioClip cashRegisterSound; // New cash register sound clip
+    public AudioClip shopBackgroundMusic; // Background music for the shop panel
+    public AudioClip cashRegisterSound; 
+    public AudioClip boardClearedSound;
     private int currentMusicIndex = 0;
+    private int previousMusicIndex = 0; // Store the music index before entering shop
 
     [Header("Backgrounds and Characters")]
     public Sprite[] planetaryBackgrounds;
@@ -159,6 +162,22 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void PlayShopBackgroundMusic()
+    {
+        if (shopBackgroundMusic != null && backgroundAudio != null)
+        {
+            previousMusicIndex = currentMusicIndex;
+            backgroundAudio.clip = shopBackgroundMusic;
+            backgroundAudio.Play();
+        }
+    }
+
+    public void RestorePreviousBackgroundMusic()
+    {
+        currentMusicIndex = previousMusicIndex;
+        PlayBackgroundMusic();
+    }
+
     public void AddItemsCollected(HashSet<Tile> matchedTiles)
     {
         //collect coins for all items collected
@@ -190,6 +209,9 @@ public class GameManager : MonoBehaviour
         
         UIManager.Instance.ShowBoardCleared();
         
+        // Play board cleared sound
+        PlayBoardClearedSound();
+        
         board.UpdateBoardSize(level);
 
         //reset for the next try
@@ -197,6 +219,14 @@ public class GameManager : MonoBehaviour
         board.movesRemaining = 20;
         UIManager.Instance.UpdateCollectionGoal(itemsLeftToCollect);
         UIManager.Instance.UpdateMoves(board.movesRemaining);        
+    }
+
+    void PlayBoardClearedSound()
+    {
+        if (sfxAudio != null && boardClearedSound != null)
+        {
+            sfxAudio.PlayOneShot(boardClearedSound);
+        }
     }
 
     public void GameOver()

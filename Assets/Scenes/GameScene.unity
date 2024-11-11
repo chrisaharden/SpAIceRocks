@@ -839,7 +839,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &67418620
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1463,7 +1463,6 @@ MonoBehaviour:
   OutOfMovesPanel: {fileID: 1277847454}
   OutOfMovesButton: {fileID: 1371973660}
   boardClearedPanel: {fileID: 67418619}
-  boardClearedButton: {fileID: 1444467360}
   boardClearCreditsText: {fileID: 607295741}
   creditsPanel: {fileID: 1173971363}
   buyRocketPanel: {fileID: 1854818355}
@@ -4647,7 +4646,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9044297161313928064, guid: 469945c2d745c444588c1168e1fb94ab, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.46
+      value: -0.28710082
       objectReference: {fileID: 0}
     - target: {fileID: 9044297161313928064, guid: 469945c2d745c444588c1168e1fb94ab, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -5910,6 +5909,10 @@ PrefabInstance:
     - target: {fileID: 7418528212424567562, guid: c617e19f8dd5e9445a5a341e6a9bcce4, type: 3}
       propertyPath: m_Name
       value: BoardClearedButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 7418528212424567562, guid: c617e19f8dd5e9445a5a341e6a9bcce4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8127988565450435858, guid: c617e19f8dd5e9445a5a341e6a9bcce4, type: 3}
       propertyPath: m_text
@@ -9981,17 +9984,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2537210216769844234, guid: 4fe939e24bbcc2e419e55de0e30d2c87, type: 3}
   m_PrefabInstance: {fileID: 538472513}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1444467360 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7518622825195626863, guid: c617e19f8dd5e9445a5a341e6a9bcce4, type: 3}
-  m_PrefabInstance: {fileID: 746361935}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1458153837
 GameObject:
   m_ObjectHideFlags: 0
@@ -11825,7 +11817,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: bdcb36dd1ba380b42ba79e83be849502, type: 3}
   - {fileID: 8300000, guid: 2c9de749ac0d6614fb71b5f2a9d8dc5d, type: 3}
   - {fileID: 8300000, guid: 3e3f5caa388438a4f84703bfdb0ba966, type: 3}
+  shopBackgroundMusic: {fileID: 8300000, guid: 2527a34857431f0448891ca7c900bc0c, type: 3}
   cashRegisterSound: {fileID: 8300000, guid: 26f2cea7a8c3e4f43ba0da4c874fefdc, type: 3}
+  boardClearedSound: {fileID: 8300000, guid: 2d0e1c4e6d66ec0418a229b8dc5224d7, type: 3}
   planetaryBackgrounds:
   - {fileID: 3433612512276972047, guid: 9259889984ac1c64ba9bf15970d8f3d0, type: 3}
   - {fileID: -8159724378549037954, guid: 52606faa5c53af44eb9d391f8f6ec27a, type: 3}
@@ -13204,7 +13198,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9044297161313928064, guid: 469945c2d745c444588c1168e1fb94ab, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 1.3271
+      value: 0.58
       objectReference: {fileID: 0}
     - target: {fileID: 9044297161313928064, guid: 469945c2d745c444588c1168e1fb94ab, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -13762,7 +13756,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2029606227
 RectTransform:
   m_ObjectHideFlags: 0
