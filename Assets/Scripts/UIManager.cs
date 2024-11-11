@@ -234,11 +234,15 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void UpdateBuyPlanetButton(Button button, TMP_Text label, PlanetConfig config, int coins)
+    public void UpdateBuyPlanetButton(Button button, TMP_Text label, PlanetConfig config, int coins, bool isNextSequentialPlanet)
     {
         if (button != null)
         {
-            button.interactable = config.isLocked && coins >= config.purchasePrice;
+            // Only enable the button if it's the next sequential planet to unlock
+            button.interactable = config.isLocked && 
+                                   coins >= config.purchasePrice && 
+                                   isNextSequentialPlanet;
+            
             TMP_Text buttonText = button.GetComponentInChildren<TMP_Text>();
             if (buttonText != null)
             {
@@ -350,12 +354,27 @@ public class UIManager : MonoBehaviour
                 ShowPanel(buyPlanetsPanel);
                 GameManager.Instance.PlayShopBackgroundMusic();
 
+                // Find the first locked planet to determine the next sequential planet
+                int nextPlanetIndex = -1;
+                for (int i = 0; i < GameManager.Instance.planetConfigs.Length; i++)
+                {
+                    if (GameManager.Instance.planetConfigs[i].isLocked)
+                    {
+                        nextPlanetIndex = i;
+                        break;
+                    }
+                }
+
                 // Update each planet button
                 for (int i = 0; i < buyPlanetButtons.Length && i < GameManager.Instance.planetConfigs.Length; i++)
                 {
                     PlanetConfig config = GameManager.Instance.planetConfigs[i];
                     int coins = GameManager.Instance.coinsEarned;
-                    UpdateBuyPlanetButton(buyPlanetButtons[i], planetLabels[i], config, coins);
+                    
+                    // Only the next sequential planet can be purchased
+                    bool isNextSequentialPlanet = (i == nextPlanetIndex);
+                    
+                    UpdateBuyPlanetButton(buyPlanetButtons[i], planetLabels[i], config, coins, isNextSequentialPlanet);
                 }
             }
         }

@@ -136,8 +136,19 @@ public class GameManager : MonoBehaviour
     {
         if (planetIndex >= 0 && planetIndex < planetConfigs.Length)
         {
+            // Check if all previous planets are unlocked before allowing purchase
+            bool canPurchase = true;
+            for (int i = 0; i < planetIndex; i++)
+            {
+                if (planetConfigs[i].isLocked)
+                {
+                    canPurchase = false;
+                    break;
+                }
+            }
+
             PlanetConfig config = planetConfigs[planetIndex];
-            if (config.isLocked && coinsEarned >= config.purchasePrice)
+            if (canPurchase && config.isLocked && coinsEarned >= config.purchasePrice)
             {
                 PlayCashRegisterSound();
                 coinsEarned -= config.purchasePrice;
