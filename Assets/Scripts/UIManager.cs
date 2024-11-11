@@ -33,11 +33,6 @@ public class UIManager : MonoBehaviour
     [Header("Credits Panel")]
     public GameObject creditsPanel;
 
-    [Header("Rocket Panel")]
-    public GameObject buyRocketPanel;
-    public Button confirmBuyRocketButton;
-    public TMP_Text rocketCostText;
-
     [Header("Items Panel")]
     public GameObject buyItemsPanel;
     public Button buyItem05Button;    // Type_05
@@ -152,17 +147,8 @@ public class UIManager : MonoBehaviour
     public void UpdateCoinsEarned(int coins)
     {
         coinsEarnedText.text = $"{coins}";
-        UpdateBuyRocketButtonState(coins);
     }
-
-    private void UpdateBuyRocketButtonState(int coins)
-    {
-        if (confirmBuyRocketButton != null)
-        {
-            int rocketCost = GameManager.Instance.rocketCost;
-            confirmBuyRocketButton.interactable = coins >= rocketCost;
-        }
-    }
+    
 
     public void UpdateMoves(int moves)
     {
@@ -175,7 +161,8 @@ public class UIManager : MonoBehaviour
     }
     public void UpdatePlanet(int planetNumber)
     {
-        planetText.text = $"{planetNumber}";
+        PlanetConfig config = GameManager.Instance.planetConfigs[planetNumber];
+        planetText.text = config.info;
     }
 
     public void ShowOutOfMoves()
@@ -321,25 +308,6 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void ToggleRocketPanel()
-    {
-        if (buyRocketPanel != null)
-        {
-            if (buyRocketPanel.activeSelf)
-            {
-                HidePanel(buyRocketPanel);
-            }
-            else
-            {
-                ShowPanel(buyRocketPanel);
-                if (rocketCostText != null)
-                {
-                    rocketCostText.text = $"Cost: {GameManager.Instance.rocketCost} Coins";
-                }
-            }
-        }
-    }
-
     public void TogglePlanetsPanel()
     {
         if (buyPlanetsPanel != null)
@@ -452,7 +420,6 @@ public class UIManager : MonoBehaviour
         if (boardClearedPanel != null) boardClearedPanel.SetActive(false);
         if (creditsPanel != null) creditsPanel.SetActive(false);
         if (exitConfirmPanel != null) exitConfirmPanel.SetActive(false);
-        if (buyRocketPanel != null) buyRocketPanel.SetActive(false);
         if (buyItemsPanel != null) buyItemsPanel.SetActive(false);
         if (buyToolsPanel != null) buyToolsPanel.SetActive(false);
         if (buyPlanetsPanel != null) buyPlanetsPanel.SetActive(false);
@@ -478,7 +445,7 @@ public class UIManager : MonoBehaviour
             }
         }
 
-        UpdateBuyRocketButtonState(GameManager.Instance.coinsEarned);
+
         UpdatePlanet(GameManager.Instance.PlanetNumber);
 
         creditsButton.onClick.AddListener(ToggleCreditsPanel);
@@ -498,14 +465,6 @@ public class UIManager : MonoBehaviour
         if (cancelExitButton != null)
         {
             cancelExitButton.onClick.AddListener(CloseExitConfirmation);
-        }
-        if (rocketButton != null)
-        {
-            rocketButton.onClick.AddListener(ToggleRocketPanel);
-        }
-        if (confirmBuyRocketButton != null)
-        {
-            confirmBuyRocketButton.onClick.AddListener(() => GameManager.Instance.GoToNextPlanet());
         }
         if (buyItemsButton != null)
         {

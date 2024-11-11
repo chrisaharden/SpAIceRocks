@@ -126,10 +126,9 @@ public class GameManager : MonoBehaviour
         }
 
         // Update PlanetNumber when moving to a new planet
-        PlanetNumber = PlanetNumber % planetaryBackgrounds.Length+1; //Planet labels start at 1, so mod before incrementing
+        PlanetNumber = PlanetNumber % planetaryBackgrounds.Length; //Planet labels start at 1, so mod before incrementing
         UIManager.Instance.UpdatePlanet(PlanetNumber);
 
-        UIManager.Instance.ToggleRocketPanel();
     }
 
     public void PurchasePlanet(int planetIndex)
@@ -156,6 +155,23 @@ public class GameManager : MonoBehaviour
                 UIManager.Instance.UpdateCoinsEarned(coinsEarned);
                 UIManager.Instance.TogglePlanetsPanel();
                 GoToNextPlanet();
+
+                // Check if this was the last planet being unlocked
+                bool allPlanetsUnlocked = true;
+                for (int i = 0; i < planetConfigs.Length; i++)
+                {
+                    if (planetConfigs[i].isLocked)
+                    {
+                        allPlanetsUnlocked = false;
+                        break;
+                    }
+                }
+
+                // If all planets were unlocked, lock the first planet and make it available for sale
+                if (allPlanetsUnlocked && planetConfigs.Length > 0)
+                {
+                    planetConfigs[0].isLocked = true;
+                }
             }
         }
     }
