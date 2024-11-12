@@ -1,5 +1,6 @@
 using UnityEditor;
 using UnityEngine;
+using System.Linq;
 
 public class HorizontalDistributor : Editor
 {
@@ -13,54 +14,43 @@ public class HorizontalDistributor : Editor
             return;
         }
 
-        // Find the parent Canvas and its RectTransform
-        Canvas parentCanvas = selectedObjects[0].GetComponentInParent<Canvas>();
-        if (parentCanvas == null)
-        {
-            Debug.LogError("Selected objects must be children of a Canvas.");
-            return;
-        }
+        // Find leftmost and rightmost objects
+        GameObject leftmost = selectedObjects[0];
+        GameObject rightmost = selectedObjects[0];
+        float leftX = selectedObjects[0].transform.position.x;
+        float rightX = selectedObjects[0].transform.position.x;
 
-        RectTransform canvasRect = parentCanvas.GetComponent<RectTransform>();
-        
-        // Get the usable width (let's use 80% of the canvas width to keep buttons within visible area)
-        float safeWidth = canvasRect.rect.width * 0.8f;
-        
-        // Calculate total width of all objects plus desired padding
-        float padding = 20f; // Padding between buttons
-        float totalWidth = (selectedObjects.Length - 1) * padding;
-        
         foreach (GameObject obj in selectedObjects)
         {
-            RectTransform rect = obj.GetComponent<RectTransform>();
-            if (rect == null)
+            float objX = obj.transform.position.x;
+            if (objX < leftX)
             {
-                Debug.LogError($"Object '{obj.name}' doesn't have a RectTransform component.");
-                return;
+                leftX = objX;
+                leftmost = obj;
             }
-            totalWidth += rect.rect.width;
+            if (objX > rightX)
+            {
+                rightX = objX;
+                rightmost = obj;
+            }
         }
 
-        // Calculate starting X position (centered)
-        float currentX = -totalWidth / 2;
+        // Calculate total distance and step size
+        float totalDistance = rightX - leftX;
+        float step = totalDistance / (selectedObjects.Length - 1);
+
+        // Sort objects by their current X position
+        GameObject[] sortedObjects = selectedObjects
+            .OrderBy(obj => obj.transform.position.x)
+            .ToArray();
 
         // Distribute objects
-        foreach (GameObject obj in selectedObjects)
+        for (int i = 0; i < sortedObjects.Length; i++)
         {
-            RectTransform rect = obj.GetComponent<RectTransform>();
-            
-            // Center the anchors
-            rect.anchorMin = new Vector2(0.5f, rect.anchorMin.y);
-            rect.anchorMax = new Vector2(0.5f, rect.anchorMax.y);
-            rect.pivot = new Vector2(0.5f, rect.pivot.y);
-
-            // Set position
-            Vector2 newPosition = rect.anchoredPosition;
-            newPosition.x = currentX;
-            rect.anchoredPosition = newPosition;
-
-            // Move to next position
-            currentX += rect.rect.width + padding;
+            GameObject obj = sortedObjects[i];
+            Vector3 newPos = obj.transform.position;
+            newPos.x = leftX + (step * i);
+            obj.transform.position = newPos;
         }
     }
 }
