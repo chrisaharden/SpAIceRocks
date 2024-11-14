@@ -1,3 +1,5 @@
+![Alt text](DesignsAndPipeline/SpA.I.ceRocks-Splash.png?raw=true "Splash")
+
 This is a Unity 6 match 3 PC game for Steam  that I am developing using as much AI as I possibly can.
 
 As of 10/28/2024, I have not started blogging/vlogging about it, but I will soon.
