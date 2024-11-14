@@ -11328,6 +11328,7 @@ MonoBehaviour:
     purchasePrice: 0
     info: 
     planetNumber: 0
+  shipMovement: {fileID: 1627558455}
 --- !u!4 &1707487131
 Transform:
   m_ObjectHideFlags: 0
