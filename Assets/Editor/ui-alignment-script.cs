@@ -25,41 +25,21 @@ public class UIAlignmentTool : EditorWindow
             return;
         }
 
-        // Calculate the average Y position
-        float avgY = 0;
-        int validObjects = 0;
-
-        foreach (GameObject obj in selectedObjects)
-        {
-            RectTransform rectTransform = obj.GetComponent<RectTransform>();
-            if (rectTransform != null)
-            {
-                avgY += rectTransform.position.y;
-                validObjects++;
-            }
-        }
-
-        if (validObjects == 0)
-        {
-            EditorUtility.DisplayDialog("UI Alignment Tool", 
-                "No valid UI elements found in selection.", "OK");
-            return;
-        }
-
-        avgY /= validObjects;
+        // Calculate the Y position of the first object
+        float centerY = selectedObjects[0].GetComponent<RectTransform>().position.y;
 
         // Record the undo operation
         Undo.RecordObjects(selectedObjects.Select(obj => obj.GetComponent<RectTransform>())
             .Where(rt => rt != null).ToArray(), "Align UI Elements Horizontally");
 
-        // Align all selected objects to the average Y position
+        // Align all selected objects to the Y position of the first object
         foreach (GameObject obj in selectedObjects)
         {
             RectTransform rectTransform = obj.GetComponent<RectTransform>();
             if (rectTransform != null)
             {
                 Vector3 position = rectTransform.position;
-                position.y = avgY;
+                position.y = centerY;
                 rectTransform.position = position;
                 
                 // Ensure the pivot point is centered horizontally
@@ -85,41 +65,21 @@ public class UIAlignmentTool : EditorWindow
             return;
         }
 
-        // Calculate the average X position
-        float avgX = 0;
-        int validObjects = 0;
-
-        foreach (GameObject obj in selectedObjects)
-        {
-            RectTransform rectTransform = obj.GetComponent<RectTransform>();
-            if (rectTransform != null)
-            {
-                avgX += rectTransform.position.x;
-                validObjects++;
-            }
-        }
-
-        if (validObjects == 0)
-        {
-            EditorUtility.DisplayDialog("UI Alignment Tool", 
-                "No valid UI elements found in selection.", "OK");
-            return;
-        }
-
-        avgX /= validObjects;
+        // Calculate the X position of the first object
+        float centerX = selectedObjects[0].GetComponent<RectTransform>().position.x;
 
         // Record the undo operation
         Undo.RecordObjects(selectedObjects.Select(obj => obj.GetComponent<RectTransform>())
             .Where(rt => rt != null).ToArray(), "Align UI Elements Vertically");
 
-        // Align all selected objects to the average X position
+        // Align all selected objects to the X position of the first object
         foreach (GameObject obj in selectedObjects)
         {
             RectTransform rectTransform = obj.GetComponent<RectTransform>();
             if (rectTransform != null)
             {
                 Vector3 position = rectTransform.position;
-                position.x = avgX;
+                position.x = centerX;
                 rectTransform.position = position;
                 
                 // Ensure the pivot point is centered vertically
