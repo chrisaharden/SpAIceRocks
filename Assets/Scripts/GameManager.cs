@@ -126,9 +126,8 @@ public class GameManager : MonoBehaviour
         }
 
         // Update PlanetNumber when moving to a new planet
-        PlanetNumber = PlanetNumber % planetaryBackgrounds.Length; //Planet labels start at 1, so mod before incrementing
-        UIManager.Instance.UpdatePlanet(PlanetNumber);
-
+        PlanetNumber = (PlanetNumber % planetaryBackgrounds.Length) + 1;
+        UIManager.Instance.UpdatePlanet(PlanetNumber - 1);
     }
 
     public void PurchasePlanet(int planetIndex)

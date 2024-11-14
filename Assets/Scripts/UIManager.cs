@@ -194,7 +194,8 @@ public class UIManager : MonoBehaviour
             {
                 if (config.PlanetNumber != GameManager.Instance.PlanetNumber)
                 {
-                    buttonText.text = $"Available on Planet {config.PlanetNumber}";
+                    string planetName = GameManager.Instance.planetConfigs[config.PlanetNumber].info;
+                    buttonText.text = $"Available on {planetName}";
                 }
                 else
                 {
