@@ -7,6 +7,11 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
 
+    [Header("Splash Screen")]
+    public GameObject splashScreenPanel;
+    public float splashScreenDuration = 3f;
+
+
     [Header("Modal Background")]
     public GameObject modalBackground;
 
@@ -416,6 +421,7 @@ public class UIManager : MonoBehaviour
 
     public void HideAllPanels()
     {
+        if (splashScreenPanel != null) splashScreenPanel.SetActive(false);
         if (OutOfMovesPanel != null) OutOfMovesPanel.SetActive(false);
         if (boardClearedPanel != null) boardClearedPanel.SetActive(false);
         if (creditsPanel != null) creditsPanel.SetActive(false);
@@ -427,6 +433,34 @@ public class UIManager : MonoBehaviour
     }
 
     void Start()
+    {
+        // Show splash screen at the start of the game
+        if (splashScreenPanel != null)
+        {
+            StartCoroutine(ShowSplashScreen());
+        }
+        else
+        {
+            InitializeUI();
+        }
+    }
+
+    private IEnumerator ShowSplashScreen()
+    {
+        // Activate splash screen
+        splashScreenPanel.SetActive(true);
+
+        // Wait for specified duration
+        yield return new WaitForSeconds(splashScreenDuration);
+
+        // Deactivate splash screen
+        splashScreenPanel.SetActive(false);
+
+        // Initialize rest of the UI
+        InitializeUI();
+    }
+
+    private void InitializeUI()
     {
         HideAllPanels();
 
