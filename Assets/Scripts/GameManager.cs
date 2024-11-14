@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Planets")]
     public PlanetConfig[] planetConfigs;
+    public ShipMovement shipMovement;
 
     void Awake()
     {
@@ -152,7 +153,11 @@ public class GameManager : MonoBehaviour
                 coinsEarned -= config.purchasePrice;
                 config.isLocked = false;
                 UIManager.Instance.UpdateCoinsEarned(coinsEarned);
-                UIManager.Instance.TogglePlanetsPanel();
+                //UIManager.Instance.TogglePlanetsPanel();
+
+                // Animate the ship
+                shipMovement.MoveShipRight();
+                
                 GoToNextPlanet();
 
                 // Check if this was the last planet being unlocked

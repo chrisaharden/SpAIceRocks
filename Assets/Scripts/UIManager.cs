@@ -275,7 +275,7 @@ public class UIManager : MonoBehaviour
     public void PurchasePlanet(int planetIndex)
     {
         GameManager.Instance.PurchasePlanet(planetIndex);
-        TogglePlanetsPanel(); // Refresh the panel to update button states
+        //TogglePlanetsPanel(); // Refresh the panel to update button states
     }
 
     public void ShowBoardCleared(GameObject ToolReward = null)
