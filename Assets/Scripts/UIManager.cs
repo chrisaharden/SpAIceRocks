@@ -321,7 +321,7 @@ public class UIManager : MonoBehaviour
             if (buyPlanetsPanel.activeSelf)
             {
                 HidePanel(buyPlanetsPanel);
-                GameManager.Instance.RestorePreviousBackgroundMusic();
+                GameManager.Instance.PlayBackgroundMusic();
             }
             else
             {

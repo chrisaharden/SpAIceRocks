@@ -11448,23 +11448,23 @@ MonoBehaviour:
   - isLocked: 1
     purchasePrice: 10000
     info: Oxidon
-    planetNumber: 0
+    planetNumber: 1
   - isLocked: 1
     purchasePrice: 20000
     info: Scraphos
-    planetNumber: 0
+    planetNumber: 2
   - isLocked: 1
     purchasePrice: 30000
     info: Prismania
-    planetNumber: 0
+    planetNumber: 3
   - isLocked: 1
     purchasePrice: 40000
     info: 'Celestrix '
-    planetNumber: 0
+    planetNumber: 4
   - isLocked: 1
     purchasePrice: 50000
     info: Novalith
-    planetNumber: 0
+    planetNumber: 5
   - isLocked: 0
     purchasePrice: 0
     info: 

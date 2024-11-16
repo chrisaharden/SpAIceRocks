@@ -119,16 +119,16 @@ public class GameManager : MonoBehaviour
             characterRenderer.sprite = characterSprites[currentCharacterIndex];
         }
 
-        // Update music track
+        // Update music track index.  New music will play  when planet dialog is closed
         if (backgroundMusics != null && backgroundMusics.Length > 0)
         {
             currentMusicIndex = (currentMusicIndex + 1) % backgroundMusics.Length;
-            PlayBackgroundMusic();
+            //PlayBackgroundMusic();
         }
 
         // Update PlanetNumber when moving to a new planet
         PlanetNumber = (PlanetNumber % planetaryBackgrounds.Length) + 1;
-        UIManager.Instance.UpdatePlanet(PlanetNumber - 1);
+        UIManager.Instance.UpdatePlanet(PlanetNumber);
     }
 
     public void PurchasePlanet(int planetIndex)
@@ -180,7 +180,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void PlayBackgroundMusic()
+    public void PlayBackgroundMusic()
     {
         if (backgroundMusics != null && backgroundMusics.Length > 0)
         {
