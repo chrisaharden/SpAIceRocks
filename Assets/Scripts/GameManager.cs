@@ -160,6 +160,8 @@ public class GameManager : MonoBehaviour
                 // Animate the ship with the planet's specific position
                 shipMovement.MoveShipToX(config.ShipPosX, config.ShipFlyOrJump); 
                 
+                // Reset the level back to first again
+                level = 1;
                 GoToNextPlanet();
 
                 // Check if this was the last planet being unlocked
@@ -275,8 +277,8 @@ public class GameManager : MonoBehaviour
         //reset for the next try
         itemsLeftToCollect = intialCollectionGoal;
         board.movesRemaining = 20;    
-        board.ClearBoard();
-        board.GenerateBoard();
+        level = 1;
+        board.UpdateBoardSize(level);
         UIManager.Instance.UpdateCollectionGoal(itemsLeftToCollect);
         UIManager.Instance.UpdateMoves(board.movesRemaining);   
     }

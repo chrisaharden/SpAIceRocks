@@ -10666,8 +10666,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2297f667b42ea674bb7ada1b54951612, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1.25
-  hoverHeight: 0.1
+  moveSpeed: 3
+  hoverHeight: 1
   hoverSpeed: 1
 --- !u!1001 &1637060914
 PrefabInstance:

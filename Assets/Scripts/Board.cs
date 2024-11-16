@@ -17,7 +17,7 @@ public class TileConfig
 
 public class Board : MonoBehaviour
 {
-    private int width = 8;
+    private int width = 6;
     public int height = 6;
     public Tile[,] tiles;
     public int movesRemaining = 20;
@@ -100,7 +100,7 @@ public class Board : MonoBehaviour
     public void UpdateBoardSize(int level)
     {
         // Calculate new width based on level (starting at min, max is the second param)
-        int newWidth = Mathf.Min(8 + (level - 1), 12);
+        int newWidth = Mathf.Min(6 + (level - 1), 12);
         width = newWidth;
         ClearBoard();
         GenerateBoard();
