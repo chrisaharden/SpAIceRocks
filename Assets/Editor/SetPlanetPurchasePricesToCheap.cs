@@ -10,6 +10,7 @@ public class SetPlanetPurchasePricesToCheap : EditorWindow
     private static void Init()
     {
         SetPurchasePriceToAllPlanets();
+        GiveMeMoney();
     }
 
     private static void SetPurchasePriceToAllPlanets()
@@ -23,6 +24,16 @@ public class SetPlanetPurchasePricesToCheap : EditorWindow
             {
                 planetConfig.purchasePrice = 1;
             }
+        }
+    }
+    private static void GiveMeMoney()
+    {
+        GameObject gameManagerObject = GameObject.Find("GameManager");
+        GameManager gameManager = gameManagerObject.GetComponent<GameManager>();
+        if (gameManager != null)
+        {
+            Undo.RecordObject(gameManager, "Give Me Money");
+            gameManager.coinsEarned = 1000;
         }
     }
 }

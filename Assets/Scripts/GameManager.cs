@@ -8,6 +8,8 @@ public class PlanetConfig
     public int purchasePrice;
     public string info = "";
     public int planetNumber;
+    public float ShipPosX; 
+    public bool ShipFlyOrJump; // True for fly, false for jump 
 }
 
 public class GameManager : MonoBehaviour
@@ -127,7 +129,7 @@ public class GameManager : MonoBehaviour
         }
 
         // Update PlanetNumber when moving to a new planet
-        PlanetNumber = (PlanetNumber % planetaryBackgrounds.Length) + 1;
+        PlanetNumber = (PlanetNumber+1) % planetConfigs.Length;
         UIManager.Instance.UpdatePlanet(PlanetNumber);
     }
 
@@ -155,8 +157,8 @@ public class GameManager : MonoBehaviour
                 UIManager.Instance.UpdateCoinsEarned(coinsEarned);
                 //UIManager.Instance.TogglePlanetsPanel();
 
-                // Animate the ship
-                shipMovement.MoveShipRight();
+                // Animate the ship with the planet's specific position
+                shipMovement.MoveShipToX(config.ShipPosX, config.ShipFlyOrJump); 
                 
                 GoToNextPlanet();
 

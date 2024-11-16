@@ -6403,7 +6403,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -6.98499, y: 0.0000011920929}
-  m_SizeDelta: {x: 1.93, y: 1.99}
+  m_SizeDelta: {x: 1.9299994, y: 1.99}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &977188302
 GameObject:
@@ -10666,8 +10666,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2297f667b42ea674bb7ada1b54951612, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveDistance: 2.818
   moveSpeed: 1.25
+  hoverHeight: 0.1
+  hoverSpeed: 1
 --- !u!1001 &1637060914
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11445,30 +11446,38 @@ MonoBehaviour:
     purchasePrice: 5000
     info: Grendex
     planetNumber: 0
+    ShipPosX: -6.98499
+    ShipFlyOrJump: 0
   - isLocked: 1
     purchasePrice: 10000
     info: Oxidon
     planetNumber: 1
+    ShipPosX: -4.166997
+    ShipFlyOrJump: 1
   - isLocked: 1
     purchasePrice: 20000
     info: Scraphos
     planetNumber: 2
+    ShipPosX: -1.349004
+    ShipFlyOrJump: 1
   - isLocked: 1
     purchasePrice: 30000
     info: Prismania
     planetNumber: 3
+    ShipPosX: 1.468989
+    ShipFlyOrJump: 1
   - isLocked: 1
     purchasePrice: 40000
     info: 'Celestrix '
     planetNumber: 4
+    ShipPosX: 4.286983
+    ShipFlyOrJump: 1
   - isLocked: 1
     purchasePrice: 50000
     info: Novalith
     planetNumber: 5
-  - isLocked: 0
-    purchasePrice: 0
-    info: 
-    planetNumber: 0
+    ShipPosX: 7.104976
+    ShipFlyOrJump: 1
   shipMovement: {fileID: 1627558455}
 --- !u!4 &1707487131
 Transform:
