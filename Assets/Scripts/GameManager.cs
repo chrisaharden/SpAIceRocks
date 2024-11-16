@@ -176,7 +176,13 @@ public class GameManager : MonoBehaviour
                 // If all planets were unlocked, lock the first planet and make it available for sale
                 if (allPlanetsUnlocked && planetConfigs.Length > 0)
                 {
-                    planetConfigs[0].isLocked = true;
+                    //planetConfigs[0].isLocked = true;
+
+                    for (int i = 0; i < planetConfigs.Length; i++)
+                    {
+                        planetConfigs[i].isLocked = true;
+                    }
+
                 }
             }
         }

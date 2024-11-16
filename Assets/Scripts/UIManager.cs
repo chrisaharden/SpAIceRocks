@@ -239,7 +239,7 @@ public class UIManager : MonoBehaviour
             TMP_Text buttonText = button.GetComponentInChildren<TMP_Text>();
             if (buttonText != null)
             {
-                buttonText.text = config.isLocked ? $"Buy: {config.purchasePrice} Coins" : "Unlocked";
+                buttonText.text = $"Buy: {config.purchasePrice} Coins";
             }
         }
         if (label != null)
