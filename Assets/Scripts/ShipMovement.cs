@@ -13,7 +13,21 @@ public class ShipMovement : MonoBehaviour
     void Start()
     {
         startPosition = transform.position;
+        hoverTime = 0f;
+    }
+
+    private void OnEnable()
+    {
+        // Initialize startPosition if needed
+        startPosition = transform.position;
+        // Start the HoverEffect coroutine
         StartCoroutine(HoverEffect());
+    }
+
+    private void OnDisable()
+    {
+        // Stop the HoverEffect coroutine when the GameObject is disabled
+        StopCoroutine(HoverEffect());
     }
 
     public void MoveShipToX(float targetX, bool ShipFlyOrJump) // True for fly, false for jump
@@ -51,6 +65,7 @@ public class ShipMovement : MonoBehaviour
                 startPosition.y + yOffset,
                 transform.position.z
             );
+            Debug.Log("Hovering: " + transform.position.y); // Debug log to check if coroutine is running
             yield return null;
         }
     }

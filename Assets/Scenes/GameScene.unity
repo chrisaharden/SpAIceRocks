@@ -10667,8 +10667,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
-  hoverHeight: 1
-  hoverSpeed: 1
+  hoverHeight: 0.05
+  hoverSpeed: 0.5
 --- !u!1001 &1637060914
 PrefabInstance:
   m_ObjectHideFlags: 0
