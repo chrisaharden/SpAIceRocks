@@ -834,28 +834,28 @@ MonoBehaviour:
   tileConfigs:
   - tileType: 0
     isLocked: 0
-    coinValue: 100
+    coinValue: 5
     purchasePrice: 0
     value: 0
     info: 
     PlanetNumber: 0
   - tileType: 1
     isLocked: 0
-    coinValue: 100
+    coinValue: 25
     purchasePrice: 0
     value: 0
     info: 
     PlanetNumber: 0
   - tileType: 2
     isLocked: 0
-    coinValue: 100
+    coinValue: 75
     purchasePrice: 0
     value: 0
     info: 
     PlanetNumber: 0
   - tileType: 3
     isLocked: 0
-    coinValue: 100
+    coinValue: 75
     purchasePrice: 0
     value: 0
     info: 
@@ -870,35 +870,35 @@ MonoBehaviour:
   - tileType: 5
     isLocked: 1
     coinValue: 1000
-    purchasePrice: 100
+    purchasePrice: 1000
     value: 0
     info: 
     PlanetNumber: 0
   - tileType: 6
     isLocked: 1
     coinValue: 1500
-    purchasePrice: 200
+    purchasePrice: 2000
     value: 0
     info: 
     PlanetNumber: 1
   - tileType: 7
     isLocked: 1
     coinValue: 2000
-    purchasePrice: 500
+    purchasePrice: 2500
     value: 0
     info: 
     PlanetNumber: 2
   - tileType: 8
     isLocked: 1
     coinValue: 2500
-    purchasePrice: 2000
+    purchasePrice: 3500
     value: 0
     info: 
     PlanetNumber: 3
   - tileType: 9
     isLocked: 1
     coinValue: 3000
-    purchasePrice: 3000
+    purchasePrice: 4500
     value: 0
     info: 
     PlanetNumber: 4
