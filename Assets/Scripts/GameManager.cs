@@ -242,7 +242,7 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.UpdateCollectionGoal(itemsLeftToCollect);
     }
 
-    void LevelWon()
+    public void LevelWon()
     {
         level++;
         itemsLeftToCollect = intialCollectionGoal;
@@ -273,7 +273,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void GameOver()
+    public void OutOfMoves()
     {
         UIManager.Instance.ShowOutOfMoves();
         

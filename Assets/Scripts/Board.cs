@@ -45,7 +45,7 @@ public class Board : MonoBehaviour
 
     public AudioClip swapSound;
     public AudioClip matchSound;
-    public AudioClip gameOverSound;
+    public AudioClip outOfMoves;
 
     public AudioSource audioSource;
     private Tile selectedTile;
@@ -385,7 +385,7 @@ public class Board : MonoBehaviour
         {
             if (!HasPossibleMoves() || movesRemaining <= 0)
             {
-                GameOver();
+                OutOfMoves();
             }
             
             isSwapping = false;
@@ -776,9 +776,9 @@ public class Board : MonoBehaviour
         return false;
     }
 
-    void GameOver()
+    void OutOfMoves()
     {
-        audioSource.PlayOneShot(gameOverSound);
-        GameManager.Instance.GameOver();
+        audioSource.PlayOneShot(outOfMoves);
+        GameManager.Instance.OutOfMoves();
     }
 }
