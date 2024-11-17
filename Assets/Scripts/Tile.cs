@@ -21,9 +21,9 @@ public class Tile : MonoBehaviour
         Type_07,
         Type_08,
         Type_09,
+        TOOL_PLUS_CLEARER,
         TOOL_COLUMN_CLEARER,
         TOOL_ROW_CLEARER,
-        TOOL_PLUS_CLEARER,
         NONE
     }
 

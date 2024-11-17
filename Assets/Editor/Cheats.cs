@@ -43,6 +43,7 @@ public class Cheats : EditorWindow
         }
     }
 
+    [MenuItem("Tools/Cheats/Give Me Money")]
     private static void GiveMeMoney()
     {
         GameObject gameManagerObject = GameObject.Find("GameManager");
@@ -50,7 +51,7 @@ public class Cheats : EditorWindow
         if (gameManager != null)
         {
             Undo.RecordObject(gameManager, "Give Me Money");
-            gameManager.coinsEarned = 1000;
+            gameManager.coinsEarned = 100000;
         }
     }
 }

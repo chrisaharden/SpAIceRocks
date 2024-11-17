@@ -128,6 +128,9 @@ public class GameManager : MonoBehaviour
             //PlayBackgroundMusic();
         }
 
+        // Reset the board to minimum columns
+        board.UpdateBoardSize(level = 1);
+
         // Update PlanetNumber when moving to a new planet
         PlanetNumber = (PlanetNumber+1) % planetConfigs.Length;
         UIManager.Instance.UpdatePlanet(PlanetNumber);

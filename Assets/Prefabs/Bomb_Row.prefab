@@ -9702,7 +9702,7 @@ GameObject:
   - component: {fileID: -4172908005121146360}
   - component: {fileID: -8571020226376224391}
   m_Layer: 0
-  m_Name: Bomb_LeftRight
+  m_Name: Bomb_Row
   m_TagString: Bomb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
