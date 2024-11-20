@@ -321,12 +321,12 @@ public class UIManager : MonoBehaviour
             if (buyPlanetsPanel.activeSelf)
             {
                 HidePanel(buyPlanetsPanel);
-                GameManager.Instance.PlayBackgroundMusic();
+                AudioManager.Instance.PlayBackgroundMusic();
             }
             else
             {
                 ShowPanel(buyPlanetsPanel);
-                GameManager.Instance.PlayShopBackgroundMusic();
+                AudioManager.Instance.PlayShopBackgroundMusic();
 
                 // Find the first locked planet to determine the next sequential planet
                 int nextPlanetIndex = -1;

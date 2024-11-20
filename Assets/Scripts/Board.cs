@@ -31,23 +31,15 @@ public class Board : MonoBehaviour
     [Tooltip("Configure each tool tile's properties. This array should match the toolPrefabs array order.")]
     public TileConfig[] toolConfigs;
     public GameObject[] toolPrefabs;
-    [Tooltip("Sound effect for each tool type. Order should match toolPrefabs: Column, Row, Plus Shape")]
-    public AudioClip[] toolSounds;
     public float toolProbability = 0.99f; // % chance to place a tool
 
     [Header("Tile Text Animation Configuration")]
     public Canvas canvas;
     public GameObject textMoveAndFadePrefab; // Reference to the TextMoveAndFade prefab
 
-
     [Header("General Configuration")]
     public GameObject tileBackground;
 
-    public AudioClip swapSound;
-    public AudioClip matchSound;
-    public AudioClip outOfMoves;
-
-    public AudioSource audioSource;
     private Tile selectedTile;
     private bool isSwapping;
 
@@ -62,7 +54,7 @@ public class Board : MonoBehaviour
             toolConfigs[toolIndex].isLocked && 
             GameManager.Instance.coinsEarned >= toolConfigs[toolIndex].purchasePrice)
         {
-            GameManager.Instance.PlayCashRegisterSound();
+            AudioManager.Instance.PlayCashRegisterSound();
             GameManager.Instance.coinsEarned -= toolConfigs[toolIndex].purchasePrice;
             toolConfigs[toolIndex].isLocked = false;
             UIManager.Instance.UpdateCoinsEarned(GameManager.Instance.coinsEarned);
@@ -93,7 +85,6 @@ public class Board : MonoBehaviour
     
     void Start()
     {
-        //audioSource = GetComponent<AudioSource>();
         //GenerateBoard();
     }
 
@@ -276,7 +267,7 @@ public class Board : MonoBehaviour
     private bool AreAdjacent(Tile a, Tile b)
     {
         return (Mathf.Abs(a.x - b.x) == 1 && a.y == b.y) || // Horizontally adjacent
-               (Mathf.Abs(a.y - b.y) == 1 && a.x == b.x);   // Vertically adjacent
+                (Mathf.Abs(a.y - b.y) == 1 && a.x == b.x);   // Vertically adjacent
     }
 
     Tile GetTileAtPosition(Vector2 pos)
@@ -295,7 +286,7 @@ public class Board : MonoBehaviour
     {
         isSwapping = true;
 
-        audioSource.PlayOneShot(swapSound);
+        AudioManager.Instance.PlaySwapSound();
 
         // Store original positions including z
         Vector3 aPos = a.transform.position;
@@ -398,19 +389,19 @@ public class Board : MonoBehaviour
     private bool IsTool(Tile.TileType type)
     {
         return type == Tile.TileType.TOOL_COLUMN_CLEARER || 
-               type == Tile.TileType.TOOL_ROW_CLEARER || 
-               type == Tile.TileType.TOOL_PLUS_CLEARER;
+                type == Tile.TileType.TOOL_ROW_CLEARER || 
+                type == Tile.TileType.TOOL_PLUS_CLEARER;
     }
 
     private int GetToolIndex(Tile.TileType type)
     {
         switch (type)
         {
-            case Tile.TileType.TOOL_COLUMN_CLEARER:
-                return 0;
-            case Tile.TileType.TOOL_ROW_CLEARER:
-                return 1;
             case Tile.TileType.TOOL_PLUS_CLEARER:
+                return 0;
+            case Tile.TileType.TOOL_COLUMN_CLEARER:
+                return 1;
+            case Tile.TileType.TOOL_ROW_CLEARER:
                 return 2;
             default:
                 return -1;
@@ -543,55 +534,51 @@ public class Board : MonoBehaviour
         {
             if (tile != null)
             {
-            if (IsTool(tile.type))
-            {
-                containsTool = true;
-                toolType = tile.type;
-            }
-            else
-            {
-                totalCoins += tile.coinValue;
-            }
-
-            // Instantiate TextMoveAndFade prefab at the tile's position
-            if (textMoveAndFadePrefab != null)
-            {
-                Vector3 tilePos = tile.transform.position;
-                //tilePos.z = -2; // Place it in front of tiles
-                GameObject instance = Instantiate(textMoveAndFadePrefab, tilePos, Quaternion.identity, canvas.transform);
-
-                // Set the text to the tile's coin value
-                TMP_Text textMesh = instance.GetComponent<TMP_Text>();
-                if (textMesh != null)
+                if (IsTool(tile.type))
                 {
-                textMesh.text = tile.coinValue.ToString();
+                    containsTool = true;
+                    toolType = tile.type;
+                }
+                else
+                {
+                    totalCoins += tile.coinValue;
                 }
 
-                // Trigger the animation
-                Animator animator = instance.GetComponent<Animator>();
-                if (animator != null)
+                // Instantiate TextMoveAndFade prefab at the tile's position
+                if (textMoveAndFadePrefab != null)
                 {
-                animator.SetTrigger("StartFade");
-                }
+                    Vector3 tilePos = tile.transform.position;
+                    GameObject instance = Instantiate(textMoveAndFadePrefab, tilePos, Quaternion.identity, canvas.transform);
 
-                // Destroy the instance after 0.5 seconds
-                Destroy(instance, 0.5f);
-            }
+                    // Set the text to the tile's coin value
+                    TMP_Text textMesh = instance.GetComponent<TMP_Text>();
+                    if (textMesh != null)
+                    {
+                        textMesh.text = tile.coinValue.ToString();
+                    }
+
+                    // Trigger the animation
+                    Animator animator = instance.GetComponent<Animator>();
+                    if (animator != null)
+                    {
+                        animator.SetTrigger("StartFade");
+                    }
+
+                    // Destroy the instance after 0.5 seconds
+                    Destroy(instance, 0.5f);
+                }
             }
         }
 
         if (containsTool)
         {
             int toolIndex = GetToolIndex(toolType);
-            if (toolIndex >= 0 && toolIndex < toolSounds.Length && toolSounds[toolIndex] != null)
-            {
-                audioSource.PlayOneShot(toolSounds[toolIndex]);
-            }
-            audioSource.PlayOneShot(matchSound);
+            AudioManager.Instance.PlayToolSound(toolIndex);
+            AudioManager.Instance.PlayMatchSound();
         }
         else
         {
-            audioSource.PlayOneShot(matchSound);
+            AudioManager.Instance.PlayMatchSound();
         }
 
         foreach (Tile tile in matchedTiles)
@@ -781,7 +768,7 @@ public class Board : MonoBehaviour
 
     void OutOfMoves()
     {
-        audioSource.PlayOneShot(outOfMoves);
+        AudioManager.Instance.PlayOutOfMovesSound();
         GameManager.Instance.OutOfMoves();
     }
 }

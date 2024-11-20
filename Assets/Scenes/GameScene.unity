@@ -939,18 +939,10 @@ MonoBehaviour:
   - {fileID: 7498715437833581285, guid: 37d9df6f290644a4f9797119271873a7, type: 3}
   - {fileID: 7403765228107922335, guid: dbd875cdee7524a458ebdd4245d8f563, type: 3}
   - {fileID: 7403765228107922335, guid: c6cbffb15d139cd4e9c93962aab0302f, type: 3}
-  toolSounds:
-  - {fileID: 8300000, guid: fd2562d85639b82478b7cfce7ba4c8bd, type: 3}
-  - {fileID: 8300000, guid: 88fff8f02e353af4ba019c4c5c74fb14, type: 3}
-  - {fileID: 8300000, guid: 2eeba612352b854489d69e9cc76f594e, type: 3}
   toolProbability: 0.99
   canvas: {fileID: 1622790448}
   textMoveAndFadePrefab: {fileID: 6671134720287533967, guid: ff71cd13874bc194b9e54590d7462f98, type: 3}
   tileBackground: {fileID: 8325794399025711601, guid: f142b4a0c6cd4cc43b8416fa6f5afb97, type: 3}
-  swapSound: {fileID: 8300000, guid: 0196f4997a127f1459b1f5893b967767, type: 3}
-  matchSound: {fileID: 8300000, guid: f201f53b2801396488c735937b102c62, type: 3}
-  gameOverSound: {fileID: 8300000, guid: a2c4712db2857fd4aa5207b1fbfc7530, type: 3}
-  audioSource: {fileID: 421583426}
 --- !u!1001 &91194743
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8541,6 +8533,67 @@ RectTransform:
   m_AnchoredPosition: {x: 1.4689894, y: 0.0000011920929}
   m_SizeDelta: {x: 2.89, y: 2.91}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1244669419
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1244669421}
+  - component: {fileID: 1244669420}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1244669420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244669419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b807fef82ea62744b954cec06a4b468, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backgroundMusics:
+  - {fileID: 8300000, guid: e7a03c88d46020a4c98f45e985a61896, type: 3}
+  - {fileID: 8300000, guid: 7c6c7d2f3e8b1f74fb8ea423df20c766, type: 3}
+  - {fileID: 8300000, guid: d92c14088bd9e804fa9625397541497d, type: 3}
+  - {fileID: 8300000, guid: bdcb36dd1ba380b42ba79e83be849502, type: 3}
+  - {fileID: 8300000, guid: 2c9de749ac0d6614fb71b5f2a9d8dc5d, type: 3}
+  - {fileID: 8300000, guid: 581df0c3e81e1d743bc58c9393e1d143, type: 3}
+  shopBackgroundMusic: {fileID: 8300000, guid: 2527a34857431f0448891ca7c900bc0c, type: 3}
+  cashRegisterSound: {fileID: 8300000, guid: 26f2cea7a8c3e4f43ba0da4c874fefdc, type: 3}
+  boardClearedSound: {fileID: 8300000, guid: 2d0e1c4e6d66ec0418a229b8dc5224d7, type: 3}
+  swapSound: {fileID: 8300000, guid: 0196f4997a127f1459b1f5893b967767, type: 3}
+  matchSound: {fileID: 8300000, guid: f201f53b2801396488c735937b102c62, type: 3}
+  outOfMovesSound: {fileID: 8300000, guid: a2c4712db2857fd4aa5207b1fbfc7530, type: 3}
+  toolSounds:
+  - {fileID: 8300000, guid: 2eeba612352b854489d69e9cc76f594e, type: 3}
+  - {fileID: 8300000, guid: fd2562d85639b82478b7cfce7ba4c8bd, type: 3}
+  - {fileID: 8300000, guid: fd2562d85639b82478b7cfce7ba4c8bd, type: 3}
+--- !u!4 &1244669421
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244669419}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.4306498, y: -0.09005138, z: 6.3221593}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1271505736 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7418528212424567562, guid: c617e19f8dd5e9445a5a341e6a9bcce4, type: 3}
@@ -11413,16 +11466,6 @@ MonoBehaviour:
   intialCollectionGoal: 50
   level: 0
   PlanetNumber: 0
-  backgroundMusics:
-  - {fileID: 8300000, guid: e7a03c88d46020a4c98f45e985a61896, type: 3}
-  - {fileID: 8300000, guid: 7c6c7d2f3e8b1f74fb8ea423df20c766, type: 3}
-  - {fileID: 8300000, guid: bdcb36dd1ba380b42ba79e83be849502, type: 3}
-  - {fileID: 8300000, guid: 2c9de749ac0d6614fb71b5f2a9d8dc5d, type: 3}
-  - {fileID: 8300000, guid: 581df0c3e81e1d743bc58c9393e1d143, type: 3}
-  - {fileID: 8300000, guid: d92c14088bd9e804fa9625397541497d, type: 3}
-  shopBackgroundMusic: {fileID: 8300000, guid: 2527a34857431f0448891ca7c900bc0c, type: 3}
-  cashRegisterSound: {fileID: 8300000, guid: 26f2cea7a8c3e4f43ba0da4c874fefdc, type: 3}
-  boardClearedSound: {fileID: 8300000, guid: 2d0e1c4e6d66ec0418a229b8dc5224d7, type: 3}
   planetaryBackgrounds:
   - {fileID: 3433612512276972047, guid: 9259889984ac1c64ba9bf15970d8f3d0, type: 3}
   - {fileID: -8159724378549037954, guid: 52606faa5c53af44eb9d391f8f6ec27a, type: 3}
@@ -14538,6 +14581,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 1707487131}
   - {fileID: 130196390}
+  - {fileID: 1244669421}
   - {fileID: 80035950}
   - {fileID: 655840045}
   - {fileID: 344632539}

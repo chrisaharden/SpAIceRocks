@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 [System.Serializable]
@@ -17,6 +18,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public static Board board;
+
     public int itemsLeftToCollect;
     public int coinsEarned;
     public int intialCollectionGoal = 50;
@@ -25,16 +27,7 @@ public class GameManager : MonoBehaviour
     private Camera mainCamera;
     public int PlanetNumber = 1; 
     
-    [Header("Audio")]
-    private AudioSource backgroundAudio;
-    private AudioSource sfxAudio; // New audio source for sound effects
-    public AudioClip[] backgroundMusics; // Array of background music tracks
-    public AudioClip shopBackgroundMusic; // Background music for the shop panel
-    public AudioClip cashRegisterSound; 
-    public AudioClip boardClearedSound;
-    private int currentMusicIndex = 0;
-    private int previousMusicIndex = 0; // Store the music index before entering shop
-
+    
     [Header("Backgrounds and Characters")]
     public Sprite[] planetaryBackgrounds;
     public Sprite[] characterSprites;
@@ -56,16 +49,6 @@ public class GameManager : MonoBehaviour
         Instance = this;
         board = FindFirstObjectByType<Board>();
         mainCamera = Camera.main;
-        
-        // Setup background music audio source
-        backgroundAudio = gameObject.AddComponent<AudioSource>();
-        backgroundAudio.loop = true;
-        backgroundAudio.volume = 0.015f;
-        
-        // Setup SFX audio source
-        sfxAudio = gameObject.AddComponent<AudioSource>();
-        sfxAudio.loop = false;
-        sfxAudio.volume = 1f;
     }
 
     void Start()
@@ -79,7 +62,7 @@ public class GameManager : MonoBehaviour
         itemsLeftToCollect = intialCollectionGoal;
         coinsEarned = 0;
         board.GenerateBoard();
-        PlayBackgroundMusic();
+        AudioManager.Instance.PlayBackgroundMusic();
         
         // Initialize all UI text fields
         UIManager.Instance.UpdateCollectionGoal(itemsLeftToCollect);
@@ -99,10 +82,7 @@ public class GameManager : MonoBehaviour
 
     public void PlayCashRegisterSound()
     {
-        if (sfxAudio != null && cashRegisterSound != null)
-        {
-            sfxAudio.PlayOneShot(cashRegisterSound);
-        }
+        AudioManager.Instance.PlayCashRegisterSound();
     }
 
     public void GoToNextPlanet()
@@ -121,12 +101,8 @@ public class GameManager : MonoBehaviour
             characterRenderer.sprite = characterSprites[currentCharacterIndex];
         }
 
-        // Update music track index.  New music will play  when planet dialog is closed
-        if (backgroundMusics != null && backgroundMusics.Length > 0)
-        {
-            currentMusicIndex = (currentMusicIndex + 1) % backgroundMusics.Length;
-            //PlayBackgroundMusic();
-        }
+        // Update music track index. New music will play when planet dialog is closed
+        AudioManager.Instance.UpdateMusicIndex((AudioManager.Instance.currentMusicIndex + 1) % AudioManager.Instance.backgroundMusics.Length);
 
         // Reset the board to minimum columns
         board.UpdateBoardSize(level = 1);
@@ -154,11 +130,10 @@ public class GameManager : MonoBehaviour
             PlanetConfig config = planetConfigs[planetIndex];
             if (canPurchase && config.isLocked && coinsEarned >= config.purchasePrice)
             {
-                PlayCashRegisterSound();
+                AudioManager.Instance.PlayCashRegisterSound();
                 coinsEarned -= config.purchasePrice;
                 config.isLocked = false;
                 UIManager.Instance.UpdateCoinsEarned(coinsEarned);
-                //UIManager.Instance.TogglePlanetsPanel();
 
                 // Animate the ship with the planet's specific position
                 shipMovement.MoveShipToX(config.ShipPosX, config.ShipFlyOrJump); 
@@ -178,48 +153,16 @@ public class GameManager : MonoBehaviour
                     }
                 }
 
-                // If all planets were unlocked, lock the first planet and make it available for sale
+                // If all planets were unlocked, lock all planets again
                 if (allPlanetsUnlocked && planetConfigs.Length > 0)
                 {
-                    //planetConfigs[0].isLocked = true;
-
                     for (int i = 0; i < planetConfigs.Length; i++)
                     {
                         planetConfigs[i].isLocked = true;
                     }
-
                 }
             }
         }
-    }
-
-    public void PlayBackgroundMusic()
-    {
-        if (backgroundMusics != null && backgroundMusics.Length > 0)
-        {
-            AudioClip nextTrack = backgroundMusics[currentMusicIndex];
-            if (backgroundAudio.clip != nextTrack)
-            {
-                backgroundAudio.clip = nextTrack;
-                backgroundAudio.Play();
-            }
-        }
-    }
-
-    public void PlayShopBackgroundMusic()
-    {
-        if (shopBackgroundMusic != null && backgroundAudio != null)
-        {
-            previousMusicIndex = currentMusicIndex;
-            backgroundAudio.clip = shopBackgroundMusic;
-            backgroundAudio.Play();
-        }
-    }
-
-    public void RestorePreviousBackgroundMusic()
-    {
-        currentMusicIndex = previousMusicIndex;
-        PlayBackgroundMusic();
     }
 
     public void AddItemsCollected(HashSet<Tile> matchedTiles)
@@ -254,7 +197,7 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.ShowBoardCleared();
         
         // Play board cleared sound
-        PlayBoardClearedSound();
+        AudioManager.Instance.PlayBoardClearedSound();
         
         board.UpdateBoardSize(level);
 
@@ -263,14 +206,6 @@ public class GameManager : MonoBehaviour
         board.movesRemaining = 20;
         UIManager.Instance.UpdateCollectionGoal(itemsLeftToCollect);
         UIManager.Instance.UpdateMoves(board.movesRemaining);        
-    }
-
-    void PlayBoardClearedSound()
-    {
-        if (sfxAudio != null && boardClearedSound != null)
-        {
-            sfxAudio.PlayOneShot(boardClearedSound);
-        }
     }
 
     public void OutOfMoves()
