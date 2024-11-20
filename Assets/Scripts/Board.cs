@@ -383,11 +383,14 @@ public class Board : MonoBehaviour
         }
         else
         {
-            if (!HasPossibleMoves() || movesRemaining <= 0)
+            if (!HasPossibleMoves()) // Check if the board has no possible moves
+            {
+                GameManager.Instance.LevelWon();
+            }
+            else if(movesRemaining <= 0) // Check if user it out of moves
             {
                 OutOfMoves();
             }
-            
             isSwapping = false;
         }
     }
