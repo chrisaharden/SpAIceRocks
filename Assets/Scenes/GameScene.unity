@@ -1368,7 +1368,6 @@ MonoBehaviour:
   exitButton: {fileID: 7518622825815461704}
   buyItemsButton: {fileID: 991249593}
   buyToolsButton: {fileID: 1364534239}
-  rocketButton: {fileID: 0}
   creditsButton: {fileID: 1514412030}
   buyPlanetsButton: {fileID: 1001644507}
   OutOfMovesPanel: {fileID: 1277847454}

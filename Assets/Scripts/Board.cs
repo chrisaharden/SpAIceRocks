@@ -3,18 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-[System.Serializable]
-public class TileConfig
-{
-    public Tile.TileType tileType;
-    public bool isLocked;
-    public int coinValue;
-    public int purchasePrice;
-    public int value; 
-    public string info = "";
-    public int PlanetNumber = 0; 
-}
-
 public class Board : MonoBehaviour
 {
     private int width = 6;
@@ -65,18 +53,16 @@ public class Board : MonoBehaviour
     {
         if (tileIndex >= 0 && tileIndex < tileConfigs.Length)
         {
-            TileConfig config = tileConfigs[tileIndex];
-            config.isLocked = false;
-            tileConfigs[tileIndex] = config;
+            tileConfigs[tileIndex].isLocked = false;
 
             // Update any existing tiles of this type on the board
             for (int x = 0; x < width; x++)
             {
                 for (int y = 0; y < height; y++)
                 {
-                    if (tiles[x, y] != null && (int)tiles[x, y].type == tileIndex)
+                    if (tiles[x, y] != null && (int)tiles[x, y].config.tileType == tileIndex)
                     {
-                        tiles[x, y].isLocked = false;
+                        tiles[x, y].config.isLocked = false;
                     }
                 }
             }
@@ -222,10 +208,7 @@ public class Board : MonoBehaviour
                 Tile tileComponent = tile.GetComponent<Tile>();
                 tileComponent.x = x;
                 tileComponent.y = y;
-                tileComponent.type = config.tileType;
-                tileComponent.isLocked = config.isLocked;
-                tileComponent.coinValue = config.coinValue;
-                tileComponent.purchasePrice = config.purchasePrice;
+                tileComponent.config = config;
 
                 tiles[x, y] = tileComponent;
             }
@@ -243,12 +226,12 @@ public class Board : MonoBehaviour
             {
                 if (selectedTile == null)
                 {
-                    if (!tile.isLocked)
+                    if (!tile.config.isLocked)
                         selectedTile = tile;
                 }
                 else if (selectedTile != tile)
                 {
-                    if (!tile.isLocked && AreAdjacent(selectedTile, tile))
+                    if (!tile.config.isLocked && AreAdjacent(selectedTile, tile))
                     {
                         StartCoroutine(SwapTilesCoroutine(selectedTile, tile));
                         movesRemaining--;
@@ -256,7 +239,7 @@ public class Board : MonoBehaviour
                     }
                     else
                     {
-                        selectedTile = !tile.isLocked ? tile : null;
+                        selectedTile = !tile.config.isLocked ? tile : null;
                     }
                 }
             }
@@ -341,7 +324,7 @@ public class Board : MonoBehaviour
         Tile toolTile = null;
         if (selectedTile != null)
         {
-            if (IsTool(selectedTile.type))
+            if (IsTool(selectedTile.config.tileType))
             {
                 toolTile = selectedTile;
             }
@@ -349,7 +332,7 @@ public class Board : MonoBehaviour
             {
                 // Check the tile it was swapped with
                 Tile swappedTile = tiles[selectedTile.x, selectedTile.y];
-                if (swappedTile != null && IsTool(swappedTile.type))
+                if (swappedTile != null && IsTool(swappedTile.config.tileType))
                 {
                     toolTile = swappedTile;
                 }
@@ -386,22 +369,22 @@ public class Board : MonoBehaviour
         }
     }
 
-    private bool IsTool(Tile.TileType type)
+    private bool IsTool(TileConfig.TileType type)
     {
-        return type == Tile.TileType.TOOL_COLUMN_CLEARER || 
-                type == Tile.TileType.TOOL_ROW_CLEARER || 
-                type == Tile.TileType.TOOL_PLUS_CLEARER;
+        return type == TileConfig.TileType.TOOL_COLUMN_CLEARER || 
+                type == TileConfig.TileType.TOOL_ROW_CLEARER || 
+                type == TileConfig.TileType.TOOL_PLUS_CLEARER;
     }
 
-    private int GetToolIndex(Tile.TileType type)
+    private int GetToolIndex(TileConfig.TileType type)
     {
         switch (type)
         {
-            case Tile.TileType.TOOL_PLUS_CLEARER:
+            case TileConfig.TileType.TOOL_PLUS_CLEARER:
                 return 0;
-            case Tile.TileType.TOOL_COLUMN_CLEARER:
+            case TileConfig.TileType.TOOL_COLUMN_CLEARER:
                 return 1;
-            case Tile.TileType.TOOL_ROW_CLEARER:
+            case TileConfig.TileType.TOOL_ROW_CLEARER:
                 return 2;
             default:
                 return -1;
@@ -412,15 +395,15 @@ public class Board : MonoBehaviour
     {
         HashSet<Tile> matchedTiles = new HashSet<Tile>();
 
-        switch (toolTile.type)
+        switch (toolTile.config.tileType)
         {
-            case Tile.TileType.TOOL_COLUMN_CLEARER:
+            case TileConfig.TileType.TOOL_COLUMN_CLEARER:
                 matchedTiles.UnionWith(FindColumnMatches(toolTile.x));
                 break;
-            case Tile.TileType.TOOL_ROW_CLEARER:
+            case TileConfig.TileType.TOOL_ROW_CLEARER:
                 matchedTiles.UnionWith(FindRowMatches(toolTile.y));
                 break;
-            case Tile.TileType.TOOL_PLUS_CLEARER:
+            case TileConfig.TileType.TOOL_PLUS_CLEARER:
                 matchedTiles.UnionWith(FindPlusShapeMatches(toolTile.x, toolTile.y));
                 break;
         }
@@ -435,7 +418,7 @@ public class Board : MonoBehaviour
         HashSet<Tile> matches = new HashSet<Tile>();
         for (int y = 0; y < height; y++)
         {
-            if (tiles[x, y] != null && !IsTool(tiles[x, y].type))
+            if (tiles[x, y] != null && !IsTool(tiles[x, y].config.tileType))
             {
                 matches.Add(tiles[x, y]);
             }
@@ -448,7 +431,7 @@ public class Board : MonoBehaviour
         HashSet<Tile> matches = new HashSet<Tile>();
         for (int x = 0; x < width; x++)
         {
-            if (tiles[x, y] != null && !IsTool(tiles[x, y].type))
+            if (tiles[x, y] != null && !IsTool(tiles[x, y].config.tileType))
             {
                 matches.Add(tiles[x, y]);
             }
@@ -463,7 +446,7 @@ public class Board : MonoBehaviour
         // Check horizontal
         for (int i = x - 1; i <= x + 1; i++)
         {
-            if (i >= 0 && i < width && tiles[i, y] != null && !IsTool(tiles[i, y].type))
+            if (i >= 0 && i < width && tiles[i, y] != null && !IsTool(tiles[i, y].config.tileType))
             {
                 matches.Add(tiles[i, y]);
             }
@@ -472,7 +455,7 @@ public class Board : MonoBehaviour
         // Check vertical
         for (int j = y - 1; j <= y + 1; j++)
         {
-            if (j >= 0 && j < height && tiles[x, j] != null && !IsTool(tiles[x, j].type))
+            if (j >= 0 && j < height && tiles[x, j] != null && !IsTool(tiles[x, j].config.tileType))
             {
                 matches.Add(tiles[x, j]);
             }
@@ -492,14 +475,14 @@ public class Board : MonoBehaviour
                 Tile tile = tiles[x, y];
                 
                 // Skip Tool tiles and null tiles for regular matching
-                if (tile == null || IsTool(tile.type))
+                if (tile == null || IsTool(tile.config.tileType))
                     continue;
 
                 // Check horizontal matches
                 if (x <= width - 3)
                 {
                     if (tiles[x + 1, y] != null && tiles[x + 2, y] != null &&
-                        tile.type == tiles[x + 1, y].type && tile.type == tiles[x + 2, y].type)
+                        tile.config.tileType == tiles[x + 1, y].config.tileType && tile.config.tileType == tiles[x + 2, y].config.tileType)
                     {
                         matchedTiles.Add(tile);
                         matchedTiles.Add(tiles[x + 1, y]);
@@ -511,7 +494,7 @@ public class Board : MonoBehaviour
                 if (y <= height - 3)
                 {
                     if (tiles[x, y + 1] != null && tiles[x, y + 2] != null &&
-                        tile.type == tiles[x, y + 1].type && tile.type == tiles[x, y + 2].type)
+                        tile.config.tileType == tiles[x, y + 1].config.tileType && tile.config.tileType == tiles[x, y + 2].config.tileType)
                     {
                         matchedTiles.Add(tile);
                         matchedTiles.Add(tiles[x, y + 1]);
@@ -527,21 +510,21 @@ public class Board : MonoBehaviour
     void RemoveMatches(HashSet<Tile> matchedTiles)
     {
         bool containsTool = false;
-        Tile.TileType toolType = Tile.TileType.NONE;
+        TileConfig.TileType toolType = TileConfig.TileType.NONE;
         int totalCoins = 0;
 
         foreach (Tile tile in matchedTiles)
         {
             if (tile != null)
             {
-                if (IsTool(tile.type))
+                if (IsTool(tile.config.tileType))
                 {
                     containsTool = true;
-                    toolType = tile.type;
+                    toolType = tile.config.tileType;
                 }
                 else
                 {
-                    totalCoins += tile.coinValue;
+                    totalCoins += tile.config.coinValue;
                 }
 
                 // Instantiate TextMoveAndFade prefab at the tile's position
@@ -554,7 +537,7 @@ public class Board : MonoBehaviour
                     TMP_Text textMesh = instance.GetComponent<TMP_Text>();
                     if (textMesh != null)
                     {
-                        textMesh.text = tile.coinValue.ToString();
+                        textMesh.text = tile.config.coinValue.ToString();
                     }
 
                     // Trigger the animation
@@ -700,10 +683,7 @@ public class Board : MonoBehaviour
                 Tile tileComponent = tile.GetComponent<Tile>();
                 tileComponent.x = x;
                 tileComponent.y = y;
-                tileComponent.type = config.tileType;
-                tileComponent.isLocked = config.isLocked;
-                tileComponent.coinValue = config.coinValue;
-                tileComponent.purchasePrice = config.purchasePrice;
+                tileComponent.config = config;
 
                 tiles[x, y] = tileComponent;
             }
@@ -721,13 +701,13 @@ public class Board : MonoBehaviour
             for (int y = 0; y < height; y++)
             {
                 Tile tile = tiles[x, y];
-                if (tile == null || tile.isLocked) continue;
+                if (tile == null || tile.config.isLocked) continue;
 
                 // Check horizontal swaps
                 if (x < width - 1)
                 {
                     Tile rightTile = tiles[x + 1, y];
-                    if (rightTile != null && !rightTile.isLocked)
+                    if (rightTile != null && !rightTile.config.isLocked)
                     {
                         tiles[x, y] = rightTile;
                         tiles[x + 1, y] = tile;
@@ -746,7 +726,7 @@ public class Board : MonoBehaviour
                 if (y < height - 1)
                 {
                     Tile aboveTile = tiles[x, y + 1];
-                    if (aboveTile != null && !aboveTile.isLocked)
+                    if (aboveTile != null && !aboveTile.config.isLocked)
                     {
                         tiles[x, y] = aboveTile;
                         tiles[x, y + 1] = tile;

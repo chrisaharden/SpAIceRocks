@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: fea8e31ae170f364f96f9b91d18e9c04
+guid: dd789eaeb4ad50243a08b1e34f756207
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7146597462811728457
-    second: characters_6_0
+      213: 3553399650360405704
+    second: WordBubble_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: characters_6_0
+      name: WordBubble_0
       rect:
         serializedVersion: 2
-        x: 7
+        x: 0
         y: 0
-        width: 770
-        height: 784
+        width: 361
+        height: 518
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7b5266cc87f22dc90800000000000000
-      internalID: -7146597462811728457
+      spriteID: 8ceaab0c726305130800000000000000
+      internalID: 3553399650360405704
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      characters_6_0: -7146597462811728457
+      WordBubble_0: 3553399650360405704
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -171,7 +171,7 @@ public class GameManager : MonoBehaviour
         int totalCoins = 0;
         foreach(Tile tile in matchedTiles)
         {
-            totalCoins += tile.coinValue;
+            totalCoins += tile.config.coinValue;
         }
         coinsEarned += totalCoins;
         UIManager.Instance.UpdateCoinsEarned(coinsEarned);

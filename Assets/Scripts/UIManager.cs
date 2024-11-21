@@ -23,7 +23,6 @@ public class UIManager : MonoBehaviour
     public Button exitButton;
     public Button buyItemsButton;
     public Button buyToolsButton; 
-    public Button rocketButton;
     public Button creditsButton;
     public Button buyPlanetsButton;
 
@@ -154,7 +153,6 @@ public class UIManager : MonoBehaviour
         coinsEarnedText.text = $"{coins}";
     }
     
-
     public void UpdateMoves(int moves)
     {
         movesRemainingText.text = $"{moves}";
@@ -164,6 +162,7 @@ public class UIManager : MonoBehaviour
     {
         collectionGoalText.text = $"{goal} Minerals";
     }
+
     public void UpdatePlanet(int planetNumber)
     {
         PlanetConfig config = GameManager.Instance.planetConfigs[planetNumber];
@@ -479,7 +478,6 @@ public class UIManager : MonoBehaviour
                 if (button != null) button.interactable = false;
             }
         }
-
 
         UpdatePlanet(GameManager.Instance.PlanetNumber);
 

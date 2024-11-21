@@ -609,7 +609,27 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      planets_6_0: 4929894016973132354
+      planets_6_1: 6098775709282893483
+      planets_6_10: 6944041903020587106
+      planets_6_11: -2577612510506334032
+      planets_6_12: -2262772762545337377
+      planets_6_13: -2353198694615760507
+      planets_6_14: 1197454314307124150
+      planets_6_15: 7696276494080516917
+      planets_6_16: -4470143021911011110
+      planets_6_17: 9013695958527688809
+      planets_6_18: 4146354825000884639
+      planets_6_19: 5719617533621649150
+      planets_6_2: -4435020098312693496
+      planets_6_3: -8403986610701115992
+      planets_6_4: 3975027809446033160
+      planets_6_5: -1934709295479768372
+      planets_6_6: -8427672580964900570
+      planets_6_7: -3322279091583732396
+      planets_6_8: 4855711540680170000
+      planets_6_9: -1961130186643036640
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
