@@ -11,14 +11,12 @@ public class Board : MonoBehaviour
     public int movesRemaining = 20;
     
     [Header("Tile Configuration")]
-    [Tooltip("Configure each tile type's properties. This array should match the tilePrefabs array order.")]
+    [Tooltip("Configure each tile type's properties.")]
     public TileConfig[] tileConfigs;
-    public GameObject[] tilePrefabs;
 
     [Header("Tool Configuration")]
-    [Tooltip("Configure each tool tile's properties. This array should match the toolPrefabs array order.")]
+    [Tooltip("Configure each tool tile's properties.")]
     public TileConfig[] toolConfigs;
-    public GameObject[] toolPrefabs;
     public float toolProbability = 0.99f; // % chance to place a tool
 
     [Header("Tile Text Animation Configuration")]
@@ -141,7 +139,7 @@ public class Board : MonoBehaviour
             if (!tileConfigs[i].isLocked)
             {
                 unlockedConfigs.Add(tileConfigs[i]);
-                unlockedPrefabs.Add(tilePrefabs[i]);
+                unlockedPrefabs.Add(tileConfigs[i].tilePrefab);
             }
         }
 
@@ -159,7 +157,7 @@ public class Board : MonoBehaviour
 
         // Get list of unlocked Tools
         List<int> unlockedToolIndices = new List<int>();
-        for (int i = 0; i < toolPrefabs.Length; i++)
+        for (int i = 0; i < toolConfigs.Length; i++)
         {
             if (IsToolUnlocked(i))
             {
@@ -191,7 +189,7 @@ public class Board : MonoBehaviour
                 // If this is the Tool position and we should place a Tool
                 if (shouldPlaceTool && x == ToolPosition.x && y == ToolPosition.y)
                 {
-                    tilePrefab = toolPrefabs[selectedToolIndex];
+                    tilePrefab = toolConfigs[selectedToolIndex].tilePrefab;
                     config = toolConfigs[selectedToolIndex];
                 }
                 else
@@ -598,13 +596,13 @@ public class Board : MonoBehaviour
             if (!tileConfigs[i].isLocked)
             {
                 unlockedConfigs.Add(tileConfigs[i]);
-                unlockedPrefabs.Add(tilePrefabs[i]);
+                unlockedPrefabs.Add(tileConfigs[i].tilePrefab);
             }
         }
 
         // Get list of unlocked Tools
         List<int> unlockedToolIndices = new List<int>();
-        for (int i = 0; i < toolPrefabs.Length; i++)
+        for (int i = 0; i < toolConfigs.Length; i++)
         {
             if (IsToolUnlocked(i))
             {
@@ -666,7 +664,7 @@ public class Board : MonoBehaviour
                 // If this position is chosen for a tool
                 if (shouldPlaceTool && x == toolPosition.x && y == toolPosition.y)
                 {
-                    tilePrefab = toolPrefabs[selectedToolIndex];
+                    tilePrefab = toolConfigs[selectedToolIndex].tilePrefab;
                     config = toolConfigs[selectedToolIndex];
                 }
                 else

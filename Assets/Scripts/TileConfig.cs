@@ -10,7 +10,7 @@ public class TileConfig
     public int value = 0; 
     public string info = "";
     public int PlanetNumber = 0; 
-    //public GameObject tilePrefab;
+    public GameObject tilePrefab;
 
     public enum TileType
     {
