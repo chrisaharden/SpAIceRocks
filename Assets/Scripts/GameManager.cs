@@ -3,15 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 
 [System.Serializable]
-public class PlanetConfig
-{
-    public bool isLocked;
-    public int purchasePrice;
-    public string info = "";
-    public int planetNumber;
-    public float ShipPosX; 
-    public bool ShipFlyOrJump; // True for fly, false for jump 
-}
 
 public class GameManager : MonoBehaviour
 {
@@ -25,14 +16,13 @@ public class GameManager : MonoBehaviour
     int collectionGoal;
     public int level;
     private Camera mainCamera;
-    public int PlanetNumber = 1; 
+    public int PlanetNumber = -1; //Starting at -1, since we use GoToNextPlanet() which will increment it to 0. 
     
     
-    [Header("Backgrounds and Characters")]
-    public Sprite[] planetaryBackgrounds;
-    public Sprite[] characterSprites;
-    private int currentBackgroundIndex = 0;
-    private int currentCharacterIndex = 0;
+    [Header("Planet Configs")]
+    public PlanetConfig[] planetConfigs;
+    //public Sprite[] planetaryBackgrounds;
+    //public Sprite[] characterSprites;
     public SpriteRenderer backgroundRenderer;
     public SpriteRenderer characterRenderer;
     
@@ -40,8 +30,7 @@ public class GameManager : MonoBehaviour
     public int rocketCost = 10000;
     public int boardClearCredits = 1000;
 
-    [Header("Planets")]
-    public PlanetConfig[] planetConfigs;
+    [Header("Ship")]
     public ShipMovement shipMovement;
 
     void Awake()
@@ -69,15 +58,9 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.UpdateCoinsEarned(coinsEarned);
         UIManager.Instance.UpdateMoves(board.movesRemaining);
 
-        // Set initial background and character
-        if (backgroundRenderer != null && planetaryBackgrounds.Length > 0)
-        {
-            backgroundRenderer.sprite = planetaryBackgrounds[currentBackgroundIndex];
-        }
-        if (characterRenderer != null && characterSprites.Length > 0)
-        {
-            characterRenderer.sprite = characterSprites[currentCharacterIndex];
-        }
+        //Starting at -1, since we use GoToNextPlanet() which will increment it to 0. 
+        PlanetNumber = -1;
+        GoToNextPlanet();
     }
 
     public void PlayCashRegisterSound()
@@ -87,18 +70,22 @@ public class GameManager : MonoBehaviour
 
     public void GoToNextPlanet()
     {
-        // Update background
-        currentBackgroundIndex = (currentBackgroundIndex + 1) % planetaryBackgrounds.Length;
-        if (backgroundRenderer != null)
-        {
-            backgroundRenderer.sprite = planetaryBackgrounds[currentBackgroundIndex];
-        }
 
-        // Update character
-        currentCharacterIndex = (currentCharacterIndex + 1) % characterSprites.Length;
-        if (characterRenderer != null)
+        //Short term bug fix; I need to move the audio index to also be the planet index, but for now I'm setting it to match the planet index
+        AudioManager.Instance.currentMusicIndex = PlanetNumber;
+
+        //Update planet index before moving ahead
+        PlanetNumber = (PlanetNumber+1) % planetConfigs.Length;
+
+        // Update background & character
+        if (backgroundRenderer != null && characterRenderer.sprite != null && PlanetNumber < planetConfigs.Length && planetConfigs.Length > 0)
         {
-            characterRenderer.sprite = characterSprites[currentCharacterIndex];
+            backgroundRenderer.sprite = planetConfigs[PlanetNumber].BackgroundImage;
+            characterRenderer.sprite = planetConfigs[PlanetNumber].CharacterSprite;
+        }
+        else
+        {
+            Debug.LogWarning("Background renderer, character renderer, or planetConfigs not set in GameManager, or planet index is wrong");
         }
 
         // Update music track index. New music will play when planet dialog is closed
@@ -108,7 +95,6 @@ public class GameManager : MonoBehaviour
         board.UpdateBoardSize(level = 1);
 
         // Update PlanetNumber when moving to a new planet
-        PlanetNumber = (PlanetNumber+1) % planetConfigs.Length;
         UIManager.Instance.UpdatePlanet(PlanetNumber);
     }
 

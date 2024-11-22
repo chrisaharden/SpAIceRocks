@@ -65,7 +65,7 @@ public class ShipMovement : MonoBehaviour
                 startPosition.y + yOffset,
                 transform.position.z
             );
-            Debug.Log("Hovering: " + transform.position.y); // Debug log to check if coroutine is running
+            //Debug.Log("Hovering: " + transform.position.y); // Debug log to check if coroutine is running
             yield return null;
         }
     }

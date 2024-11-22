@@ -13,7 +13,7 @@ public class AudioManager : MonoBehaviour
     [Header("Background Music")]
     public AudioClip[] backgroundMusics;
     public AudioClip shopBackgroundMusic;
-    public int currentMusicIndex { get; private set; } = 0;
+    public int currentMusicIndex = 0;
     private int previousMusicIndex = 0;
 
     [Header("Game SFX")]

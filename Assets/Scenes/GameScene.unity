@@ -11550,24 +11550,6 @@ MonoBehaviour:
   intialCollectionGoal: 50
   level: 0
   PlanetNumber: 0
-  planetaryBackgrounds:
-  - {fileID: 3433612512276972047, guid: 9259889984ac1c64ba9bf15970d8f3d0, type: 3}
-  - {fileID: -8159724378549037954, guid: 52606faa5c53af44eb9d391f8f6ec27a, type: 3}
-  - {fileID: -6451869253236908681, guid: e594218ff18893f4c90182a0a8c5ad02, type: 3}
-  - {fileID: -2178047229563953201, guid: 0bb8abe2be2e7634788dbe181103b98a, type: 3}
-  - {fileID: 690737489308476756, guid: df3bf6d02571c8a4990472801a056959, type: 3}
-  - {fileID: -2441234249493523832, guid: 18671579a34562f47a91c05c4d540c96, type: 3}
-  characterSprites:
-  - {fileID: -2507586493493336035, guid: f9351a5eb868d614eb386b119cfe878d, type: 3}
-  - {fileID: -7632726021810555820, guid: 0c729274d8943a141bfb69aa2bedc4d1, type: 3}
-  - {fileID: -1812717168792064609, guid: 90b8dca88395b934197469d12b24faf1, type: 3}
-  - {fileID: 6531471319683992730, guid: 8da5de49905cf7d459a44ea7f4b0a6cb, type: 3}
-  - {fileID: 5124378440420745394, guid: 254a373c97b5a584d94d74ac47f93450, type: 3}
-  - {fileID: -7146597462811728457, guid: fea8e31ae170f364f96f9b91d18e9c04, type: 3}
-  backgroundRenderer: {fileID: 2094081848}
-  characterRenderer: {fileID: 1956873672}
-  rocketCost: 10000
-  boardClearCredits: 1000
   planetConfigs:
   - isLocked: 0
     purchasePrice: 5000
@@ -11575,36 +11557,52 @@ MonoBehaviour:
     planetNumber: 0
     ShipPosX: -6.98499
     ShipFlyOrJump: 0
+    BackgroundImage: {fileID: 3433612512276972047, guid: 9259889984ac1c64ba9bf15970d8f3d0, type: 3}
+    CharacterSprite: {fileID: -2507586493493336035, guid: f9351a5eb868d614eb386b119cfe878d, type: 3}
   - isLocked: 1
     purchasePrice: 10000
     info: Oxidon
     planetNumber: 1
     ShipPosX: -4.166997
     ShipFlyOrJump: 1
+    BackgroundImage: {fileID: -8159724378549037954, guid: 52606faa5c53af44eb9d391f8f6ec27a, type: 3}
+    CharacterSprite: {fileID: -7632726021810555820, guid: 0c729274d8943a141bfb69aa2bedc4d1, type: 3}
   - isLocked: 1
     purchasePrice: 20000
     info: Scraphos
     planetNumber: 2
     ShipPosX: -1.349004
     ShipFlyOrJump: 1
+    BackgroundImage: {fileID: -6451869253236908681, guid: e594218ff18893f4c90182a0a8c5ad02, type: 3}
+    CharacterSprite: {fileID: -1812717168792064609, guid: 90b8dca88395b934197469d12b24faf1, type: 3}
   - isLocked: 1
     purchasePrice: 30000
     info: Prismania
     planetNumber: 3
     ShipPosX: 1.468989
     ShipFlyOrJump: 1
+    BackgroundImage: {fileID: -2178047229563953201, guid: 0bb8abe2be2e7634788dbe181103b98a, type: 3}
+    CharacterSprite: {fileID: 6531471319683992730, guid: 8da5de49905cf7d459a44ea7f4b0a6cb, type: 3}
   - isLocked: 1
     purchasePrice: 40000
     info: 'Celestrix '
     planetNumber: 4
     ShipPosX: 4.286983
     ShipFlyOrJump: 1
+    BackgroundImage: {fileID: 690737489308476756, guid: df3bf6d02571c8a4990472801a056959, type: 3}
+    CharacterSprite: {fileID: 5124378440420745394, guid: 254a373c97b5a584d94d74ac47f93450, type: 3}
   - isLocked: 1
     purchasePrice: 50000
     info: Novalith
     planetNumber: 5
     ShipPosX: 7.104976
     ShipFlyOrJump: 1
+    BackgroundImage: {fileID: -2441234249493523832, guid: 18671579a34562f47a91c05c4d540c96, type: 3}
+    CharacterSprite: {fileID: -7146597462811728457, guid: fea8e31ae170f364f96f9b91d18e9c04, type: 3}
+  backgroundRenderer: {fileID: 2094081848}
+  characterRenderer: {fileID: 1956873672}
+  rocketCost: 10000
+  boardClearCredits: 1000
   shipMovement: {fileID: 1627558455}
 --- !u!4 &1707487131
 Transform:
