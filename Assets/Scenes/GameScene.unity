@@ -8654,6 +8654,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2c9de749ac0d6614fb71b5f2a9d8dc5d, type: 3}
   - {fileID: 8300000, guid: 581df0c3e81e1d743bc58c9393e1d143, type: 3}
   shopBackgroundMusic: {fileID: 8300000, guid: 2527a34857431f0448891ca7c900bc0c, type: 3}
+  currentMusicIndex: 0
   cashRegisterSound: {fileID: 8300000, guid: 26f2cea7a8c3e4f43ba0da4c874fefdc, type: 3}
   boardClearedSound: {fileID: 8300000, guid: 2d0e1c4e6d66ec0418a229b8dc5224d7, type: 3}
   swapSound: {fileID: 8300000, guid: 0196f4997a127f1459b1f5893b967767, type: 3}
@@ -11548,7 +11549,7 @@ MonoBehaviour:
   itemsLeftToCollect: 50
   coinsEarned: 0
   intialCollectionGoal: 50
-  level: 0
+  level: 6
   PlanetNumber: 0
   planetConfigs:
   - isLocked: 0

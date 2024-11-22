@@ -21,8 +21,6 @@ public class GameManager : MonoBehaviour
     
     [Header("Planet Configs")]
     public PlanetConfig[] planetConfigs;
-    //public Sprite[] planetaryBackgrounds;
-    //public Sprite[] characterSprites;
     public SpriteRenderer backgroundRenderer;
     public SpriteRenderer characterRenderer;
     
@@ -47,7 +45,7 @@ public class GameManager : MonoBehaviour
 
     void NewGame()
     {
-        level = 1;
+        level = board.levelMin;
         itemsLeftToCollect = intialCollectionGoal;
         coinsEarned = 0;
         board.GenerateBoard();
@@ -71,9 +69,6 @@ public class GameManager : MonoBehaviour
     public void GoToNextPlanet()
     {
 
-        //Short term bug fix; I need to move the audio index to also be the planet index, but for now I'm setting it to match the planet index
-        AudioManager.Instance.currentMusicIndex = PlanetNumber;
-
         //Update planet index before moving ahead
         PlanetNumber = (PlanetNumber+1) % planetConfigs.Length;
 
@@ -85,14 +80,14 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Background renderer, character renderer, or planetConfigs not set in GameManager, or planet index is wrong");
+                Debug.LogWarning("Background renderer, character renderer, or planetConfigs not set in GameManager, or planet index is wrong");
         }
 
         // Update music track index. New music will play when planet dialog is closed
-        AudioManager.Instance.UpdateMusicIndex((AudioManager.Instance.currentMusicIndex + 1) % AudioManager.Instance.backgroundMusics.Length);
+        AudioManager.Instance.UpdateMusicIndex(PlanetNumber);
 
         // Reset the board to minimum columns
-        board.UpdateBoardSize(level = 1);
+        board.ResetBoard();
 
         // Update PlanetNumber when moving to a new planet
         UIManager.Instance.UpdatePlanet(PlanetNumber);
@@ -125,7 +120,7 @@ public class GameManager : MonoBehaviour
                 shipMovement.MoveShipToX(config.ShipPosX, config.ShipFlyOrJump); 
                 
                 // Reset the level back to first again
-                level = 1;
+                level = board.levelMin;
                 GoToNextPlanet();
 
                 // Check if this was the last planet being unlocked
@@ -173,35 +168,28 @@ public class GameManager : MonoBehaviour
 
     public void LevelWon()
     {
-        level++;
-        itemsLeftToCollect = intialCollectionGoal;
-        
+               
         // Award board clear credits
         coinsEarned += boardClearCredits;
-        UIManager.Instance.UpdateCoinsEarned(coinsEarned);
-        
+        UIManager.Instance.UpdateCoinsEarned(coinsEarned);        
         UIManager.Instance.ShowBoardCleared();
-        
-        // Play board cleared sound
         AudioManager.Instance.PlayBoardClearedSound();
         
-        board.UpdateBoardSize(level);
-
-        //reset for the next try
-        itemsLeftToCollect = intialCollectionGoal;
-        board.movesRemaining = 20;
-        UIManager.Instance.UpdateCollectionGoal(itemsLeftToCollect);
-        UIManager.Instance.UpdateMoves(board.movesRemaining);        
+        // Make the board bigger
+        UpdateBoardLevelAndGoals(level+1);       
     }
 
     public void OutOfMoves()
     {
-        UIManager.Instance.ShowOutOfMoves();
-        
-        //reset for the next try
+        UIManager.Instance.ShowOutOfMoves();        
+        UpdateBoardLevelAndGoals(board.levelMin);
+    }
+
+    public void UpdateBoardLevelAndGoals(int newLevel)
+    {        
         itemsLeftToCollect = intialCollectionGoal;
         board.movesRemaining = 20;    
-        level = 1;
+        level = newLevel;
         board.UpdateBoardSize(level);
         UIManager.Instance.UpdateCollectionGoal(itemsLeftToCollect);
         UIManager.Instance.UpdateMoves(board.movesRemaining);   

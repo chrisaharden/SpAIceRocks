@@ -1,6 +1,7 @@
-// 11/15/2024 AI-Tag
+// 11/22/2024 AI-Tag
 // This was created with assistance from Muse, a Unity Artificial Intelligence product
 
+using System;
 using UnityEditor;
 using UnityEngine;
 
@@ -52,6 +53,18 @@ public class Cheats : EditorWindow
         {
             Undo.RecordObject(gameManager, "Give Me Money");
             gameManager.coinsEarned = 100000;
+        }
+    }
+
+    [MenuItem("Tools/Cheats/About To Clear Board")]
+    private static void AboutToClearBoard()
+    {
+        GameObject gameManagerObject = GameObject.Find("GameManager");
+        GameManager gameManager = gameManagerObject.GetComponent<GameManager>();
+        if (gameManager != null)
+        {
+            Undo.RecordObject(gameManager, "About To Clear Board");
+            gameManager.itemsLeftToCollect = 1;
         }
     }
 }

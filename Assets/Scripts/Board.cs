@@ -9,6 +9,8 @@ public class Board : MonoBehaviour
     public int height = 6;
     public Tile[,] tiles;
     public int movesRemaining = 20;
+    public int levelMin {get;private set;}=6;
+    private int levelMax = 12;
     
     [Header("Tile Configuration")]
     [Tooltip("Configure each tile type's properties.")]
@@ -72,10 +74,16 @@ public class Board : MonoBehaviour
         //GenerateBoard();
     }
 
+    public void ResetBoard()
+    {
+        GameManager.Instance.level= levelMin;
+        UpdateBoardSize(levelMin);
+    }
+
     public void UpdateBoardSize(int level)
     {
         // Calculate new width based on level (starting at min, max is the second param)
-        int newWidth = Mathf.Min(6 + (level - 1), 12);
+        int newWidth = Mathf.Min(level, levelMax);
         width = newWidth;
         ClearBoard();
         GenerateBoard();
