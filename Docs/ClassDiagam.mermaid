@@ -12,12 +12,21 @@ classDiagram
         +void PlayToolSound(int toolIndex)
     }
 
+    class AnimationLooper {
+        +void Update()
+        +void AdvanceAnimationFrame()
+    }
+
     class Board {
         +int levelMin
         +int movesRemaining
         +void GenerateBoard()
         +void ResetBoard()
         +void UpdateBoardSize(int level)
+        +void ClearBoard()
+        +bool IsToolUnlocked(int toolIndex)
+        +void UnlockTool(int toolIndex)
+        +void UnlockTileType(int tileIndex)
     }
 
     class GameManager {
@@ -30,8 +39,10 @@ classDiagram
         +void NewGame()
         +void GoToNextPlanet()
         +void PurchasePlanet(int planetIndex)
+        +void AddItemsCollected(HashSet<Tile> matchedTiles)
         +void LevelWon()
         +void OutOfMoves()
+        +void UpdateBoardLevelAndGoals(int newLevel)
     }
 
     class PlanetConfig {
@@ -41,18 +52,8 @@ classDiagram
         +Sprite CharacterSprite
     }
 
-    class Tile {
-        +TileConfig config
-        +int x
-        +int y
-        +bool CanPurchase()
-        +bool TryPurchase()
-    }
-
-    class TileConfig {
-        +TileType tileType
-        +int coinValue
-        +int purchasePrice
+    class ShipMovement {
+        +void MoveShipToX(float targetX, bool ShipFlyOrJump)
     }
 
     class UIManager {
@@ -62,6 +63,13 @@ classDiagram
         +void UpdatePlanet(int planetNumber)
         +void ShowBoardCleared()
         +void ShowOutOfMoves()
+        +void PurchaseTile(int tileIndex)
+        +void PurchaseTool(int toolIndex)
+        +void PurchasePlanet(int planetIndex)
+        +void ToggleCreditsPanel()
+        +void TogglePlanetsPanel()
+        +void ToggleToolsPanel()
+        +void ToggleItemsPanel()
     }
 
     AudioManager --> GameManager
@@ -69,5 +77,4 @@ classDiagram
     GameManager --> PlanetConfig
     GameManager --> AudioManager
     GameManager --> UIManager
-    Board --> Tile
-    Tile --> TileConfig
+    GameManager --> ShipMovement
