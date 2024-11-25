@@ -1,0 +1,55 @@
+// 11/25/2024 AI-Tag
+// This was created with assistance from Muse, a Unity Artificial Intelligence product
+
+using System;
+using UnityEditor;
+using UnityEngine;
+classDiagram
+    class AnimationLooper {
+        +Animator animator
+        +string animationName
+        +void Update()
+        +void AdvanceAnimationFrame()
+    }
+    
+    class AudioManager {
+        +static AudioManager Instance
+        +void PlayBackgroundMusic()
+        +void PlayShopBackgroundMusic()
+        +void RestorePreviousBackgroundMusic()
+        +void PlayCashRegisterSound()
+        +void PlayBoardClearedSound()
+        +void PlaySwapSound()
+        +void PlayMatchSound()
+        +void PlayOutOfMovesSound()
+        +void PlayToolSound(int toolIndex)
+    }
+    
+    class GameManager {
+        +static GameManager Instance
+        +static Board board
+        +void Awake()
+        +void Start()
+        +void NewGame()
+        +void PlayCashRegisterSound()
+        +void GoToNextPlanet()
+        +void PurchasePlanet(int planetIndex)
+        +void AddItemsCollected(HashSet~Tile~ matchedTiles)
+        +void LevelWon()
+        +void OutOfMoves()
+        +void UpdateBoardLevelAndGoals(int newLevel)
+    }
+    
+    class PlanetConfig {
+        +bool isLocked
+        +int purchasePrice
+        +string info
+        +int planetNumber
+        +float ShipPosX
+        +bool ShipFlyOrJump
+    }
+    
+    AudioManager --> GameManager
+    GameManager --> PlanetConfig
+    GameManager --> Board
+    Board --> AudioManager
