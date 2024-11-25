@@ -1,0 +1,73 @@
+classDiagram
+    class AudioManager {
+        +static AudioManager Instance
+        +void PlayBackgroundMusic()
+        +void PlayShopBackgroundMusic()
+        +void RestorePreviousBackgroundMusic()
+        +void PlayCashRegisterSound()
+        +void PlayBoardClearedSound()
+        +void PlaySwapSound()
+        +void PlayMatchSound()
+        +void PlayOutOfMovesSound()
+        +void PlayToolSound(int toolIndex)
+    }
+
+    class Board {
+        +int levelMin
+        +int movesRemaining
+        +void GenerateBoard()
+        +void ResetBoard()
+        +void UpdateBoardSize(int level)
+    }
+
+    class GameManager {
+        +static GameManager Instance
+        +int itemsLeftToCollect
+        +int coinsEarned
+        +int level
+        +int PlanetNumber
+        +PlanetConfig[] planetConfigs
+        +void NewGame()
+        +void GoToNextPlanet()
+        +void PurchasePlanet(int planetIndex)
+        +void LevelWon()
+        +void OutOfMoves()
+    }
+
+    class PlanetConfig {
+        +bool isLocked
+        +int purchasePrice
+        +Sprite BackgroundImage
+        +Sprite CharacterSprite
+    }
+
+    class Tile {
+        +TileConfig config
+        +int x
+        +int y
+        +bool CanPurchase()
+        +bool TryPurchase()
+    }
+
+    class TileConfig {
+        +TileType tileType
+        +int coinValue
+        +int purchasePrice
+    }
+
+    class UIManager {
+        +void UpdateCollectionGoal(int itemsLeftToCollect)
+        +void UpdateCoinsEarned(int coinsEarned)
+        +void UpdateMoves(int movesRemaining)
+        +void UpdatePlanet(int planetNumber)
+        +void ShowBoardCleared()
+        +void ShowOutOfMoves()
+    }
+
+    AudioManager --> GameManager
+    GameManager --> Board
+    GameManager --> PlanetConfig
+    GameManager --> AudioManager
+    GameManager --> UIManager
+    Board --> Tile
+    Tile --> TileConfig
