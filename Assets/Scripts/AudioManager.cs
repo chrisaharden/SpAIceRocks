@@ -34,7 +34,7 @@ public class AudioManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
             
             // Setup background music audio source
             backgroundAudio = gameObject.AddComponent<AudioSource>();
