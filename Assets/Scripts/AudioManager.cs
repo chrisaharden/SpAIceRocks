@@ -4,12 +4,7 @@ using System.Collections.Generic;
 [System.Serializable]
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager Instance { get; private set; }
-
-    static AudioManager()
-    {
-        Instance = new AudioManager();
-    }
+    public static AudioManager Instance;
 
     [Header("Audio Sources")]
     private AudioSource backgroundAudio;
