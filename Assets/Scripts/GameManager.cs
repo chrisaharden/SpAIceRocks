@@ -6,7 +6,8 @@ using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;
+    public static GameManager Instance { get; private set; }
+
     static GameManager()
     {
         Instance = new GameManager();

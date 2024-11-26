@@ -5,7 +5,12 @@ using System.Collections;
 
 public class UIManager : MonoBehaviour
 {
-    public static UIManager Instance;
+    public static UIManager Instance { get; private set; }
+
+    static UIManager()
+    {
+        Instance = new UIManager();
+    }
 
     [Header("Splash Screen")]
     public GameObject splashScreenPanel;
