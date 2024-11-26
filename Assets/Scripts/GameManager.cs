@@ -7,6 +7,10 @@ using System.Collections.Generic;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    static GameManager()
+    {
+        Instance = new GameManager();
+    }
 
     public static Board board;
 
