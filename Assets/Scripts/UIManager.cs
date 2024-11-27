@@ -39,16 +39,8 @@ public class UIManager : MonoBehaviour
 
     [Header("Items Panel")]
     public GameObject buyItemsPanel;
-    public Button buyItem05Button;    // Type_05
-    public TMP_Text CoinValue_05;
-    public Button buyItem06Button;    // Type_06
-    public TMP_Text CoinValue_06;
-    public Button buyItem07Button;    // Type_07
-    public TMP_Text CoinValue_07;
-    public Button buyItem08Button;    // Type_08 
-    public TMP_Text CoinValue_08;
-    public Button buyItem09Button;    // Type_09
-    public TMP_Text CoinValue_09;
+    public Button[] buyItemButtons;    // Type_05 to Type_10
+    public TMP_Text[] coinValueTexts;  // CoinValue_05 to CoinValue_10
 
     [Header("Tools Panel")]
     public GameObject buyToolsPanel; // Panel for Tool shop
@@ -391,11 +383,13 @@ public class UIManager : MonoBehaviour
                 TileConfig[] configs = GameManager.board.tileConfigs;
                 int coins = GameManager.Instance.coinsEarned;
                 
-                UpdateBuyItemButton(buyItem05Button, CoinValue_05, configs[5], coins);
-                UpdateBuyItemButton(buyItem06Button, CoinValue_06, configs[6], coins);
-                UpdateBuyItemButton(buyItem07Button, CoinValue_07, configs[7], coins);
-                UpdateBuyItemButton(buyItem08Button, CoinValue_08, configs[8], coins);
-                UpdateBuyItemButton(buyItem09Button, CoinValue_09, configs[9], coins);
+                // Update each buy item button (Type_05 to Type_10)
+                for (int i = (int)TileConfig.TileType.Type_05; i <= (int)TileConfig.TileType.Type_10; i++)
+                {
+                    int arrayIndex = i - (int)TileConfig.TileType.Type_05; // Adjust for array indexing
+                    UpdateBuyItemButton(buyItemButtons[arrayIndex], coinValueTexts[arrayIndex], configs[i], coins);
+                }
+
             }
         }
     }
@@ -420,8 +414,8 @@ public class UIManager : MonoBehaviour
     }
 
     public void HideAllPanels()
-    {
-        if (splashScreenPanel != null) splashScreenPanel.SetActive(false);
+                {
+                    if (splashScreenPanel != null) splashScreenPanel.SetActive(false);
         if (OutOfMovesPanel != null) OutOfMovesPanel.SetActive(false);
         if (boardClearedPanel != null) boardClearedPanel.SetActive(false);
         if (creditsPanel != null) creditsPanel.SetActive(false);
@@ -464,11 +458,14 @@ public class UIManager : MonoBehaviour
     {
         HideAllPanels();
 
-        if (buyItem05Button != null) buyItem05Button.interactable = false;
-        if (buyItem06Button != null) buyItem06Button.interactable = false;
-        if (buyItem07Button != null) buyItem07Button.interactable = false;
-        if (buyItem08Button != null) buyItem08Button.interactable = false;
-        if (buyItem09Button != null) buyItem09Button.interactable = false;
+        // Disable all item buttons by default
+        if (buyItemButtons != null)
+        {
+            foreach (Button button in buyItemButtons)
+            {
+                if (button != null) button.interactable = false;
+            }
+        }
 
         // Set all planet buttons to not interactable by default
         if (buyPlanetButtons != null)
@@ -486,7 +483,6 @@ public class UIManager : MonoBehaviour
         {
             OutOfMovesButton.onClick.AddListener(CloseOutOfMovesPanel);
         }
-        // Removed boardClearedButton listener
         if (exitButton != null)
         {
             exitButton.onClick.AddListener(ShowExitConfirmation);
@@ -512,25 +508,16 @@ public class UIManager : MonoBehaviour
             buyPlanetsButton.onClick.AddListener(TogglePlanetsPanel);
         }
 
-        // Set up buy item button listeners
-        if (buyItem05Button != null)
-            buyItem05Button.onClick.AddListener(() => PurchaseTile(5));
-        if (buyItem06Button != null)
-            buyItem06Button.onClick.AddListener(() => PurchaseTile(6));
-        if (buyItem07Button != null)
-            buyItem07Button.onClick.AddListener(() => PurchaseTile(7));
-        if (buyItem08Button != null)
-            buyItem08Button.onClick.AddListener(() => PurchaseTile(8));
-        if (buyItem09Button != null)
-            buyItem09Button.onClick.AddListener(() => PurchaseTile(9));
-
-        // Set up Tool button listeners (TOOL_COLUMN_CLEARER, TOOL_ROW_CLEARER, TOOL_PLUS_CLEARER)
-        for (int i = 0; i < ToolButtons.Length && i < 3; i++)
+        // Set up buy item button listeners using array
+        if (buyItemButtons != null)
         {
-            int toolIndex = i; // Capture the index for the lambda
-            if (ToolButtons[i] != null)
+            for (int i = 0; i < buyItemButtons.Length; i++)
             {
-                ToolButtons[i].onClick.AddListener(() => PurchaseTool(toolIndex));
+                int tileIndex = i + 5; // Adjust for tile indexing (5-9)
+                if (buyItemButtons[i] != null)
+                {
+                    buyItemButtons[i].onClick.AddListener(() => PurchaseTile(tileIndex));
+                }
             }
         }
 

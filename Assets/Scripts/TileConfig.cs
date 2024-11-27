@@ -24,6 +24,7 @@ public class TileConfig
         Type_07,
         Type_08,
         Type_09,
+        Type_10,
         TOOL_PLUS_CLEARER,
         TOOL_COLUMN_CLEARER,
         TOOL_ROW_CLEARER,
