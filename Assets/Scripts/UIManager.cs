@@ -25,6 +25,8 @@ public class UIManager : MonoBehaviour
     public Button buyToolsButton; 
     public Button creditsButton;
     public Button buyPlanetsButton;
+    public TMP_Text CharacterDialogText;
+
 
     [Header("Out Of Moves Panel")]
     public GameObject OutOfMovesPanel;
@@ -159,6 +161,10 @@ public class UIManager : MonoBehaviour
     {
         PlanetConfig config = GameManager.Instance.planetConfigs[planetNumber];
         planetText.text = config.info;
+
+        // Update the planet info text
+        CharacterDialogText.text = planetText.text + ": " + GameManager.Instance.planetConfigs[planetNumber].GetCurrentCharacterDialogue()+"Buy rights to mine "+ GameManager.board.tileConfigs[planetNumber+(int)TileConfig.TileType.Type_05].info +" while you are here.";
+
     }
 
     public void ShowOutOfMoves()
