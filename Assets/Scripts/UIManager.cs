@@ -539,5 +539,18 @@ public class UIManager : MonoBehaviour
                 }
             }
         }
+
+        // Set up tool button listeners
+        if (ToolButtons != null)
+        {
+            for (int i = 0; i < ToolButtons.Length; i++)
+            {
+                int toolIndex = i; // Capture the index for the lambda
+                if (ToolButtons[i] != null)
+                {
+                    ToolButtons[i].onClick.AddListener(() => PurchaseTool(toolIndex));
+                }
+            }
+        }
     }
 }
