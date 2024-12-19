@@ -1,0 +1,4 @@
+App ID: 3412990
+Depot ID: 3412991
+
+run_app_build "C:\Users\chrisharden\Documents\Unity\AI\SteamWorks\steamworks_sdk_161\sdk\tools\ContentBuilder\scripts\app_build_3412990.vdf"
