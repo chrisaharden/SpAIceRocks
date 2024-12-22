@@ -1,0 +1,69 @@
+🚀 SpAIceRocks: Intergalactic Match 3 Mining Adventure
+
+Journey across a dystopian galaxy as an interplanetary mining prospector, matching and collecting valuable minerals across six uniquely haunting worlds. Each planet tells its own dark tale - from toxic swamps and polluted underbellies to frozen moons harboring ancient secrets. You just need a mouse to play. 
+
+Key Features:
+
+🌎 Explore 6 Distinct Planets: Each with its own atmosphere, character, and exclusive minerals to mine
+
+📈 Dynamic Board Expansion: Success unlocks larger mining operations - start small and expand up to 12x12 grids
+
+⛏️ Strategic Mining Tools: Unlock and deploy powerful clearing tools:
+
+Plus Clearers: Clear minerals in a cross pattern
+
+Column Clearers: Clear entire vertical sections
+
+Row Clearers: Sweep across horizontal lines
+
+💎 Unique Mineral Types: Each planet offers exclusive new minerals to collect and trade
+
+🎯 Progressive Challenge: Clear boards to earn credits and unlock access to new worlds
+
+🎮 Strategic Gameplay: Balance your moves, tool usage, and mineral matching to maximize profits
+
+🏆 Level-Based Progression: Complete collection goals to advance and expand your mining operation
+
+Start your mining empire on a humble beginning world, then use your earnings to unlock access to new planets, each with their own valuable resources. But beware - every world has its own dark history and environmental challenges to overcome.
+
+Match three or more minerals to collect them, but plan carefully - you have limited moves to meet your collection goals. Use your earned credits wisely: invest in powerful clearing tools, unlock new mineral types, or save up to purchase rights to mine on new planets.
+
+Will you become the galaxy's premier mining magnate? Can you unlock all six worlds and uncover their mysterious histories? Start your cosmic mining adventure today!
+
+Perfect for fans of:
+
+Match-3 puzzle games with strategic depth
+
+Sci-fi themed games with dark atmosphere
+
+Resource management and progression systems
+
+Quick sessions with long-term goals
+
+🎮 Your first mining operation awaits - ready to start your galactic enterprise?
+
+
+
+Also for AI Fans:
+
+SpAIceRocks is a Free to Play Unity 6 match 3 PC game for Steam that is being developed using as much AI as possible.   This open source game has been generated almost completely built with AI:
+
+- Game logic generated from Cline (VSCode plugin) + Claude AI  & Unity Muse
+
+- Graphics from Midjourney processed with Rembg
+
+- Music from Udio
+
+- Sound effects from https://www.optimizerai.xyz/ and https://freesound.org/ (non-AI)
+
+- Font suggestions from a mixture of experts with ChatGPT's and Claude's suggestions winning out so far.
+
+- Special effects from Unity Particle Pack (non-AI)
+
+The trailer animation at the end was generated with Reflection Image to Text, it its sound track is an extended version of an Udio soundtrack in the game.
+
+Thank you to all the awesome providers above!  
+
+
+
+You can download the Unity game source and art here: https://github.com/chrisaharden/SpAIceRocks
