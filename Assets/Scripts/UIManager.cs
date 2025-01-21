@@ -12,8 +12,9 @@ public class UIManager : MonoBehaviour
     public float splashScreenDuration = 3f;
 
 
-    [Header("Modal Background")]
+    [Header("Modal Backgrounds")]
     public GameObject modalBackground;
+    public GameObject bottomMenuBackground;
 
     [Header("Main Screen")]
     public TMP_Text coinsEarnedText;
@@ -78,6 +79,8 @@ public class UIManager : MonoBehaviour
                 modalImage.raycastTarget = true;
             }
         }
+
+        //bottomMenuBackground.blocksRaycasts = true;
     }
 
     private void ShowPanel(GameObject panel)

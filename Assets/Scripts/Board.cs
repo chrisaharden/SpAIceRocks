@@ -264,9 +264,13 @@ public class Board : MonoBehaviour
         int x = Mathf.RoundToInt(pos.x + width / 2f - 0.5f);
         int y = Mathf.RoundToInt(pos.y + height / 2f - 0.5f);
 
-        if (x >= 0 && x < width && y >= 0 && y < height)
+        if (x >= 0 && x < width && y >= 0 && y < height && tiles != null)
         {
             return tiles[x, y];
+        }
+        else if (tiles == null)
+        {
+            Debug.LogWarning("tiles class is null");
         }
         return null;
     }

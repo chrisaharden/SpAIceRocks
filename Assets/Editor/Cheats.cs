@@ -52,7 +52,7 @@ public class Cheats : EditorWindow
         if (gameManager != null)
         {
             Undo.RecordObject(gameManager, "Give Me Money");
-            gameManager.coinsEarned = 100000;
+            gameManager.coinsEarned = 1000000; 
         }
     }
 
